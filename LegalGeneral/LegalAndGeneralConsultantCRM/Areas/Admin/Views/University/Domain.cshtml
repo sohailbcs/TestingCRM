@@ -3,25 +3,66 @@
 @{
     ViewBag.Title = "Domain List";
 }
-
+<!-- Include Toastr CSS and JS, jQuery, FontAwesome, and SheetJS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script> <!-- Add this for SheetJS -->
 <div class="content-wrapper">
     <div class="content-wrapper-before"></div>
     <div class="container-full">
         <!-- Main content -->
         <section class="content">
             <div class="content-header">
-                <div class="d-flex align-items-center">
-                    <h3 class="page-title">Domain List</h3>
-                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addDomainModal">
-                        Add New Domain
-                    </button>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Domain Summary</h3>
+                    <div class="float-right">
+
+                        <div class="mb-3 d-flex justify-content-end">
+                            <a class="btn float-end btn-primary" href="/Admin/University/AddUniversity">
+                                <i class="bi bi-plus-circle"></i>&nbsp;Add New Domain
+                            </a>
+                        </div>
+                        <!-- Add Export Button -->
+                        <div class="mb-3 d-flex justify-content-end">
+                            <button id="exportBtn" class="btn btn-success">
+                                <i class="fa fa-download"></i> Export to Excel
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="box">
                 <div class="box-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Search Filters</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="filterForm">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="firstNameFilter">Domain Name</label>
+                                            <input type="text" class="form-control" id="firstNameFilter" placeholder=" Domain Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="sourceFilter">University Name</label>
+                                            <input type="text" class="form-control" id="sourceFilter" placeholder="University Name" />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
                     <table id="domainTable" class="table table-bordered table-striped">
-                        <thead>
+                        <thead style="background-color: rgb(78, 9, 115); color: white;">
                             <tr>
                                 <th>Domain Name</th>
                                 <th>University Name</th>
@@ -35,11 +76,12 @@
                                     <td>@domain.DomainNme</td>
                                     <td>@domain.UniversityName</td>
                                     <td>
-                                        <button class="btn btn-info" data-toggle="modal" data-target="#editDomainModal_@domain.DomainId">
-                                            Edit
+
+                                        <button style="padding: 12px; margin-right: 5px; background-color: rgb(78, 9, 115); color:white;" class="btn " data-toggle="modal" data-target="#editDomainModal_@domain.DomainId">
+                                            <i class="bi bi-pencil" style="margin-right: 5px;"></i>
                                         </button>
-                                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteDomainModal_@domain.DomainId">
-                                            Delete
+                                        <button style="padding: 12px; margin-right: 5px;" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#deleteDomainModal_@domain.DomainId">
+                                            <i class="bi bi-trash" style="margin-right: 3px;"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -99,6 +141,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-danger">Delete</button>
+
                                                 </div>
                                             </form>
                                         </div>
@@ -156,7 +199,7 @@
     <script>
         $(document).ready(function () {
             // Initialize DataTable
-            $('#domainTable').DataTable({
+           var table =  $('#domainTable').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -166,10 +209,54 @@
                 "responsive": true
             });
 
+            // Filter by First Name
+            $('#firstNameFilter').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#sourceFilter').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+
             // When modals are closed, reset the forms
             $('#addDomainModal, .modal').on('hidden.bs.modal', function () {
                 $(this).find('form')[0].reset();
             });
+
+            // Export table to Excel (first 2 columns)
+            $('#exportBtn').click(function () {
+                var tableData = [];
+                var headers = ['DomainName', 'UniversityName'];
+
+                // Extract first 2 columns
+                $('#domainTable thead tr th').each(function (index) {
+                    if (index < 2) {
+                        headers.push($(this).text());
+                    }
+                });
+
+                tableData.push(headers);
+
+                // Extract data from each row
+                $('#domainTable tbody tr').each(function () {
+                    var rowData = [];
+                    $(this).find('td').each(function (index) {
+                        if (index < 2) {
+                            rowData.push($(this).text().trim());
+                        }
+                    });
+                    tableData.push(rowData);
+                });
+
+                // Create worksheet and download
+                var ws = XLSX.utils.aoa_to_sheet(tableData);
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "Domain");
+
+                // Export to file
+                XLSX.writeFile(wb, "Domains.xlsx");
+            });
+
         });
     </script>
 }

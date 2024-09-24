@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "fullcalendar@3.10.2",
+      "destination": "wwwroot/lib/fullcalendar/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@microsoft/signalr@8.0.7",
+      "destination": "wwwroot/lib/signalr/",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.min.js"
+      ]
+    }
+  ]
+}

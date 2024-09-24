@@ -355,16 +355,10 @@ namespace LegalAndGeneralConsultantCRM.Areas.Admin.Controllers
 		{
             try
             {
-                var student = await _context.Students
-                                   .Where(s => s.StudentId == model.Students.StudentId)
-                                   .Select(s => new { s.UserId })
-                                   .FirstOrDefaultAsync();
-                var studentName = await _context.Students
-                                   .Where(s => s.StudentId == model.Students.StudentId)
-                                   .Select(s => new { s.FirstName })
-                                   .FirstOrDefaultAsync();
+                
 
-                var userid = model.Students.UserId;
+
+                
 				// Retrieve an existing StudentMessage based on LeadId
 				var existingMessage = await _context.StudentMessages
 					.FirstOrDefaultAsync(sm => sm.LeadId == model.StudentMessages.LeadId);
@@ -380,13 +374,7 @@ namespace LegalAndGeneralConsultantCRM.Areas.Admin.Controllers
 
 				if (existingMessage == null)
                 {
-                    var notifications = new Notification
-                    {
-                        UserId = student.UserId, // EmployeeId is saved as UserId
-                        Message = "the status of"+ studentName+" please check in application table for latest update",
-                        NotificationTime = DateTime.Now,
-                        IsRead = false
-                    };
+              
                     // No existing record found, add a new one
                     _context.StudentMessages.Add(studentMessage);
 				}

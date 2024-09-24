@@ -32,6 +32,62 @@
 
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Search Filters</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="filterForm">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">Name</label>
+                                                    <input type="text" class="form-control" id="firstNameFilter" placeholder=" Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Email</label>
+                                                    <input type="text" class="form-control" id="sourceFilter" placeholder="Email" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="phoneFilter">Phone Number</label>
+                                                    <input type="text" class="form-control" id="phoneFilter" placeholder="Phone Number" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="emailFilter">University</label>
+                                                    <input type="text" class="form-control" id="emailFilter" placeholder="University" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Courses</label>
+                                                    <input type="text" class="form-control" id="BranchFilter" placeholder="Courses" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Application Status</label>
+                                                    <input type="text" class="form-control" id="eduFilter" placeholder="Application Status" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Comments</label>
+                                                    <input type="text" class="form-control" id="intake1Filter" placeholder="Comments" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                                     <thead>
@@ -66,7 +122,7 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#leadTable').DataTable({
+          var table =  $('#leadTable').DataTable({
                 "ajax": {
                     "url": "/Employee/Application/LeadConvertedStatus",
                     "type": "GET",
@@ -117,9 +173,37 @@
 
                 ]
             });
-          
 
 
+            // Filter by First Name
+            $('#firstNameFilter').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#sourceFilter').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+
+            // Filter by Phone Number
+            $('#phoneFilter').on('keyup', function () {
+                table.column(2).search(this.value).draw();
+            });
+            // Filter by Email
+            $('#emailFilter').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#BranchFilter').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#eduFilter').on('keyup', function () {
+                table.column(5).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#intake1Filter').on('keyup', function () {
+                table.column(6).search(this.value).draw();
+            });
 
         });
 

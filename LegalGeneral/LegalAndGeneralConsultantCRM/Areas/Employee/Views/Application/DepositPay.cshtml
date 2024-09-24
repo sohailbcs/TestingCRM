@@ -1,5 +1,10 @@
 ﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
 
+<!-- Include Toastr CSS and JS, jQuery, FontAwesome, and SheetJS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script> <!-- Add this for SheetJS -->
 
 
 <div class="content-wrapper">
@@ -31,11 +36,85 @@
                             <h3 class="box-title"> Deposit Payment</h3>
                             
                         </div>
-
-
-
+                        <div class="float-right">
+                        <!-- Add Export Button -->
+                        <div class="mb-3 d-flex justify-content-end">
+                            <button id="exportBtn" class="btn btn-success">
+                                <i class="fa fa-download"></i> Export to Excel
+                            </button>
+                        </div>
+                        </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Search Filters</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="filterForm">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">Name</label>
+                                                    <input type="text" class="form-control" id="firstNameFilter" placeholder="Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Email</label>
+                                                    <input type="text" class="form-control" id="sourceFilter" placeholder="Email" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="genderFilter">Gender</label>
+                                                    <select class="form-control" id="genderFilter">
+                                                        <option value="">Select Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="phoneFilter">Phone Number</label>
+                                                    <input type="text" class="form-control" id="phoneFilter" placeholder="Phone Number" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Status</label>
+                                                    <input type="text" class="form-control" id="intake1Filter" placeholder="Status " />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="emailFilter">University</label>
+                                                    <input type="text" class="form-control" id="emailFilter" placeholder="University" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Program</label>
+                                                    <input type="text" class="form-control" id="BranchFilter" placeholder="Program" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Deposit</label>
+                                                    <input type="text" class="form-control" id="eduFilter" placeholder="Deposit" />
+                                                </div>
+                                            </div>
+         
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                                     <thead>
@@ -145,7 +224,7 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#leadTable').DataTable({
+          var table =  $('#leadTable').DataTable({
                 "ajax": {
                     "url": "/Employee/Application/GetAllocatedLeadData",
                     "type": "GET",
@@ -218,6 +297,47 @@
 
                 ]
             });
+
+            // Filter by First Name
+            $('#firstNameFilter').on('keyup', function () {
+                table.column(0).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#sourceFilter').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+            // Filter by Gender
+            $('#genderFilter').on('change', function () {
+                table.column(2).search(this.value).draw();
+            });
+            // Filter by Phone Number
+            $('#phoneFilter').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#intake1Filter').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+            // Filter by Email
+            $('#emailFilter').on('keyup', function () {
+                table.column(5).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#BranchFilter').on('keyup', function () {
+                table.column(6).search(this.value).draw();
+            });
+            // Filter by Source
+            $('#eduFilter').on('keyup', function () {
+                table.column(7).search(this.value).draw();
+            });
+
+            $('#intake2Filter').on('keyup', function () {
+                table.column(8).search(this.value).draw();
+            });
+            $('#intake3Filter').on('keyup', function () {
+                table.column(9).search(this.value).draw();
+            });
+
             $(document).on('click', '.open-modal', function () {
                 var leadId = $(this).data('leadid');
                 var fullName = $(this).data('fullname');
@@ -331,6 +451,39 @@
                 }
             });
 
+            //Export to Excel
+            $('#exportBtn').click(function () {
+                var tableData = [];
+                var headers = [];
+
+                // Extract first 8 headers
+                $('#leadTable thead tr th').each(function (index) {
+                    if (index < 8) {
+                        headers.push($(this).text().trim());
+                    }
+                });
+
+                tableData.push(headers);
+
+                // Extract data from each row (first 8 columns)
+                $('#leadTable tbody tr').each(function () {
+                    var rowData = [];
+                    $(this).find('td').each(function (index) {
+                        if (index < 8) {
+                            rowData.push($(this).text().trim());
+                        }
+                    });
+                    tableData.push(rowData);
+                });
+
+                // Create worksheet and download
+                var ws = XLSX.utils.aoa_to_sheet(tableData);
+                var wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "studentTable");
+
+                // Export to file
+                XLSX.writeFile(wb, "studentTable.xlsx");
+            });
 
 
 

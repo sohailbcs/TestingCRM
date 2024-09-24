@@ -1,0 +1,205 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\admin\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\admin\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Sohail Khan\\AppData\\Local\\SourceServer\\ad350b19791375dbc8735ad39c39bc03f6bcb6db5ceee888eb344ead342af092\\src\\EFCore\\Query\\Internal\\ParameterExtractingExpressionVisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\employee\\views\\application\\applicationstatus.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\employee\\views\\application\\applicationstatus.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\admin\\views\\university\\uni.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\admin\\views\\university\\uni.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\admin\\views\\university\\domain.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\admin\\views\\university\\domain.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\admin\\views\\university\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\admin\\views\\university\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\employee\\views\\mylead\\followup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\employee\\views\\mylead\\followup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\admin\\views\\employee\\user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\admin\\views\\employee\\user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\employee\\views\\mylead\\universityprogram.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\employee\\views\\mylead\\universityprogram.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|c:\\users\\sohail khan\\source\\repos\\testingcrm\\legalgeneral\\legalandgeneralconsultantcrm\\areas\\admin\\views\\lead\\alllead.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{173E9EDB-AE52-4135-B16C-0328CDA87474}|LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj|solutionrelative:legalandgeneralconsultantcrm\\areas\\admin\\views\\lead\\alllead.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 278,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3fd5e0cc-709a-4f8c-94c3-7f0f8dff5bb2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Controllers\\StudentController.cs*",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Controllers\\StudentController.cs*",
+              "ViewState": "AQIAAG8BAAAAAAAAAAAAAHgBAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T14:05:35.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ParameterExtractingExpressionVisitor.cs",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\AppData\\Local\\SourceServer\\ad350b19791375dbc8735ad39c39bc03f6bcb6db5ceee888eb344ead342af092\\src\\EFCore\\Query\\Internal\\ParameterExtractingExpressionVisitor.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\SourceServer\\ad350b19791375dbc8735ad39c39bc03f6bcb6db5ceee888eb344ead342af092\\src\\EFCore\\Query\\Internal\\ParameterExtractingExpressionVisitor.cs",
+              "ToolTip": "C:\\Users\\Sohail Khan\\AppData\\Local\\SourceServer\\ad350b19791375dbc8735ad39c39bc03f6bcb6db5ceee888eb344ead342af092\\src\\EFCore\\Query\\Internal\\ParameterExtractingExpressionVisitor.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\SourceServer\\ad350b19791375dbc8735ad39c39bc03f6bcb6db5ceee888eb344ead342af092\\src\\EFCore\\Query\\Internal\\ParameterExtractingExpressionVisitor.cs",
+              "ViewState": "AQIAAMQBAAAAAAAAAAAkwNEBAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T13:59:10.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationStatus.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\Application\\ApplicationStatus.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\Application\\ApplicationStatus.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\Application\\ApplicationStatus.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\Application\\ApplicationStatus.cshtml",
+              "ViewState": "AQIAALwAAAAAlpmZmRkRwM0AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T13:50:02.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Followup.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\Followup.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\Followup.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\Followup.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\Followup.cshtml",
+              "ViewState": "AQIAANQAAAAg8/////8HwOoAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T13:41:46.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UniversityProgram.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\UniversityProgram.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\UniversityProgram.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\UniversityProgram.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Employee\\Views\\MyLead\\UniversityProgram.cshtml",
+              "ViewState": "AQIAADAAAABAMjMzM3MvwCwAAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T13:36:01.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Uni.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Uni.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Uni.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Uni.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Uni.cshtml",
+              "ViewState": "AQIAADABAAAAAAAAAAAAADYBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T12:57:08.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Courses.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Courses.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Courses.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Courses.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Courses.cshtml",
+              "ViewState": "AQIAAFgAAAAAaWZmZuYswAMBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T12:34:04.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Domain.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Domain.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Domain.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Domain.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\University\\Domain.cshtml",
+              "ViewState": "AQIAABwAAACAl5mZmZkOwCUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T12:24:06.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Employee\\User.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Employee\\User.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Employee\\User.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Employee\\User.cshtml",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAAALkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T11:19:20.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AllLead.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Lead\\AllLead.cshtml",
+              "RelativeDocumentMoniker": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Lead\\AllLead.cshtml",
+              "ToolTip": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Lead\\AllLead.cshtml",
+              "RelativeToolTip": "LegalAndGeneralConsultantCRM\\Areas\\Admin\\Views\\Lead\\AllLead.cshtml",
+              "ViewState": "AQIAANkBAAAAkJmZmRkWwAQCAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T11:13:53.052Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
