@@ -1,0 +1,829 @@
+﻿<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">My Leads Summary</h3>
+                             <div class="float-right">
+                                <a href="#" data-toggle="modal" data-target="#add-new-events" class="btn btn-primary btn-block my-10">
+                                    <i class="ti-plus"></i> Add New Lead
+                                </a>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Search Filters</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="filterForm">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">First Name</label>
+                                                    <input type="text" class="form-control" id="firstNameFilter" placeholder="First Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">Last Name</label>
+                                                    <input type="text" class="form-control" id="lastNameFilter" placeholder="First Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="genderFilter">Gender</label>
+                                                    <select class="form-control" id="genderFilter">
+                                                        <option value="">Select Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phoneFilter">Phone Number</label>
+                                                    <input type="text" class="form-control" id="phoneFilter" placeholder="Phone Number" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="emailFilter">Email</label>
+                                                    <input type="text" class="form-control" id="emailFilter" placeholder="Email" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Source</label>
+                                                    <input type="text" class="form-control" id="sourceFilter" placeholder="Source" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="startDateFilter">Start Date</label>
+                                                    <input type="date" id="startDateFilter" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="endDateFilter">End Date</label>
+                                                    <input type="date" id="endDateFilter" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                            <th style="background-color: #4e0973;color:white;">Last Follow-up</th>
+                                            <th style="background-color: #4e0973;color:white;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<div class="modal fade none-border" id="add-new-events">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Add</strong> Lead</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="leadForm" method="post" role="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">First Name</label>
+                            <input id="firstName" class="form-control form-white" placeholder="Enter name" type="text" name="firstName" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Last Name</label>
+                            <input id="lastName" class="form-control form-white" placeholder="Enter name" type="text" name="lastName" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Email</label>
+                            <input id="email" class="form-control form-white" placeholder="Enter email" type="email" name="email" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Gender</label>
+                            <select id="gender" class="form-control form-white" name="gender">
+                                <option value="" disabled>-- Select Gender--</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Phone Number</label>
+                            <input id="phoneNumber" class="form-control form-white" placeholder="Enter phone number" type="text" name="phoneNumber" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Lead Source</label>
+                            <select id="leadSource" class="form-control form-white" name="leadSource">
+                                <option value="">Select lead source</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Website">Website</option>
+                                <option value="Event">Event</option>
+                                <option value="Walk in">Walk in</option>
+                                <option value="Partner/Referral">Partner/Referral</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveLeadBtn">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="followUpModalLabel">Follow-Up Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="followUpForm" action="/Employee/MyLead/Create" method="post">
+                    <input type="hidden" id="leadId" name="leadId">
+                    <div class="form-group">
+                        <label for="leadName">Name</label>
+                        <input type="text" class="form-control" id="leadName" name="leadName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="leadStatus">Status</label>
+                        <select class="form-control" id="leadStatus" name="Status">
+                            <option value="">-- Lead Status --</option>
+                            <option value="Hot Lead">Hot Lead</option>
+                            <option value="Dead Lead">Dead Lead</option>
+                            <option value="Future Lead">Future Lead</option>
+                            <option value="Converted Lead">Converted Lead</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Noresponce">No Responce</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="leadStatus">Followup Type</label>
+                        <select class="form-control" id="leadStatus" name="FollowUpType">
+                            <option value="">-- FollowUpType --</option>
+                            <option value="Calls"> Atempted Calls</option>
+                            <option value="ConnectedCalls"> Connected Calls</option>
+                            <option value="Visits"> Site Visit</option>
+                            <option value="Meetings">Client Meeting</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reminderDate">Reminder Date</label>
+                        <input type="date" class="form-control" id="reminderDate" name="Reminder">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveFollowUp">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editLeadModal" tabindex="-1" aria-labelledby="editLeadModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Edit</strong> Lead</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editLeadForm" method="post" role="form">
+                    <input type="hidden" id="editLeadId" name="leadId">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">First Name</label>
+                            <input id="editFirstName" class="form-control" placeholder="Enter first name" type="text" name="firstName" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Last Name</label>
+                            <input id="editLastName" class="form-control" placeholder="Enter last name" type="text" name="lastName" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Email</label>
+                            <input id="editEmail" class="form-control" placeholder="Enter email" type="email" name="email" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Gender</label>
+                            <select id="editGender" class="form-control" name="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Phone Number</label>
+                            <input id="editPhoneNumber" class="form-control" placeholder="Enter phone number" type="text" name="phoneNumber" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Lead Source</label>
+                            <select id="editLeadSource" class="form-control" name="leadSource">
+                                <option value="">Select lead source</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Website">Website</option>
+                                <option value="Event">Event</option>
+                                <option value="Walk in">Walk in</option>
+                                <option value="Partner/Referral">Partner/Referral</option>
+                                <option value="Other">Other</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="updateLeadBtn">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="phoneNumberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="phoneNumberModalLabel">Phone Number Options</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="phoneNumberInput">
+                <p>Choose an option for the phone number: <span id="displayPhoneNumber"></span></p>
+                <button type="button" class="btn btn-primary" id="smsButton">Send SMS</button>
+                <button type="button" class="btn btn-warning" id="callButton">Call</button>
+                <button type="button" class="btn btn-success" id="whatsappButton">Chat on WhatsApp</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+     var table=  $('#leadTable').DataTable({
+            "ajax": {
+                "url": "/Employee/MyLead/GetAllocatedLeadData",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "fullName", "autoWidth": true },
+                { "data": "email", "autoWidth": true },
+                { "data": "gender", "autoWidth": true },
+                {
+                    "data": "phoneNumber",
+                    "autoWidth": true,
+                    "render": function (data, type, row) {
+                        return '<a href="#" class="phone-link" data-phone="' + data + '">' + data + '</a>';
+                    }
+                }, {
+                    "data": "followUpStatus",
+
+                    "autoWidth": true,
+                    "render": function (data, type, row) {
+                        if (data === "Converted Lead") {
+                            return '<span class="badge badge-pill bg-success">Converted Lead</span>';
+                        } else if (data === "Dead Lead") {
+                            return '<span class="badge badge-pill bg-danger">Dead Lead</span>';
+                        } else if (data === "Cold Lead") {
+                            return '<span class="badge badge-pill bg-dark">Cold Lead</span>';
+                        } else if (data === "Future Lead") {
+                            return '<span class="badge badge-pill bg-secondary">Future Lead</span>';
+                        } else if (data === "Hot Lead") {
+                            return '<span class="badge badge-pill bg-primary">Hot Lead</span>';
+                        } else if (data === "Warm Lead") {
+                            return '<span class="badge badge-pill bg-info">Warm Lead</span>';
+                        } else {
+                            return '<span class="badge badge-pill bg-warning">Pending Lead</span>';
+                        }
+                    }
+                },
+                {
+                    "data": "followUpDate",
+                    "autoWidth": true,
+                    "render": function (data) {
+                        return data ? new Date(data).toDateString() : null;
+                    }
+                },
+                {
+                    "data": "leadId",
+                    "render": function (data, type, row) {
+                        return '<a class="open-modal btn btn-link me-5" ' +
+                            'data-leadid="' + row.leadId + '" ' +
+                            'data-fullname="' + row.fullName + '" ' +
+                            'style="cursor: pointer;">' +
+                            '<i class="bi bi-clipboard-check"></i></a> ' +
+
+                            '<a class="edit-lead btn btn-link me-5 text-primary" ' +
+                            'data-leadid="' + row.leadId + '" ' +
+                            'data-firstname="' + row.firstName + '" ' +
+                            'data-lastname="' + row.lastName + '" ' +
+                            'data-email="' + row.email + '" ' +
+                            'data-gender="' + row.gender + '" ' +
+                            'data-phonenumber="' + row.phoneNumber + '" ' +
+                            'data-leadsource="' + row.leadSource + '" ' +
+                            'style="cursor: pointer;">' +
+                            '<i class="bi bi-pencil"></i></a> ' +
+
+                            '<a class="delete-lead btn btn-link me-5 text-danger" ' +
+                            'data-leadid="' + row.leadId + '" ' +
+                            'style="cursor: pointer;">' +
+                            '<i class="bi bi-trash"></i></a>' +
+                        '<a href="/Employee/MyLead/LeadDetail?leadId=' + row.leadId + '" class="btn btn-info" ' +
+                            'style="padding: 12px;">' +
+                            '<i class="bi bi-clock" style="margin-right: 3px;"></i>History</a>';
+                    }
+                }
+
+
+            ]
+        });
+        // Add click event listener to phone number cells
+        $('#leadTable tbody').on('click', '.phone-link', function (e) {
+            e.preventDefault();
+            var phoneNumber = $(this).data('phone');
+            $('#phoneNumberModal').modal('show');
+            $('#phoneNumberInput').val(phoneNumber);
+        });
+        // Add click event listener to the "WhatsApp" button in the modal
+        $('#phoneNumberModal').on('click', '#whatsappButton', function () {
+            var phoneNumber = $('#phoneNumberInput').val();
+            var whatsappUrl = 'https://wa.me/' + phoneNumber;
+            window.open(whatsappUrl, '_blank'); // Open in a new tab or window
+        });
+        // Add click event listener to the "Message" button in the modal
+        $('#phoneNumberModal').on('click', '.btn-primary', function () {
+            var phoneNumber = $('#phoneNumberInput').val();
+            window.location.href = 'sms:' + phoneNumber;
+        });
+
+        // Add click event listener to the "Call" button in the modal
+        $('#phoneNumberModal').on('click', '.btn-warning', function () {
+            var phoneNumber = $('#phoneNumberInput').val();
+            window.location.href = 'tel:' + phoneNumber;
+        });
+
+        // Save lead button click event
+        $('#saveLeadBtn').on('click', function () {
+            // Clear previous validation errors
+            $('.validation-error').remove();
+
+            let isValid = true;
+
+            // Validate First Name
+            var firstName = $('#firstName').val().trim();
+            var phoneNumber = $('#phoneNumber').val().trim();
+
+            // Remove any existing validation errors
+            $('.validation-error').remove();
+
+            // Check if firstName is empty
+            if (firstName === '') {
+                isValid = false;
+                $('#firstName').after('<span class="validation-error text-danger">First Name is required.</span>');
+            } else if (firstName.length < 3) {
+                // Check if firstName has at least 3 characters
+                isValid = false;
+                $('#firstName').after('<span class="validation-error text-danger">First Name must be at least 3 characters long.</span>');
+            } else if (/^\d/.test(firstName)) {
+                // Check if firstName starts with a number
+                isValid = false;
+                $('#firstName').after('<span class="validation-error text-danger">First Name cannot start with a number.</span>');
+            }
+
+            var lastName = $('#lastName').val().trim();
+
+
+            // Check if firstName is empty
+            if (lastName === '') {
+                isValid = false;
+                $('#lastName').after('<span class="validation-error text-danger">First Name is required.</span>');
+            } else if (lastName.length < 3) {
+                // Check if firstName has at least 3 characters
+                isValid = false;
+                $('#lastName').after('<span class="validation-error text-danger">First Name must be at least 3 characters long.</span>');
+            } else if (/^\d/.test(lastName)) {
+                // Check if firstName starts with a number
+                isValid = false;
+                $('#lastName').after('<span class="validation-error text-danger">First Name cannot start with a number.</span>');
+            }
+
+
+            // Validate Email
+            const email = $('#email').val().trim();
+            const emailPattern = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            if (email === '') {
+                isValid = false;
+                $('#email').after('<span class="validation-error text-danger">Email is required.</span>');
+            } else if (!emailPattern.test(email)) {
+                isValid = false;
+                $('#email').after('<span class="validation-error text-danger">Invalid email format.</span>');
+            }
+            // Validate Phone Number
+            if (phoneNumber === '') {
+                isValid = false;
+                $('#phoneNumber').after('<span class="validation-error text-danger">Phone Number is required.</span>');
+            } else if (!/^\d+$/.test(phoneNumber)) {
+                isValid = false;
+                $('#phoneNumber').after('<span class="validation-error text-danger">Phone Number must contain only numbers.</span>');
+            } else if (phoneNumber.length < 11 || phoneNumber.length > 16) {
+                isValid = false;
+                $('#phoneNumber').after('<span class="validation-error text-danger">Phone Number must be between 11 and 16 digits long.</span>');
+            }
+            // Validate Phone Number
+            if ($('#gender').val().trim() === '') {
+                isValid = false;
+                $('#gender').after('<span class="validation-error text-danger">  Gender is required.</span>');
+            }
+            if ($('#leadSource').val().trim() === '') {
+                isValid = false;
+                $('#leadSource').after('<span class="validation-error text-danger">  Lead Source is required.</span>');
+            }
+            if (!isValid) {
+                return;
+            }
+
+            var form = $('#leadForm');
+            $.ajax({
+                type: form.attr('method'),
+                url: '/Employee/MyLead/LeadForm', // Set the action URL here
+                data: form.serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.success) {
+                        alert(response.message);
+                        form[0].reset(); // Clear the form
+                        $('#add-new-events').modal('hide');
+                        $('#leadTable').DataTable().ajax.reload(); // Reload the data table
+                    } else {
+                        // alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    console.log(error); // Log the error for debugging
+                    // alert('Failed to add lead');
+                }
+            });
+        });
+        // Custom date range filter
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var startDate = $('#startDateFilter').val();
+                var endDate = $('#endDateFilter').val();
+                var createdDate = data[6]; // Assuming the created date is in the 7th column (0-indexed)
+
+                if (startDate) {
+                    startDate = new Date(startDate);
+                }
+                if (endDate) {
+                    endDate = new Date(endDate);
+                }
+                createdDate = new Date(createdDate);
+
+                // Check if createdDate falls within the range
+                if (
+                    (!startDate || createdDate >= startDate) &&
+                    (!endDate || createdDate <= endDate)
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        // Event listener to filter when date inputs change
+        $('#startDateFilter, #endDateFilter').on('change', function () {
+            table.draw(); // Redraw the table to apply the filter
+        });
+        // Filter by First Name
+        $('#firstNameFilter').on('keyup', function () {
+            table.column(0).search(this.value).draw();
+        });
+        $('#lastNameFilter').on('change', function () {
+            table.column(2).search(this.value).draw();
+        });
+        // Filter by Gender
+        $('#genderFilter').on('change', function () {
+            table.column(2).search(this.value).draw();
+        });
+
+        // Filter by Email
+        $('#emailFilter').on('keyup', function () {
+            table.column(4).search(this.value).draw();
+        });
+
+        // Filter by Phone Number
+        $('#phoneFilter').on('keyup', function () {
+            table.column(3).search(this.value).draw();
+        });
+
+        // Filter by Source
+        $('#sourceFilter').on('keyup', function () {
+            table.column(5).search(this.value).draw();
+        });
+
+        // Filter by Date Range (Exact or Partial Match)
+        $('#dateRangeFilter').on('keyup', function () {
+            table.column(5).search(this.value).draw();
+        });
+        $(document).on('click', '.edit-lead', function () {
+            // Get the data attributes from the clicked button
+            const leadId = $(this).data('leadid');
+            const firstName = $(this).data('firstname');
+            const lastName = $(this).data('lastname');
+            const email = $(this).data('email');
+            const gender = $(this).data('gender');
+            const phoneNumber = $(this).data('phonenumber');
+            const leadSource = $(this).data('leadsource');
+
+            // Populate the modal fields with the lead data
+            $('#editLeadModal #editLeadId').val(leadId);
+            $('#editLeadModal #editFirstName').val(firstName);
+            $('#editLeadModal #editLastName').val(lastName);
+            $('#editLeadModal #editEmail').val(email);
+            $('#editLeadModal #editGender').val(gender);
+            $('#editLeadModal #editPhoneNumber').val(phoneNumber);
+            $('#editLeadModal #editLeadSource').val(leadSource);
+
+            // Show the modal
+            $('#editLeadModal').modal('show');
+        });
+
+
+        // Save edited lead
+
+
+
+        $(document).on('click', '.delete-lead', function () {
+            var leadId = $(this).data('leadid');
+            if (confirm('Are you sure you want to delete this lead?')) {
+                // Perform the delete operation (AJAX request)
+                $.ajax({
+                    url: '/Employee/MyLead/DeleteLead',
+                    type: 'POST',
+                    data: { id: leadId },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Lead deleted successfully.');
+                            $('#leadTable').DataTable().ajax.reload();
+                        } else {
+                            alert('Error deleting lead: ' + response.message);
+                        }
+                    },
+                    error: function (error) {
+                        alert('Error deleting lead: ' + error.statusText);
+                    }
+                });
+            }
+        });
+        // Save follow-up button click event
+        $('#saveFollowUp').on('click', function () {
+            debugger
+            var form = $('#followUpForm');
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.success) {
+                        alert(response.message);
+                        $('#followUpModal').modal('hide');
+                        $('#leadTable').DataTable().ajax.reload(); // Reload the data table
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    console.log(error); // Log the error for debugging
+                    alert('Failed to save follow-up');
+                }
+            });
+        });
+        // Open modal and populate details
+        $(document).on('click', '.open-modal', function () {
+            var leadId = $(this).data('leadid');
+            var fullName = $(this).data('fullname');
+
+            // Set leadId and fullName in the modal form
+            $('#followUpModal #leadId').val(leadId);
+            $('#followUpModal #leadName').val(fullName);
+
+            // Fetch follow-up data using AJAX
+            $.ajax({
+                url: '/Employee/MyLead/GetFollowUpDetails', // Adjust the URL to your specific endpoint
+                type: 'GET',
+                data: { leadId: leadId },
+                success: function (response) {
+                    if (response.success) {
+                        // Populate the modal with the retrieved data
+                        $('#followUpModal #leadStatus').val(response.data.status);
+                        $('#followUpModal #reminderDate').val(response.data.reminderDate ? new Date(response.data.reminderDate).toISOString().substring(0, 10) : '');
+                        $('#followUpModal #description').val(response.data.description);
+                    } else {
+                        // Clear the fields if no data is returned
+                        $('#followUpModal #leadStatus').val('');
+                        $('#followUpModal #reminderDate').val('');
+                        $('#followUpModal #description').val('');
+                    }
+                },
+                error: function (error) {
+                    console.log(error); // Log the error for debugging
+                    // Handle the error if needed
+                }
+            });
+
+            // Show the modal
+            $('#followUpModal').modal('show');
+        });
+
+
+
+    });
+
+    $(document).ready(function () {
+        $('#updateLeadBtn').on('click', function (e) {
+            e.preventDefault(); // Prevent default form submission
+            var isValid = true;
+
+            var firstName = $('#editFirstName').val().trim();
+            var lastName = $('#editLastName').val().trim();
+            var email = $('#editEmail').val().trim();
+            var gender = $('#editGender').val().trim();
+            var phoneNumber = $('#editPhoneNumber').val().trim();
+            var leadSource = $('#editLeadSource').val().trim();
+
+            // Remove any existing validation errors
+            $('.validation-error').remove();
+
+            // Validate First Name
+            if (firstName === '') {
+                isValid = false;
+                $('#editFirstName').after('<span class="validation-error text-danger">First Name is required.</span>');
+            } else if (firstName.length < 3) {
+                isValid = false;
+                $('#editFirstName').after('<span class="validation-error text-danger">First Name must be at least 3 characters long.</span>');
+            } else if (/^\d/.test(firstName)) {
+                isValid = false;
+                $('#editFirstName').after('<span class="validation-error text-danger">First Name cannot start with a number.</span>');
+            }
+
+            // Validate Last Name
+            if (lastName === '') {
+                isValid = false;
+                $('#editLastName').after('<span class="validation-error text-danger">Last Name is required.</span>');
+            } else if (lastName.length < 3) {
+                isValid = false;
+                $('#editLastName').after('<span class="validation-error text-danger">Last Name must be at least 3 characters long.</span>');
+            } else if (/^\d/.test(lastName)) {
+                isValid = false;
+                $('#editLastName').after('<span class="validation-error text-danger">Last Name cannot start with a number.</span>');
+            }
+
+            // Validate Email
+            const emailPattern = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            if (email === '') {
+                isValid = false;
+                $('#editEmail').after('<span class="validation-error text-danger">Email is required.</span>');
+            } else if (!emailPattern.test(email)) {
+                isValid = false;
+                $('#editEmail').after('<span class="validation-error text-danger">Invalid email format.</span>');
+            }
+
+            // Validate Phone Number
+            if (phoneNumber === '') {
+                isValid = false;
+                $('#editPhoneNumber').after('<span class="validation-error text-danger">Phone Number is required.</span>');
+            } else if (!/^\d+$/.test(phoneNumber)) {
+                isValid = false;
+                $('#editPhoneNumber').after('<span class="validation-error text-danger">Phone Number must contain only numbers.</span>');
+            } else if (phoneNumber.length < 11 || phoneNumber.length > 16) {
+                isValid = false;
+                $('#editPhoneNumber').after('<span class="validation-error text-danger">Phone Number must be between 11 and 16 digits long.</span>');
+            }
+
+            // Validate Gender
+            if (gender === '') {
+                isValid = false;
+                $('#editGender').after('<span class="validation-error text-danger">Gender is required.</span>');
+            }
+
+            if (isValid) {
+                var form = $('#editLeadForm');
+                $.ajax({
+                    type: 'POST',
+                    url: '/Employee/MyLead/EditLead', // Replace with your actual endpoint
+                    data: form.serialize(),
+                    success: function (response) {
+                        console.log(response);
+                        if (response.success) {
+                            alert(response.message);
+                            $('#editLeadModal').modal('hide');
+                            $('#leadTable').DataTable().ajax.reload(); // Reload the data table
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error); // Log the error for debugging
+                        alert('Failed to update lead');
+                    }
+                });
+            }
+        });
+    });
+
+</script>

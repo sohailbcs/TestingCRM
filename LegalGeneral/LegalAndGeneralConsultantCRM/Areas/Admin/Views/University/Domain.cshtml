@@ -1,0 +1,175 @@
+﻿@using LegalAndGeneralConsultantCRM.Models.Universiies
+@model IEnumerable<LegalAndGeneralConsultantCRM.ViewModels.DomainViewModel>
+@{
+    ViewBag.Title = "Domain List";
+}
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <h3 class="page-title">Domain List</h3>
+                    <button class="btn btn-success float-right" data-toggle="modal" data-target="#addDomainModal">
+                        Add New Domain
+                    </button>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="box-body">
+                    <table id="domainTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Domain Name</th>
+                                <th>University Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var domain in Model)
+                            {
+                                <tr>
+                                    <td>@domain.DomainNme</td>
+                                    <td>@domain.UniversityName</td>
+                                    <td>
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#editDomainModal_@domain.DomainId">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteDomainModal_@domain.DomainId">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Modal for Editing Domain -->
+                                <div class="modal fade" id="editDomainModal_@domain.DomainId" tabindex="-1" role="dialog" aria-labelledby="editDomainModalLabel_@domain.DomainId" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form asp-action="EditDomain" method="post">
+                                                <input type="hidden" name="DomainId" value="@domain.DomainId" />
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editDomainModalLabel_@domain.DomainId">Edit Domain</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="DomainNme">Domain Name</label>
+                                                        <input type="text" class="form-control" name="DomainNme" value="@domain.DomainNme" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="UniversityID">Select University</label>
+                                                        <select class="form-control" name="UniversityID" required>
+                                                            <option value="">Select University</option>
+                                                            @foreach (var university in ViewBag.Universities as List<University>)
+                                                            {
+                                                                <option value="@university.UniversityId">@university.Name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal for Deleting Domain -->
+                                <div class="modal fade" id="deleteDomainModal_@domain.DomainId" tabindex="-1" role="dialog" aria-labelledby="deleteDomainModalLabel_@domain.DomainId" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form asp-action="DeleteDomain" method="post">
+                                                <input type="hidden" name="DomainId" value="@domain.DomainId" />
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteDomainModalLabel_@domain.DomainId">Delete Domain</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete the domain "<strong>@domain.DomainNme</strong>"?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Modal for Adding Domain -->
+<div class="modal fade" id="addDomainModal" tabindex="-1" role="dialog" aria-labelledby="addDomainModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-action="AddDomain" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDomainModalLabel">Add New Domain</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="DomainNme">Domain Name</label>
+                        <input type="text" class="form-control" name="DomainNme" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="UniversityID">Select University</label>
+                        <select class="form-control" name="UniversityID" required>
+                            <option value="">Select University</option>
+                            @foreach (var university in ViewBag.Universities as List<University>)
+                            {
+                                <option value="@university.UniversityId">@university.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Domain</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTable
+            $('#domainTable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
+
+            // When modals are closed, reset the forms
+            $('#addDomainModal, .modal').on('hidden.bs.modal', function () {
+                $(this).find('form')[0].reset();
+            });
+        });
+    </script>
+}

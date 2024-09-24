@@ -1,0 +1,103 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+
+ 
+<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title"> Referrals</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+
+
+                                    <div class="col-md-6 mb-2">
+
+                                        <a class="btn btn-primary" href="/Admin/Referral/Create"><i class="bi bi-plus-circle"></i>&nbsp;Add Referral </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table id="brandTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                             
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Contact</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">City</th>
+                                                <th scope="col">Referral Type</th>
+                                                <th scope="col">Share</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                           
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- main-panel ends -->
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // DataTable initialization
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Referral/GetReferralData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "name", "name": "Name", "autoWidth": true },
+                    { "data": "contact1", "name": "Contact", "autoWidth": true },
+                    { "data": "email", "name": "Email", "autoWidth": true },
+                    { "data": "city", "name": "City", "autoWidth": true },
+                     { "data": "refType", "name": "Referral_Type", "autoWidth": true },
+                    { "data": "share", "name": "Share", "autoWidth": true },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<a href="/Admin/Referral/Edit/' + row.referralId + '" class="btn btn-secondary" style="padding: 12px;"><i class="bi bi-pencil"></i></a>&nbsp;' +
+                                '<a href="#" class="btn btn-danger delete-btn" data-referral-id="' + row.referralId + '" style="padding: 12px;"><i class="bi bi-trash"></i></a>';
+                        }
+                    }
+
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+            // Delete button click event
+            $('#brandTable').on('click', '.delete-btn', function () {
+                debugger
+                var referralId = $(this).data('referral-id');
+
+                // Display a confirmation dialog
+                var isConfirmed = confirm('Are you sure you want to delete this referral?');
+
+                // If the user confirms, proceed with deletion
+                if (isConfirmed) {
+                    // Redirect to the delete action with the referralId
+                    window.location.href = '/Admin/Referral/Delete/' + referralId;
+                }
+            });
+        });
+    </script>
+}

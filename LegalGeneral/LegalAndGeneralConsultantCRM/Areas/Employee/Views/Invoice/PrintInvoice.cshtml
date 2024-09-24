@@ -1,0 +1,31 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.PrintInvoiceViewModel
+
+@{
+    ViewBag.Title = "Print Invoice";
+}
+
+<div class="container">
+    <h2>Invoice Details</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Student CNIC</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Lead.FirstName @Model.Lead.LastName</td>
+                <td>@Model.Lead.Email</td>
+                <td>@Model.Lead.Gender</td>
+                <td>@Model.Student?.Cnic ?? "N/A"</td>
+                <td>@Model.ConsultationFees?.Amount?.ToString("C") ?? "N/A"</td>
+                <td>@Model.ConsultationFees?.Date?.ToShortDateString() ?? "N/A"</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,138 @@
+﻿ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Un-Allocated Leads Summary </h3>
+                            <h6 class="box-subtitle">Export data to Copy, CSV, Excel, & Print</h6>
+
+                            <div class="float-right">
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <a href="@Url.Action("ExportUnAllocatedLeadsToCSV", "Lead")" class="btn btn-success  btn-block my-10 me-2"><i class="fas fa-file-excel"></i>&nbsp; Excel</a> &nbsp;
+                                    <a href="@Url.Action("ExportUnAllocatedLeadsToExcel", "Lead")" class="btn btn-info  btn-block my-10"><i class="fas fa-file-csv"></i>&nbsp; CSV</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Email  </th>
+                                            <th style="background-color: #4e0973;color:white;">Created Date </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+@* <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Un-Allocated Leads</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <div class="mb-3 d-flex justify-content-end">
+                                        <a href="@Url.Action("ExportUnAllocatedLeadsToCSV", "Lead")" class="btn btn-info btn-sm"><i class="fas fa-file-csv"></i>&nbsp; Export Unallocated Leads to CSV</a>&nbsp;
+                                        <a href="@Url.Action("ExportUnAllocatedLeadsToExcel", "Lead")" class="btn btn-success btn-sm ms-2"><i class="fas fa-file-excel"></i>&nbsp; Export Unallocated Leads to Excel</a>
+                                    </div>
+
+
+
+                                    <table id="brandTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Phone Number</th>
+                                                <th>Email  </th>
+                                                <th>Creation Date </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div> *@
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Lead/GetUnAllocatedLeadData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "firstName", "name": "Name", "autoWidth": true },
+                    { "data": "phoneNumber", "name": "Phone No", "autoWidth": true },
+                   
+                    { "data": "email", "name": "Referral By", "autoWidth": true },
+                    {
+                        "data": "createdDate",
+                        "name": "Creation Date",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? new Date(data).toDateString() : null;
+                        }
+                    },
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+        });
+    </script>
+}

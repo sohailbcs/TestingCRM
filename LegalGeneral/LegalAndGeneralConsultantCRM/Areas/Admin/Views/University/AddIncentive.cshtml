@@ -1,0 +1,56 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.Incentive
+
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <div class="row justify-content-center">
+            <!-- Centering the form -->
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add Incentives</h4>
+
+                        <form class="forms-sample" asp-controller="University" asp-action="AddIncentive" method="post" asp-area="Admin">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Course Name</label>
+                                        <select class="form-control" asp-for="CourseId" required>
+                                            <option value="">Select Course</option>
+                                            @foreach (var uni in ViewBag.Courses)
+                                            {
+                                                <option value="@uni.CourseId">@uni.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Description</label>
+                                        <textarea type="text" class="form-control" asp-for="Description" placeholder=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

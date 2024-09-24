@@ -1,0 +1,190 @@
+﻿
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+<!-- Include Bootstrap CSS (for modal styling) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/23.1.36/fluent.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+  <style>
+        
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: primary;
+        }
+        #calendar {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .fc-toolbar {
+            background-color: rebeccapurple;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .fc-event {
+            border-radius: 5px;
+            border: none;
+        }
+        .modal-header {
+            background-color: #34495e;
+            color: #ecf0f1;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .modal-content {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #2980b9;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #1f6391;
+        }
+        .btn-secondary {
+            background-color: #95a5a6;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Schedule for Booking Leads Meetings</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Meeting Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="eventForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="leadId">Meeting or Event Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea class="form-control" id="eventDescription" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventStart">Event Date</label>
+                        <input type="text" class="form-control" id="eventStart" name="eventStart" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventThemeColor">Theme Color</label>
+                        <select class="form-control" id="eventThemeColor" name="themeColor" required>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize FullCalendar
+            $('#calendarr').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true, // Enable editing (dragging, resizing)
+                events: '/Admin/CalendarBooking/GetEvents',
+                eventClick: function (calEvent, jsEvent, view) {
+                    $('#eventModalLabel').text('Meeting Details');
+                    $('#name').val(calEvent.name); // Set name
+
+                    // Display the name directly
+                    $('#leadNameDisplay').text(calEvent.name);
+
+                    $('#eventDescription').val(calEvent.description);
+                    $('#eventStart').val(moment(calEvent.start).format('YYYY-MM-DD'));
+                    $('#eventThemeColor').val(calEvent.color); // Set color picker value or select option
+                    $('#eventModal').modal('show');
+                },
+                dayClick: function (date, jsEvent, view) {
+                    $('#eventModalLabel').text('Create Meeting');
+                    $('#eventDescription').val('');
+                    $('#name').val('');
+                    $('#eventStart').val(moment(date).format('YYYY-MM-DD'));
+                    $('#eventThemeColor').val('red'); // Set default color if needed
+                    $('#eventModal').modal('show');
+                }
+            });
+
+            // Handle form submission for creating or updating events
+            $('#eventForm').submit(function (event) {
+                event.preventDefault();
+                var eventData = {
+                    Description: $('#eventDescription').val(),
+                    Name: $('#name').val(),
+                    EventDate: $('#eventStart').val(),
+                    ThemeColor: $('#eventThemeColor').val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/CalendarBooking/AddEvent',
+                    data: eventData,
+                    success: function (data) {
+                        if (data.success) {
+                            $('#calendarr').fullCalendar('refetchEvents'); // Reload events
+                            $('#eventModal').modal('hide');
+                        } else {
+                            alert('Failed to save event.');
+                        }
+                    },
+                    error: function () {
+                        alert('Error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+    
+}

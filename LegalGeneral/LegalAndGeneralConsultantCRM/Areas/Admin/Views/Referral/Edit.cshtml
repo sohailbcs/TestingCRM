@@ -1,0 +1,114 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Referrals.Referral
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+<main id="main" class="main">
+    <section class="section" style="width: 100%;">
+        <div class="row col-md-12" style="width: 100%; margin: auto;">
+            <div class="col-md-8" style="margin: auto;">
+                <div class="card" style="width: 100%">
+                    <div class="card-body">
+                        <!-- Multi Columns Form -->
+                        <form class="row wor g-3 g-3 needs-validation" novalidate asp-controller="Referral" asp-action="Edit" method="post" asp-area="Admin">
+
+
+                            <input asp-for="ReferralId" type="hidden"   />
+                            <div class="col-md-12 border1">
+                                <legend>Referral</legend>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Name" class="form-label">Name*</label>
+                                    <input asp-for="Name" type="text" class="form-control" required />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Email" class="form-label">Email*</label>
+                                    <input asp-for="Email" type="text" class="form-control" required />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Contact1" class="form-label">Contact No1*</label>
+                                    <input asp-for="Contact1" type="text" class="form-control" required />
+                                    <span asp-validation-for="Contact1" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Contact2" class="form-label">Contact No2</label>
+                                    <input asp-for="Contact2" type="text" class="form-control" />
+                                    <span asp-validation-for="Contact2" class="text-danger"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label asp-for="City" class="form-label">City*</label>
+                                        <input asp-for="City" type="text" class="form-control" required />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="Country" class="form-label">Country*</label>
+                                        <input asp-for="Country" type="text" class="form-control" required />
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Address" class="form-label">Address*</label>
+                                    <textarea asp-for="Address" class="form-control" style="height: 108px" required></textarea>
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="RefType" class="form-label">Referral Type</label>
+
+                                    <select asp-for="RefType" class="form-select">
+                                        <option value="">---  Select  Referral Type     ---</option>
+                                        <option value="Individual">Individual</option>
+                                        <option value="Company">Company</option>
+                                    </select>
+                                    <span asp-validation-for="RefType" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Share" class="form-label">Share Percent</label>
+                                    <input asp-for="Share" type="text" class="form-control" />
+                                    <span asp-validation-for="Share" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="float-end">
+                                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

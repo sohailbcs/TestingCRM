@@ -1,0 +1,119 @@
+﻿<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        <section class="content">
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                         
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <!-- Breadcrumb navigation can be added here if needed -->
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Leads Status</h3>
+                          @*   <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> *@
+
+                            <div class="container mt-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form id="simpleSearchForm" class="form-inline">
+                                            <div class="form-group">
+                                                <label for="searchSelect" class="sr-only">Search</label>
+                                                <select id="searchSelect" class="form-control mr-2">
+                                                    <option value="" disabled>Select Lead Status</option>
+                                                    <option value="Hot Lead">Hot Lead</option>
+                                                    <option value="Dead Lead">Dead Lead</option>
+                                                    <option value="Future Lead">Future Lead</option>
+                                                    <option value="Converted Lead">Converted Lead</option>
+                                                    <option value="Warm Lead">Warm Lead</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973; color: white;">Name</th>
+                                            <th style="background-color: #4e0973; color: white;">Email</th>
+                                            <th style="background-color: #4e0973; color: white;">Gender</th>
+                                            <th style="background-color: #4e0973; color: white;">Phone Number</th>
+                                            <th style="background-color: #4e0973; color: white;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Table body content will be filled by DataTables -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#leadTable').DataTable({
+                
+                "ajax": {
+                    "url": '@Url.Action("LeadByStatus", "MyLead", new { area = "Employee" })',
+                    "data": function (d) {
+                        d.status = $('#searchSelect').val();
+                    }  ,
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName" },
+                    { "data": "email" },
+                    { "data": "gender" },
+                    { "data": "phoneNumber" },
+                   
+                    {
+                        "data": "status",
+
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (data === "Converted Lead") {
+                                return '<span class="badge badge-pill bg-success">Converted Lead</span>';
+                            } else if (data === "Dead Lead") {
+                                return '<span class="badge badge-pill bg-danger">Dead Lead</span>';
+                            } else if (data === "Cold Lead") {
+                                return '<span class="badge badge-pill bg-dark">Cold Lead</span>';
+                            } else if (data === "Future Lead") {
+                                return '<span class="badge badge-pill bg-secondary">Future Lead</span>';
+                            } else if (data === "Hot Lead") {
+                                return '<span class="badge badge-pill bg-primary">Hot Lead</span>';
+                            } else if (data === "Warm Lead") {
+                                return '<span class="badge badge-pill bg-info">Warm Lead</span>';
+                            } else {
+                                return '<span class="badge badge-pill bg-warning">Pending Lead</span>';
+                            }
+                        }
+                    },
+                ]
+            });
+
+            $('#searchSelect').change(function () {
+                table.ajax.reload();
+            });
+        });
+    </script>
+}

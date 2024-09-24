@@ -1,0 +1,397 @@
+﻿
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">  Enrolled Students </h3>
+ 
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Cnic   </th>
+                                            <th style="background-color: #4e0973;color:white;"> University  </th>
+                                            <th style="background-color: #4e0973;color:white;"> Program  </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+ 
+<!-- /.content-wrapper -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#leadTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/Application/EnrolledStudents",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "studentFullName", "autoWidth": true },
+                    { "data": "studentEmail", "autoWidth": true },
+                    { "data": "gender", "autoWidth": true },
+                    { "data": "studentPhoneNumber", "autoWidth": true },
+                    { "data": "cnic", "autoWidth": true },
+                    { "data": "universityName", "autoWidth": true },
+                    { "data": "courseName", "autoWidth": true }
+                ],
+                "language": {
+                    "emptyTable": "No data available"  // Custom message when no data is available
+                }
+            });
+        });
+    </script>
+
+}
+
+
+
+@* 
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">  Enrolled Students</h3>
+                            <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;"> Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">University Name</th>
+                                            <th style="background-color: #4e0973;color:white;">  Program</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td> abc@gmail.com</td>
+                                            <td>Male</td>
+                                            <td>+9283923472</td>
+                                            <td>Oxford Uni</td>
+                                            <td> MBBS</td>
+ 
+
+
+
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+
+    <div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content  ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="followUpModalLabel">Follow-Up Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="followUpForm">
+                        <input type="hidden" id="leadId" name="leadId">
+                        <div class="form-group">
+                            <label for="leadName">Name</label>
+                            <input type="text" class="form-control" value="Talx" id="leadName" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="leadStatus">Status</label>
+                            <select class="form-control" id="leadStatus">
+                                <option value=" ">-- Lead Status --</option>
+
+                                <option value="hot">Hot Lead</option>
+                                <option value="dead">Dead Lead</option>
+                                <option value="future">Future Lead</option>
+                                <option value="converted">Converted Lead</option>
+                                <option value="warm">Warm Lead</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="leadStatus">Reminder Date</label>
+                            <input type="date" class="form-control" id="leadStatus">
+                        </div>
+                        <div class="form-group">
+                            <label for="leadStatus">  Description</label>
+                            <textarea type="input" class="form-control" id="leadStatus"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveFollowUp">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade none-border" id="add-new-events">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Add</strong> Lead</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label">Name</label>
+                                <input class="form-control form-white" placeholder="Enter name" type="text" name="name" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Phone Number</label>
+                                <input class="form-control form-white" placeholder="Enter phone number" type="text" name="phone-number" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label">Email</label>
+                                <input class="form-control form-white" placeholder="Enter email" type="email" name="email" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Gender</label>
+                                <select class="form-control form-white" name="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="control-label">Lead Source</label>
+                                <input class="form-control form-white" placeholder="Enter lead source" type="text" name="lead-source" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveFollowUp">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /.content-wrapper -->
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('#brandTable').DataTable({
+                    "ajax": {
+                        "url": "/Employee/MyLead/GetAllocatedLeadData",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "fullName", "autoWidth": true },
+                        { "data": "phoneNumber", "autoWidth": true },
+
+                        { "data": "email", "autoWidth": true },
+                        {
+                            "data": "followUpStatus",
+                            "name": "Status",
+                            "autoWidth": true,
+                            "render": function (data, type, row) {
+                                // Check if the followUpStatus is "Converted Lead" and apply the badge
+                                if (data === "Converted Lead") {
+                                    return '<span class="badge bg-success">Converted Lead</span>';
+                                }
+                                // Check if the followUpStatus is "Dead Lead" and apply the badge
+                                else if (data === "Dead Lead") {
+                                    return '<span class="badge bg-danger">Dead Lead</span>';
+                                }
+                                else if (data === "Cold Lead") {
+                                    return '<span class="badge bg-dark">Cold Lead</span>';
+                                }
+                                // Check if the followUpStatus is "Future Lead" and apply the badge
+                                else if (data === "Future Lead") {
+                                    return '<span class="badge bg-secondary">Future Lead</span>';
+                                }
+                                // Check if the followUpStatus is "Hot Lead" and apply the badge
+                                else if (data === "Hot Lead") {
+                                    return '<span class="badge bg-primary">Hot Lead</span>';
+                                }
+                                // Check if the followUpStatus is "Warm Lead" and apply the badge
+                                else if (data === "Warm Lead") {
+                                    return '<span class="badge bg-info">Warm Lead</span>';
+                                } else {
+                                    // You can add more conditions for other statuses if needed
+                                    return '<span class="badge bg-warning">Pending Lead</span>';
+                                }
+                            }
+                        }, {
+                            "data": null,
+                            "name": "Action",
+                            "autoWidth": true,
+                            "render": function (data, type, row) {
+                                // return '<button class="btn "  style="background: #1b2850;color:white" data-toggle="modal" data-target="#followUpModal" data-lead-id="' + row.leadId + '">Follow Up</button>' +
+                                return '<a class="open-modal me-3" data-leadid="' + row.leadId + '"><img src="/saleperson/assets/img/icons/eye.svg" alt="img"></a>' +
+
+                                    '<input type="hidden" class="leadId" value="' + row.leadId + '" />';
+
+
+
+                            }
+
+                        },
+
+                    ]
+                });
+                $('#brandTable').on('click', '.open-modal', function () {
+                    var leadId = $(this).data('leadid');
+                    var leadFirstName = $(this).closest('tr').find('td:first').text(); // Get the first name from the table row
+
+                    // Populate the modal box with lead information
+                    $('#leadId').val(leadId);
+                    $('#leadFirstName').val(leadFirstName);
+
+                    // Open the modal
+                    $('#myModal').modal('show');
+                });
+                $('#submitButton').on('click', function () {
+                    // Perform form submission here
+                    var leadId = $('#leadId').val(); // Get the LeadId from the modal
+
+                    // Other form data
+                    var leadStatus = $('#status').val(); // Get the selected lead status value
+                    var description = $('#description').val();
+                    var followUpDate = $('#followUpDate').val();
+                    var reminder = $('#reminder').val();
+
+                    // Example: Send form data via AJAX
+                    $.ajax({
+                        url: '/Employee/MyLead/Create',
+                        method: 'POST',
+                        data: {
+                            LeadId: leadId, // Change to match the model property names
+                            Status: leadStatus, // Change to match the model property names
+                            Description: description, // Change to match the model property names
+                            FollowUpDate: followUpDate, // Change to match the model property names
+                            Reminder: reminder, // Change to match the model property names
+                        },
+                        success: function (response) {
+                            // Handle success response
+                            console.log('Lead submitted successfully');
+                            // Close the modal after submission
+
+                            $('#myModal').modal('hide');
+                            $('#brandTable').DataTable().ajax.reload();
+
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle error response
+                            console.error('Error submitting lead:', error);
+                            // Optionally, display an error message
+                        }
+                    });
+                });
+
+                // Handle click event on the Cancel button to close the modal
+                $('#cancelButton').on('click', function () {
+                    $('#myModal').modal('hide');
+                });
+
+            });
+
+
+
+        </script>
+    }
+ *@

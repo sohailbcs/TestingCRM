@@ -1,0 +1,226 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+
+
+    legend {
+        background-color: #637381;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -5px;
+        font-size: medium;
+        font-weight: bold;
+        font-family: arial;
+        color: white;
+    }
+
+</style>
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Student Info</h3>
+                            <div class="float-right">
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <div style="border: 5px solid #1b2850; padding: 15px;">
+                                    <legend>Basic Details</legend>
+                                    <dl class="row">
+                                        <dt class="col-sm-2">Student Name:</dt>
+                                        <dd class="col-sm-10">@Model.Students.FirstName  @Model.Students.LastName</dd>
+                                        <dt class="col-sm-2">Phone Number:</dt>
+                                        <dd class="col-sm-10">@Model.Students.PhoneNumber   </dd>
+                                        <dt class="col-sm-2">Email:</dt>
+                                        <dd class="col-sm-10">@Model.Students.Email   </dd>
+                                        <dt class="col-sm-2">Language:</dt>
+                                        <dd class="col-sm-10">@Model.Students.Language   </dd>
+
+                                        <dt class="col-sm-2">University:</dt>
+                                        <dd class="col-sm-10"> @ViewBag.UniName   </dd>
+                                        <dt class="col-sm-2">Program:</dt>
+                                        <dd class="col-sm-10"> @ViewBag.Cousrename   </dd>
+                                        <dt class="col-sm-2">Duration:</dt>
+                                        <dd class="col-sm-10"> @ViewBag.DurationInYears   </dd>
+                                        <dt class="col-sm-2">Tuition Fee:</dt>
+                                        <dd class="col-sm-10"> @ViewBag.TuitionFee   </dd>
+
+                                        <dt class="col-sm-3">Consultation Fee:</dt>
+                                        <dd class="col-sm-9"> @ViewBag.Amount  </dd>
+                                        <dt class="col-sm-3">Consultation Fee Paid Date:</dt>
+                                        <dd class="col-sm-9"> @ViewBag.Date   </dd>
+                                        <!-- Add other student details here -->
+                                    </dl>
+                                </div>
+
+
+
+                                <div style="border: 5px solid #1b2850; padding: 15px;" class="mt-5">
+                                    <legend> Education Information  </legend>
+
+                                    <ul>
+                                        @if (Model.EducationsList != null && Model.EducationsList.Any())
+                                        {
+                                            <input type="hidden" name="LeadId" value="@ViewBag.LeadId" />
+
+                                            <div class="education-list">
+                                                @foreach (var education in Model.EducationsList)
+                                                {
+                                                    <div class="education-item">
+                                                        @if (!string.IsNullOrEmpty(education.title1))
+                                                        {
+                                                            <div class="education-row">
+                                                                <div class="education-title"> Degree Title : @education.title1</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.EducationLevelImageUrl))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.EducationLevelImageUrl}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.EducationLevelImageUrl}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p>No Attachment</p>
+                                                                    }
+
+
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(education.title2))
+                                                        {
+                                                            <div class="education-row mt-4">
+                                                                <div class="education-title"> Degree Title: @education.title2</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.attachment2))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.attachment2}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.attachment2}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p>No Attachment</p>
+                                                                    }
+
+                                                                    <!-- Form to clear title2 and attachment2 -->
+
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(education.title3))
+                                                        {
+                                                            <div class="education-row mt-4">
+                                                                <div class="education-title"> Degree Title: @education.title3</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.attachment3))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.attachment3}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.attachment3}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p>No Attachment</p>
+                                                                    }
+
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(education.title4))
+                                                        {
+                                                            <div class="education-row mt-4">
+                                                                <div class="education-title"> Degree Title: @education.title4</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.attachment4))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.attachment4}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.attachment4}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <p>No Attachment</p>
+                                                                    }
+
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p>No education information available for this student.</p>
+                                        }
+                                    </ul>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+

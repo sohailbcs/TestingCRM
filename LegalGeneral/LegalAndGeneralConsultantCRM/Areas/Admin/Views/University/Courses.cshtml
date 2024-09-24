@@ -1,0 +1,304 @@
+﻿
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Courses Summary</h3>
+                            <div class="float-right">
+
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <a class="btn float-end  btn-primary" href="/Admin/University/AddCourses"><i class="bi bi-plus-circle"></i>&nbsp;Add Courses </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+
+                                            <th style="background-color: #4e0973;color:white;">Duration</th>
+                                            <th style="background-color: #4e0973;color:white;">Description</th>
+
+                                            <th style="background-color: #4e0973;color:white;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<!-- partial -->
+@* <div class="main-panel">
+    <div class="content-wrapper">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title"> Courses</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row ">
+                                    <div class="col-md-6">
+                                        <a class="btn float-end  btn-primary" href="/Admin/University/AddCourses"><i class="bi bi-plus-circle"></i>&nbsp;Add Courses </a>
+                                    </div>
+
+
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="brandTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Name</th>
+
+                                                <th scope="col">Duration</th>
+                                                <th scope="col">Description</th>
+                                               
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+ *@
+<!-- Edit Course Modal -->
+<div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog  ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
+             </div>
+            <div class="modal-body">
+                <form id="editCourseForm">
+                    <input type="hidden" id="courseId" name="courseId" />
+                    <div class="mb-3">
+                        <label for="editCourseName" class="form-label">Course Name</label>
+                        <input type="text" class="form-control" id="editCourseName" name="editCourseName" required />
+                    </div>
+                    <div class="mb-3">
+                       
+                       
+                            <label for="editCourseDuration" class="form-label">Duration (in years)</label>
+                            <input type="number" class="form-control" id="editCourseDuration" name="editCourseDuration" />
+                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCourseDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editCourseDescription" name="editCourseDescription" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updateCourseButton">Update Course</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- main-panel ends -->
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/University/GetCourses",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "name", "autoWidth": true },
+
+                    { "data": "durationInYears", "autoWidth": true },
+                    { "data": "decription", "autoWidth": true },
+
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var editButton = '<button type="button" class="btn btn-primary edit-btn me-2" ' +
+                                'data-id="' + row.courseId + '" ' +
+                                'data-name="' + (row.name || '') + '" ' +
+                                'data-duration="' + (row.durationInYears || '') + '" ' +
+                                'data-description="' + (row.decription || '') + '" ' +
+                                'style="padding: 12px; margin-right: 5px;">' +
+                                '<i class="bi bi-pencil" style="margin-right: 5px;"></i>  ' +
+                                '</button>';
+
+                            var deleteButton = '<button type="button" class="btn btn-danger delete-btn" ' +
+                                'data-id="' + row.courseId + '" ' +
+                                'style="padding: 12px; margin-right: 5px;">' +
+                                '<i class="bi bi-trash" style="margin-right: 5px;"></i>  ' +
+                                '</button>';
+
+                            return editButton + deleteButton;
+                        }
+                    }
+
+
+
+
+
+
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+
+            $('#brandTable').on('click', '.edit-btn', function () {
+                var courseId = $(this).data('id');
+                var courseName = $(this).data('name');
+              
+                var duration = $(this).data('duration');
+                var description = $(this).data('description');
+
+                // Populate modal fields
+                $('#courseId').val(courseId);
+                $('#editCourseName').val(courseName);
+                
+                $('#editCourseDuration').val(duration);
+                $('#editCourseDescription').val(description);
+
+                // Show the modal
+                $('#editCourseModal').modal('show');
+            });
+
+            // Submit edited course data
+            $('#updateCourseButton').on('click', function () {
+                var courseId = $('#courseId').val();
+                var courseName = $('#editCourseName').val();
+                 var duration = $('#editCourseDuration').val();
+                var description = $('#editCourseDescription').val();
+
+                var data = {
+                    CourseId: courseId,
+                    Name: courseName,
+                    DurationInYears: duration,
+                    Decription: description
+                };
+
+                $.ajax({
+                    url: '/Admin/University/EditCourse', // Replace with your action method URL
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log('Server response:', response);
+
+                        if (response.success) {
+                            $('#editCourseModal').modal('hide');
+                            alert(response.message);
+                            $('#brandTable').DataTable().ajax.reload();
+                        } else {
+                            alert('Failed to update course: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error updating course:', error);
+                    }
+                });
+            });
+
+            // Handle delete course action
+            $('#brandTable').on('click', '.delete-btn', function () {
+                var courseId = $(this).data('id');
+
+                if (confirm('Are you sure you want to delete this course?')) {
+                    $.ajax({
+                        url: '/Admin/University/DeleteCourse', // Replace with your action method URL
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ courseId: courseId }),
+                        success: function (response) {
+                            console.log('Server response:', response);
+
+                            if (response.success) {
+                                alert(response.message);
+                                $('#brandTable').DataTable().ajax.reload();
+                            } else {
+                                alert('Failed to delete course: ' + response.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error deleting course:', error);
+                        }
+                    });
+                }
+            });
+        
+        });
+    </script>
+}

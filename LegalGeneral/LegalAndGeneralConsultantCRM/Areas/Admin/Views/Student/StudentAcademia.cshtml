@@ -1,0 +1,169 @@
+﻿
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Converted Leads - Enrolled Students Summary</h3>
+                           
+                            <div class="float-right">
+
+                               
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="studentTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email  </th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number  </th>
+                                            <th style="background-color: #4e0973;color:white;">University  </th>
+                                            <th style="background-color: #4e0973;color:white;">Program</th>
+                                            <th style="background-color: #4e0973;color:white;">Converted By </th>
+                                            <th style="background-color: #4e0973;color:white;"> Status  </th>
+                                            <th style="background-color: #4e0973;color:white;"> Message  </th>
+                                            <th style="background-color: #4e0973;color:white;">Action  </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+@* @* <!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Converted Leads - Enrolled Students</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="studentTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email  </th>
+                                                <th>Phone Number  </th>
+                                                <th>University  </th>
+                                                <th>Program</th>
+                                                <th>Converted By </th>
+                                                <th> Status  </th>
+                                                <th> Message  </th>
+                                                <th>Action  </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- main-panel ends -->
+ *@ 
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Student/StudentData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "autoWidth": true },
+                     { "data": "email", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "universityName", "autoWidth": true },
+                    { "data": "courseName", "autoWidth": true },
+                    { "data": "employeeFullName", "autoWidth": true },
+                    {
+                        "data": "statuses",
+
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (data === "Approval") {
+                                return '<span class="badge badge-pill bg-success"> Approval</span>';
+                            } else if (data === "Reject") {
+                                return '<span class="badge badge-pill bg-danger">Rejected</span>';
+                            } else if (data === "Cold Lead") {
+                                return '<span class="badge badge-pill bg-dark">Cold Lead</span>';
+                            } else if (data === "Future Lead") {
+                                return '<span class="badge badge-pill bg-secondary">Future Lead</span>';
+                            } else if (data === "Hot Lead") {
+                                return '<span class="badge badge-pill bg-primary">Hot Lead</span>';
+                            } else if (data === "Warm Lead") {
+                                return '<span class="badge badge-pill bg-info">Warm Lead</span>';
+                            } else {
+                                return '<span class="badge badge-pill bg-warning">Pending</span>';
+                            }
+                        }
+                    },
+                    { "data": "messages", "autoWidth": true },
+                    
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<a href="/Admin/Student/Detail/' + row.studentId + '" class="btn btn-primary btn-sm"><i class="fas fa-info-circle"></i> Details</a>';
+                        },
+                        "autoWidth": true
+                    }
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+        });
+    </script>
+}

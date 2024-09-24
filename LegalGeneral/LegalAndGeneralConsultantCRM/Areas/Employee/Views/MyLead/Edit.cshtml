@@ -1,0 +1,240 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Leads.Lead
+
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+<main id="main" class="main">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            // Display the success message as a popup alert
+            $(document).ready(function () {
+                alert('@TempData["SuccessMessage"]');
+            });
+        </script>
+    }
+
+    <div id="Lead" class="tabcontent">
+
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+
+
+
+                    <div class="card" style="width: 100%">
+                        <div class="card-body">
+
+                            <form class="row wor g-3 g-3 needs-validation" novalidate asp-controller="MyLead" asp-action="EditLeadForm" method="post" asp-area="Employee">
+                                <div class="col-md-12 border1">
+                                    <input type="hidden" asp-for="LeadId" />
+
+
+                                    <legend>Lead Form</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">First Name</label>
+                                                <input type="text" class="form-control" asp-for="FirstName" required="Enter Name">
+                                                <div class="invalid-feedback">Please enter your First Name.</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" asp-for="LastName" required>
+                                                <div class="invalid-feedback">Please enter your Last Name.</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputEmail5" class="form-label">Email </label>
+                                                <input type="email" class="form-control" asp-for="Email">
+                                                <div class="invalid-feedback">Please enter your Email.</div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="inputCity" class="form-label">Phone </label>
+                                                <input type="text" class="form-control" asp-for="PhoneNumber" required>
+                                                <div class="invalid-feedback">Please enter your Phone Number.</div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="inputCity" class="form-label">Gender</label>
+                                                <select class="form-control" asp-for="Gender">
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputPassword5" class="form-label">Company</label>
+                                            <input type="text" class="form-control" asp-for="CompanyName">
+                                            <div class="invalid-feedback">Please enter your Company.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Create</label>
+                                            <input type="date" class="form-control" asp-for="CreatedDate">
+                                            <div class="invalid-feedback">Please enter your Create Date.</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Job title</label>
+                                            <input type="text" class="form-control" asp-for="JobTitle">
+                                            <div class="invalid-feedback">Please enter your Industry Name.</div>
+                                            <label for="inputState" class="form-label">Industry</label>
+                                            <input type="text" class="form-control" asp-for="Industry">
+                                            <div class="invalid-feedback">Please enter your Industry Name.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Address</label>
+                                            <textarea class="form-control" style="height: 108px" asp-for="Address"></textarea>
+                                            <div class="invalid-feedback">Please enter your Source Details.</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Source</label>
+                                            <input type="text" class="form-control" asp-for="LeadSource">
+                                            <div class="invalid-feedback">Please enter your Industry Name.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Country</label>
+                                            <input type="text" class="form-control" asp-for="Country">
+                                            <div class="invalid-feedback">Please enter your Address.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Sourse Detail</label>
+                                            <textarea class="form-control" style="height: 108px" asp-for="LeadSourceDetails"></textarea>
+                                            <div class="invalid-feedback">Please enter your Source Details.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">State</label>
+                                            <input type="text" class="form-control" asp-for="State">
+                                            <div class="invalid-feedback">Please enter your ZipCode.</div>
+
+                                            <label for="inputState" class="form-label">City</label>
+                                            <input type="text" class="form-control" asp-for="City">
+                                            <div class="invalid-feedback">Please enter your Address.</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Notes</label>
+                                            <textarea class="form-control" style="height: 100px" asp-for="Notes"></textarea>
+                                            <div class="invalid-feedback">Please enter your Notes.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">ZipCode</label>
+                                            <input type="text" class="form-control" asp-for="ZipCode">
+                                            <div class="invalid-feedback">Please enter your Lead Owner.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-md-12 border1">
+                                    <legend>Referral</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputCity" class="form-label">Referral </label>
+                                                <select id="referralDropdown" asp-for="ReferralId" class="form-control" asp-items="@ViewBag.Referral">
+                                                    <option value="">--- Select Referral   ---</option>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputCity" class="form-label"> </label>
+                                                <div id="contactInfoDiv">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <div class="float-end">
+                                        <button type="submit" class="btn btn-primary  float-right">Submit</button>
+                                    </div>
+                                </div>
+                            </form><!-- End Multi Columns Form -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<script>
+    $(document).ready(function () {
+        // Handle change event of the dropdown
+        $('#referralDropdown').change(function () {
+            // Get the selected referral id
+            var selectedReferralId = $(this).val();
+
+            // Make an AJAX request to get the contact info for the selected referral
+            $.ajax({
+                url: '/Admin/Lead/GetContactInfo',
+                type: 'GET',
+                data: { referralId: selectedReferralId },
+                success: function (data) {
+                    // Update the content of the contactInfoDiv with the received data
+                    $('#contactInfoDiv').empty(); // Clear previous content
+
+                    // Create input fields dynamically and make them readonly
+                    $('#contactInfoDiv').append('<div class="form-group"><input type="text" class="form-control mt-1" id="contact1" value="' + data.contact1 + '" readonly></div>');
+                },
+                error: function () {
+                    // Handle error
+                    console.log('Error fetching contact info');
+                }
+            });
+        });
+    });
+
+
+</script>

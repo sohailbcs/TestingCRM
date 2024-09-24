@@ -1,0 +1,195 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
+
+
+
+
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 50px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Student</h1>
+        <ul class="nav nav-tabs">
+            
+            <li class="nav-item">
+                <a class="tablink nav-link active" onclick="openPage('Login', this, 'lightgray')"
+                   style="color:#000000; cursor:pointer;"><b>Educational Details</b></a>
+            </li>
+            
+        </ul>
+
+
+    </div><!-- End Page Title -->
+    <br>
+    <div id="Login" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 95%">
+                        <div class="card-body">
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="Student" asp-action="EditEducation" method="post" asp-area="Employee">
+                                <div class="col-md-12 border1">
+                                    <legend>Education Details</legend>
+                                    <input asp-for="Educations.LeadId" value="@ViewBag.LeadId"  type="hidden" >
+                                    <input asp-for="Educations.StudentId" value="@ViewBag.StudentId" type="hidden">
+                                    <input asp-for="Educations.EducationLevelId" value="@ViewBag.EducationLevelId" type="hidden">
+ 
+                                    <br />
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Educational Level</label>
+
+                                                <select asp-for="Educations.EducationLevel" class="form-control">
+                                                    <option class="text-center">------ Select Education Level ------</option>
+                                                    <option value="Matric">Matriculation</option>
+                                                    <option value="FSC">Intermediate or Higher Secondary (FSC)</option>
+                                                    <option value="BS">Bachelor's Degree (BS or BA/BSc)</option>
+                                                    <option value="MS">Master's Degree (MS or MA/MSc)</option>
+                                                    <option value="PhD">Doctorate (PhD)</option>
+                                                </select>
+
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Degree Title</label>
+                                                <input asp-for="Educations.DegreeTitle" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Degree Time.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Major Subject</label>
+                                                <input asp-for="Educations.MajorSubject" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Major Subject.</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">School/Collage/University</label>
+                                                <input asp-for="Educations.SchoolUni" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your School/Collage/University.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Start Date</label>
+                                                <input asp-for="Educations.StartDate" type="date" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Start Date.</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">End Date</label>
+                                                <input asp-for="Educations.EndDate" type="date" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your End Date.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Obtain Marks</label>
+                                                <input id="obtainMarksInput" asp-for="Educations.ObjMarks" type="text" class="form-control"   oninput="calculatePercentage()">
+                                                <div class="invalid-feedback">Please enter your Obtain Marks.</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Total Marks</label>
+                                                <input id="totalMarksInput" asp-for="Educations.TotalMarks" type="text" class="form-control"   oninput="calculatePercentage()">
+                                                <div class="invalid-feedback">Please enter your Total Marks.</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Division/Grade/CGPA</label>
+                                                <input asp-for="Educations.Division" type="text" class="form-control"  >
+                                                <div class="invalid-feedback">Please enter your Division/Grade/CGPA.</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Percentage</label>
+                                                <input id="percentageInput" asp-for="Educations.Percentage" type="text" class="form-control" readonly>
+                                                <div class="invalid-feedback">Please enter your Persentage.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Board</label>
+                                                <input asp-for="Educations.Board" type="text" class="form-control"  >
+                                                <div class="invalid-feedback">Please enter your Board.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">CGPA</label>
+                                                <input asp-for="Educations.CGPA" type="text" class="form-control"  >
+                                                <div class="invalid-feedback">Please enter your Board.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="float-end mt-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+@section Scripts {
+ 
+ 
+    <script>
+                                        
+        function calculatePercentage() {
+            // Get values from Obtain Marks and Total Marks inputs
+            var obtainMarks = parseFloat(document.getElementById('obtainMarksInput').value) || 0;
+            var totalMarks = parseFloat(document.getElementById('totalMarksInput').value) || 1;
+
+            // Calculate percentage
+            var percentage = (obtainMarks / totalMarks) * 100;
+
+            // Update the Percentage input field
+            document.getElementById('percentageInput').value = percentage.toFixed(2) + '%';
+        }
+    </script>
+    }

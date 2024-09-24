@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="container-full">
+            <section class="content">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="d-flex align-items-center">
+                        <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                            <h3 class="page-title">Call Statistics</h3>
+                            <div class="d-inline-block align-items-center">
+                                <nav>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active">Call Statistics</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">My Targets</h3>
+                            </div>
+                            <h2>@ViewData["Title"]</h2>
+                            <div class="container">
+                                <!-- Row for Cards -->
+                                <div class="row">
+                                    <!-- Calls Card -->
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Calls
+                                            </div>
+                                            <div class="card-body" style="height:606px!important">
+                                                @foreach (var task in Model.Calls)
+                                                {
+                                                    <div class="task-card">
+                                                        <h5>@task.Description</h5>
+                                                        <p>Start Date: @task.StartDate.ToShortDateString()</p>
+                                                        <p>End Date: @task.EndDate.ToShortDateString()</p>
+                                                        <p>Target Calls: <span id="Total">@task.targetquantity</span></p>
+                                                    </div>
+                                                }
+                                                <h4>Achieve Calls: <span id="Achieve">@Model.FollowUpCounts.CallsCount</span></h4>
+                                                <!-- Calls Pie Chart -->
+                                                <div id="callsPieChart" style="height: 400px; width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Visits Card -->
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Visits
+                                            </div>
+                                            <div class="card-body" style="height:606px!important">
+                                                @foreach (var task in Model.Visits)
+                                                {
+                                                    <div class="task-card">
+                                                        <h5>@task.Description</h5>
+                                                        <p>Start Date: @task.StartDate.ToShortDateString()</p>
+                                                        <p>End Date: @task.EndDate.ToShortDateString()</p>
+                                                        <p>Target Visits: <span id="TotalVisits">@task.targetquantity</span></p>
+                                                    </div>
+                                                }
+                                                <h4>Achieve Visits: <span id="AchieveVisits">@Model.FollowUpCounts.VisitsCount</span></h4>
+                                                <!-- Visits Pie Chart -->
+                                                <div id="visitsPieChart" style="height: 400px; width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Meetings Card -->
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Meetings
+                                            </div>
+                                            <div class="card-body" style="height:606px!important">
+                                                @foreach (var task in Model.Meetings)
+                                                {
+                                                    <div class="task-card">
+                                                        <h5>@task.Description</h5>
+                                                        <p>Start Date: @task.StartDate.ToShortDateString()</p>
+                                                        <p>End Date: @task.EndDate.ToShortDateString()</p>
+                                                        <p>Target Meetings: <span id="TotalMeetings">@task.targetquantity</span></p>
+                                                    </div>
+                                                }
+                                                <h4>Achieve Meetings: <span id="AchieveMeetings">@Model.FollowUpCounts.MeetingsCount</span></h4>
+                                                <!-- Meetings Pie Chart -->
+                                                <div id="meetingsPieChart" style="height: 400px; width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Connected Calls Card -->
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Connected Calls
+                                            </div>
+                                            <div class="card-body" style="height:606px!important">
+                                                @foreach (var task in Model.ConnectedCalls ?? Enumerable.Empty<TargetTask>())
+                                                {
+                                                    <div class="task-card">
+                                                        <h5>@task.Description</h5>
+                                                        <p>Start Date: @task.StartDate.ToShortDateString()</p>
+                                                        <p>End Date: @task.EndDate.ToShortDateString()</p>
+                                                        <p>Target Connected Calls: <span id="TotalConnectedCalls">@task.targetquantity</span></p>
+                                                    </div>
+                                                }
+                                                <h4>Achieve Connected Calls: <span id="AchieveConnectedCalls">@Model.FollowUpCounts.ConnectedCallsCount</span></h4>
+                                                <!-- Connected Calls Pie Chart -->
+                                                <div id="connectedCallsPieChart" style="height: 400px; width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Row for Cards -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            function renderPieChart(containerId, target, total) {
+                Highcharts.chart(containerId, {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45,
+                            beta: 0
+                        }
+                    },
+                    title: {
+                        text: 'Statistics'
+                    },
+                    plotOptions: {
+                        pie: {
+                            innerSize: 100,
+                            depth: 45,
+                            dataLabels: {
+                                format: '{point.name}: {point.y:.1f}%'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Total',
+                        data: [
+                            ['Target', target],
+                            ['Total', total]
+                        ],
+                        colors: ['red', 'green']
+                    }]
+                });
+            }
+
+            function initializeCharts() {
+                var targetCalls = parseFloat($('#Total').text().trim());
+                var totalCalls = parseFloat($('#Achieve').text().trim());
+                if (!isNaN(targetCalls) && !isNaN(totalCalls)) {
+                    renderPieChart('callsPieChart', targetCalls, totalCalls);
+                }
+
+                var targetVisits = parseFloat($('#TotalVisits').text().trim());
+                var totalVisits = parseFloat($('#AchieveVisits').text().trim());
+                if (!isNaN(targetVisits) && !isNaN(totalVisits)) {
+                    renderPieChart('visitsPieChart', targetVisits, totalVisits);
+                }
+
+                var targetMeetings = parseFloat($('#TotalMeetings').text().trim());
+                var totalMeetings = parseFloat($('#AchieveMeetings').text().trim());
+                if (!isNaN(targetMeetings) && !isNaN(totalMeetings)) {
+                    renderPieChart('meetingsPieChart', targetMeetings, totalMeetings);
+                }
+
+                var targetConnectedCalls = parseFloat($('#TotalConnectedCalls').text().trim());
+                var totalConnectedCalls = parseFloat($('#AchieveConnectedCalls').text().trim());
+                if (!isNaN(targetConnectedCalls) && !isNaN(totalConnectedCalls)) {
+                    renderPieChart('connectedCallsPieChart', targetConnectedCalls, totalConnectedCalls);
+                }
+            }
+
+            initializeCharts();
+        });
+    </script>
+</body>
+</html>

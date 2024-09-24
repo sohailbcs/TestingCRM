@@ -1,0 +1,522 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+              
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">All Leads Summary</h3>
+                            <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                            <div class="float-right">
+
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <a href="@Url.Action("ExportToExcel", "Lead")" class="btn btn-success  btn-block my-10 me-2"><i class="fas fa-file-excel"></i>&nbsp; Excel</a> &nbsp;
+                                    <a href="@Url.Action("ExportToCSV", "Lead")" class="btn btn-info  btn-block my-10"><i class="fas fa-file-csv"></i>&nbsp; CSV</a>
+                                </div>
+                              
+
+                            </div>
+                        </div>
+ <div class="box-body">
+                            <div class="table-responsive">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Search Filters</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="filterForm">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="firstNameFilter">First Name</label>
+                                                        <input type="text" class="form-control" id="firstNameFilter" placeholder="First Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="firstNameFilter">Last Name</label>
+                                                        <input type="text" class="form-control" id="lastNameFilter" placeholder="First Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="genderFilter">Gender</label>
+                                                        <select class="form-control" id="genderFilter">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="phoneFilter">Phone Number</label>
+                                                        <input type="text" class="form-control" id="phoneFilter" placeholder="Phone Number" />
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="assignStatus">AssignStatus</label>
+                                                        <select class="form-control" id="assignStatus">
+                                                            <option value="" disabled selected>Please select</option>
+                                                            <option value="Allocated">Allocated</option>
+                                                            <option value="UnAllocated">Unallocated</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+
+                                          
+                                           
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="emailFilter">Email</label>
+                                                        <input type="text" class="form-control" id="emailFilter" placeholder="Email" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="sourceFilter">Source</label>
+                                                        <input type="text" class="form-control" id="sourceFilter" placeholder="Source" />
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="startDateFilter">Start Date</label>
+                                                        <input type="date" id="startDateFilter" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="endDateFilter">End Date</label>
+                                                        <input type="date" id="endDateFilter" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <br />
+                                <span id="checkedLeadsCounter">Checked Leads: 0</span>
+                                <br />
+                                <div class="mb-3">
+                                    <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+                                    <button id="designSelected" class="btn btn-success">Design Selected Leads</button>
+
+                                  
+
+                                </div>
+
+                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">
+                                                <input type="checkbox" id="selectAll" />
+                                            </th>
+                                            <th style="background-color: #4e0973;color:white;">First Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Last Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Source</th>
+                                            <th style="background-color: #4e0973;color:white;">University</th>
+                                            <th style="background-color: #4e0973;color:white;">Domain</th>
+                                            <th style="background-color: #4e0973;color:white;">Course</th>
+                                            <th style="background-color: #4e0973;color:white;">Created Date</th>
+                                            <th style="background-color: #4e0973;color:white;">Assign Status</th>
+                                            <th style="background-color: #4e0973;color:white;">Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Lead</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editLeadForm">
+                    <input type="hidden" id="leadId" name="leadId" />
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="leadSource" class="form-label">Lead Source</label>
+                            <select id="leadSource" class="form-control" name="leadSource">
+                                <option value="">Select lead source</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Website">Website</option>
+                                <option value="Event">Event</option>
+                                <option value="Walk in">Walk in</option>
+                                <option value="SocialMedia in">SocialMedia</option>
+                                <option value="Partner/Referral">Partner/Referral</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitButton">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Lead/GetAllLeadData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<input type="checkbox" class="rowCheckbox" value="' + row.leadId + '" />';
+                        }
+                    },
+                    {
+                        "data": "firstName",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "lastName",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "gender",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "phoneNumber",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "email",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "leadSource",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "universityName", // New Column
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "domainName", // New Column
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "interestedprogram",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "createdDate",
+                        "autoWidth": true,
+                    },
+                    {
+                        "data": "isLeadAssign",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            return data ? 'Allocated' : 'UnAllocated';
+                        }
+                    },
+
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            var editButton = '<a href="#" class="btn btn-primary open-modal me-3" ' +
+                                'data-leadid="' + row.leadId + '" ' +
+                                'data-firstname="' + row.firstName + '" ' +
+                                'data-lastname="' + (row.lastName || '') + '" ' +
+                                'data-phonenumber="' + row.phoneNumber + '" ' +
+                                'data-email="' + (row.email || '') + '" ' +
+                                'data-address="' + (row.address || '') + '" ' +
+                                'data-gender="' + (row.gender || '') + '" ' +
+                                'data-leadsource="' + (row.leadSource || '') + '" ' +
+                                'style="padding: 12px;margin-right: 5px;">' +
+                                '<i class="bi bi-pencil" style="margin-right: 5px;"></i></a>';
+
+                            var deleteButton = '<a href="#" class="btn btn-danger delete-lead" ' +
+                                'data-leadid="' + row.leadId + '" ' +
+                                'data-firstname="' + row.firstName + '" ' +
+                                'style="padding: 12px;">' +
+                                '<i class="bi bi-trash" style="margin-right: 3px;"></i></a>';
+                            var historyButton = '<a href="/Admin/Lead/LeadDetail?leadId=' + row.leadId + '" class="btn btn-info" ' +
+                                'style="padding: 12px;">' +
+                                '<i class="bi bi-clock" style="margin-right: 3px;"></i></a>';
+
+                            return editButton + deleteButton + historyButton;
+                        }
+                    }
+                ],
+                // ... rest of your DataTable configuration
+            });
+            $('#designSelected').click(function () {
+                const selectedIds = $('.rowCheckbox:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if (selectedIds.length === 0) {
+                    alert('Please select at least one lead to design.');
+                    return;
+                }
+
+                if (confirm('Are you sure you want to design the selected leads?')) {
+                    $.ajax({
+                        url: '/Admin/Lead/DesignLead',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(selectedIds),  // Send the array directly
+                        success: function (response) {
+                            alert(response.message || 'Leads designed successfully.');
+                            table.ajax.reload();  // Reload the DataTable to reflect changes
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error:', xhr.responseText);
+                            alert('An error occurred while trying to design leads: ' + xhr.responseText);
+                        }
+                    });
+                }
+            });
+
+            // Function to update the checked leads counter
+            function updateCheckedLeadsCounter() {
+                const checkedCount = $('.rowCheckbox:checked').length;
+                $('#checkedLeadsCounter').text('Checked Leads: ' + checkedCount);
+            }
+
+            // Event listener for checkbox clicks (row checkboxes)
+            $('#brandTable').on('change', '.rowCheckbox', function () {
+                updateCheckedLeadsCounter(); // Update the counter whenever a checkbox is checked/unchecked
+            });
+
+            // Event listener for "Select All" checkbox
+            $('#selectAll').click(function () {
+                const isChecked = this.checked;
+                $('.rowCheckbox').prop('checked', isChecked); // Check/uncheck all row checkboxes
+                updateCheckedLeadsCounter(); // Update the counter after selecting all
+            });
+            // Custom Date Range Filter
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var startDate = $('#startDateFilter').val();  // Get start date
+                    var endDate = $('#endDateFilter').val();      // Get end date
+                    var createdDate = data[10];                   // Column index for "Created Date"
+
+                    // Convert dates to ISO format for comparison
+                    if (startDate) {
+                        startDate = new Date(startDate).toISOString().split('T')[0];
+                    }
+                    if (endDate) {
+                        endDate = new Date(endDate).toISOString().split('T')[0];
+                    }
+
+                    // Check if created date falls within the range
+                    if ((startDate && createdDate < startDate) || (endDate && createdDate > endDate)) {
+                        return false;
+                    }
+                    return true;
+                }
+            );
+
+            // Redraw table when date inputs change
+            $('#startDateFilter, #endDateFilter').on('change', function () {
+                table.draw();
+            });
+            // Hide the 'Show entries' dropdown
+            $('.dataTables_length').hide();
+            $('#deleteSelected').click(function () {
+                const selectedIds = $('.rowCheckbox:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if (selectedIds.length === 0) {
+                    alert('Please select at least one lead to delete.');
+                    return;
+                }
+
+                if (confirm('Are you sure you want to delete the selected leads?')) {
+                    $.ajax({
+                        url: '/Admin/Lead/DeleteLeads',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ leadIds: selectedIds }),
+                        success: function (response) {
+                            alert(response.message || 'Leads deleted successfully.');
+                            table.ajax.reload(); // Reload the DataTable to reflect changes
+                        },
+                        error: function (xhr, status, error) {
+                            // Log error details for debugging
+                            console.error('Error:', xhr.responseText);
+                            alert('An error occurred while trying to delete leads: ' + xhr.responseText);
+                        }
+                    });
+                }
+            });
+            // Filter by First Name
+            $('#firstNameFilter').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+            $('#lastNameFilter').on('change', function () {
+                table.column(2).search(this.value).draw();
+            });
+
+
+            // Filter by Gender
+            $('#genderFilter').on('change', function () {
+                table.column(3).search(this.value).draw();
+            });
+
+            // Filter by Email
+            $('#emailFilter').on('keyup', function () {
+                table.column(5).search(this.value).draw();
+            });
+
+            // Filter by Phone Number
+            $('#phoneFilter').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+
+            // Filter by Source
+            $('#sourceFilter').on('keyup', function () {
+                table.column(6).search(this.value).draw();
+            });
+
+            // Filter by Date Range (Exact or Partial Match)
+            $('#dateRangeFilter').on('keyup', function () {
+                table.column(5).search(this.value).draw();
+            });
+            $('#assignStatus').on('change', function () {
+                table.column(11).search(this.value).draw();
+            });
+            $('#selectAll').click(function () {
+                const isChecked = this.checked;
+                $('.rowCheckbox').prop('checked', isChecked);
+            });
+        });
+    </script>
+
+
+}

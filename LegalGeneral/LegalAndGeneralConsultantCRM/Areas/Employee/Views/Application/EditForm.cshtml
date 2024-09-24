@@ -1,0 +1,554 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+
+
+    legend {
+        background-color: #637381;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -5px;
+        font-size: medium;
+        font-weight: bold;
+        font-family: arial;
+        color: white;
+    }
+
+</style>
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessages"]');
+                });
+            </script>
+        }
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Student Info</h3>
+                            <div class="float-right">
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <div style="border: 5px solid #1b2850; padding: 15px;">
+                                    <legend>Basic Details</legend>
+                                    <form asp-action="UpdateStudentDetails" asp-controller="Application" asp-area="Employee" method="post">
+                                        <input type="hidden" asp-for="Students.LeadId" class="form-control" value="@ViewBag.Leadid" />
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Student First Name:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text"  asp-for="Students.FirstName" class="form-control" value="@Model.Students.FirstName" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Student Last Name:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.LastName" class="form-control mt-2" value="@Model.Students.LastName" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Phone Number:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.PhoneNumber" class="form-control" value="@Model.Students.PhoneNumber" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Email:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.Email" class="form-control" value="@Model.Students.Email" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Gender:</label>
+                                            <div class="col-sm-10">
+                                                <select asp-for="Students.Gender" class="form-control" value="@Model.Students.Gender">
+                                                    <option value="">Select Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Date of Birth:</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" asp-for="Students.BirthDate" class="form-control" value="@Model.Students.BirthDate.ToString("yyyy-MM-dd")" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Language:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.Language" class="form-control" value="@Model.Students.Language" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Work Experiance:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.BloodGroup" class="form-control" value="@Model.Students.BloodGroup" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">StudyGap:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="StudyGap" class="form-control" value="@ViewBag.StudyGap" />
+                                            </div>
+                                        </div>
+
+
+                                      
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"> Cnic:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.Cnic" class="form-control" value="@Model.Students.Cnic" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">   Address Line 1 :</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.TemporaryAddress" class="form-control" value="@Model.Students.TemporaryAddress" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">   Address Line 2 :</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.PermanentAddress" class="form-control" value="@Model.Students.PermanentAddress" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">     Nationality:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" asp-for="Students.Nationality" class="form-control" value="@Model.Students.Nationality" />
+                                            </div>
+                                        </div>
+                                      
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Consultation Fee:</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" step="0.01" asp-for="Fees.Amount" class="form-control" value="@ViewBag.Amount" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Consultation Fee Paid Date:</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" asp-for="Fees.Date" class="form-control" value="@ViewBag.Date" />
+                                            </div>
+                                        </div>
+
+                                        <section>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="universityDropdown">University Name:</label>
+                                                        <select asp-for="Students.UniversityId" id="universityDropdown" class="form-control" required>
+                                                            <option value="" disabled>Select University</option>
+                                                            @if (ViewBag.Universities != null)
+                                                            {
+                                                                foreach (var university in ViewBag.Universities)
+                                                                {
+                                                                    var isSelected = university.Name == ViewBag.UniversityName;
+                                                                    <option value="@university.UniversityId" selected="@isSelected">@university.Name</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="programDropdown">Program Name:</label>
+                                                        <select asp-for="Students.CourseId" id="programDropdown" class="form-control" required>
+                                                            <option value="" disabled>Select Program</option>
+                                                            @if (ViewBag.Courses != null)
+                                                            {
+                                                                foreach (var course in ViewBag.Courses)
+                                                                {
+                                                                    var isSelected = course.Name == ViewBag.CourseName;
+                                                                    <option value="@course.CourseId" selected="@isSelected">@course.Name</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+
+
+                                        <!-- Add other input fields here if necessary -->
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-10 offset-sm-2 text-end">
+                                                <button type="submit" class="btn btn-primary">  <i class="fas fa-save"></i> Save Changes</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+
+
+                                <div style="border: 5px solid #1b2850; padding: 15px;" class="mt-5">
+                                    <legend> Education Information  </legend>
+
+                                    <ul>
+                                        @if (Model.EducationsList != null && Model.EducationsList.Any())
+                                        {
+                                            <input type="hidden" name="LeadId" value="@ViewBag.LeadId" />
+
+                                            <div class="education-list">
+                                                @foreach (var education in Model.EducationsList)
+                                                {
+                                                    <div class="education-item">
+                                                        @if (!string.IsNullOrEmpty(education.title1))
+                                                        {
+                                                            <div class="education-row">
+                                                                <div class="education-title"> Document Title: @education.title1</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.EducationLevelImageUrl))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.EducationLevelImageUrl}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.EducationLevelImageUrl}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        
+                                                                    }
+
+                                                                    <form method="post" action="@Url.Action("UpdateEducationField11", "Application", new { area = "Employee" })" style="display:inline;">
+                                                                        <input type="hidden" name="id" value="@education.EducationLevelId" />
+                                                                        <input type="hidden" name="leadId" value="@education.LeadId" />
+                                                                        <input type="hidden" name="title1" value="" />
+                                                                        <input type="hidden" name="EducationLevelImageUrl" value="" />
+                                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                                            <i class="fas fa-trash"></i> Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <form method="post" action="@Url.Action("UpdateEducation", "Application", new { area = "Employee" })" enctype="multipart/form-data">
+                                                                <input type="hidden" asp-for="Educations.EducationLevelId" value="@education.EducationLevelId" />
+                                                                <input type="hidden" asp-for="Educations.LeadId" value="@education.LeadId" />
+
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="title2">Document Title 1:</label>
+                                                                            <input type="text" class="form-control" asp-for="Educations.title1">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="attachment2ImagePath">Attachment:</label>
+                                                                            <input type="file" class="form-control" id="EducationImageFile" name="EducationImageFile" placeholder="Upload Document">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4 mt-1">
+                                                                        <button type="submit" class="btn   btn-primary btn-sm">
+                                                                            <i class="fas fa-save"></i> Save
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(education.title2))
+                                                        {
+                                                            <div class="education-row mt-2">
+                                                                <div class="education-title"> Document Title: @education.title2</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.attachment2))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.attachment2}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.attachment2}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                         
+                                                                    }
+
+                                                                    <!-- Form to clear title2 and attachment2 -->
+                                                                    <form method="post" action="@Url.Action("UpdateEducationField", "Application", new { area = "Employee" })" style="display:inline;">
+                                                                        <input type="hidden" name="id" value="@education.EducationLevelId" />
+                                                                        <input type="hidden" name="leadId" value="@education.LeadId" />
+                                                                        <input type="hidden" name="title2" value="" />
+                                                                        <input type="hidden" name="attachment2" value="" />
+                                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                                            <i class="fas fa-trash"></i> Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <form method="post" action="@Url.Action("UpdateEducation", "Application", new { area = "Employee" })" enctype="multipart/form-data">
+                                                                <input type="hidden" asp-for="Educations.EducationLevelId" value="@education.EducationLevelId" />
+                                                                <input type="hidden" asp-for="Educations.LeadId" value="@education.LeadId" />
+
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="title2">Document Title 2:</label>
+                                                                            <input type="text" class="form-control" asp-for="Educations.title2">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="attachment2ImagePath">Attachment:</label>
+                                                                            <input type="file" class="form-control" id="attachment2ImagePath" name="attachment2ImagePath" placeholder="Upload Document">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4 mt-1">
+                                                                        <button type="submit" class="btn mt-1 btn-primary btn-sm">
+                                                                            <i class="fas fa-save"></i> Save
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(education.title3))
+                                                        {
+                                                            <div class="education-row mt-2">
+                                                                <div class="education-title">Document Title: @education.title3</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.attachment3))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.attachment3}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.attachment3}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        
+                                                                    }
+                                                                    <form method="post" action="@Url.Action("UpdateEducationField3", "Application", new { area = "Employee" })" style="display:inline;">
+                                                                        <input type="hidden" name="id" value="@education.EducationLevelId" />
+                                                                        <input type="hidden" name="leadId" value="@education.LeadId" />
+                                                                        <input type="hidden" name="title3" value="" />
+                                                                        <input type="hidden" name="attachment3" value="" />
+                                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                                            <i class="fas fa-trash"></i> Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <form method="post" action="@Url.Action("UpdateEducation", "Application", new { area = "Employee" })" enctype="multipart/form-data">
+                                                                <input type="hidden" name="id" value="@education.EducationLevelId" />
+                                                                <input type="hidden" asp-for="Educations.LeadId" value="@education.LeadId" />
+
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="title3">Document Title 3:</label>
+                                                                            <input type="text" class="form-control" asp-for="Educations.title3" id="title3">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="attachment3ImagePath">Attachment:</label>
+                                                                            <input type="file" class="form-control" id="attachment3ImagePath" name="attachment3ImagePath" placeholder="Upload Document">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4 mt-1">
+                                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                                            <i class="fas fa-save"></i> Save
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        }
+
+                                                        @if (!string.IsNullOrEmpty(education.title4))
+                                                        {
+                                                            <div class="education-row mt--2">
+                                                                <div class="education-title">Document Title: @education.title4</div>
+                                                                <div class="education-attachment">
+                                                                    @if (!string.IsNullOrEmpty(education.attachment4))
+                                                                    {
+                                                                        <a href="@Url.Content($"~/{education.attachment4}")" target="_blank" class="btn btn-info btn-sm">
+                                                                            <i class="fas fa-eye"></i> View
+                                                                        </a>
+                                                                        <a href="@Url.Content($"~/{education.attachment4}")" download class="btn btn-success btn-sm">
+                                                                            <i class="fas fa-download"></i> Download
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="col-6">
+                                                                            <div class="form-group">
+                                                                                <label for="username123">Document Title 4:</label>
+                                                                                <input type="text" class="form-control" asp-for="Educations.title4">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="form-group">
+                                                                                <label for="password123">Attachment  :</label>
+                                                                                <input type="file" class="form-control" id="attachment4ImagePath" name="attachment4ImagePath" placeholder="Upload Document">
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                    <form method="post" action="@Url.Action("UpdateEducationField4", "Application", new { area = "Employee" })" style="display:inline;">
+                                                                        <input type="hidden" name="id" value="@education.EducationLevelId" />
+                                                                        <input type="hidden" name="leadId" value="@education.LeadId" />
+                                                                        <input type="hidden" name="title4" value="" />
+                                                                        <input type="hidden" name="attachment4" value="" />
+                                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                                            <i class="fas fa-trash"></i> Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <form method="post" action="@Url.Action("UpdateEducation", "Application", new { area = "Employee" })" enctype="multipart/form-data">
+                                                                <input type="hidden" name="id" value="@education.EducationLevelId" />
+                                                                <input type="hidden" asp-for="Educations.LeadId" value="@education.LeadId" />
+
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="title4">Document Title 4:</label>
+                                                                            <input type="text" class="form-control" asp-for="Educations.title4" id="title4">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="attachment4ImagePath">Attachment:</label>
+                                                                            <input type="file" class="form-control" id="attachment4ImagePath" name="attachment4ImagePath" placeholder="Upload Document">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4 mt-1">
+                                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                                            <i class="fas fa-save"></i> Save
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p>No education information available for this student.</p>
+                                        }
+
+
+
+
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+ 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#universityDropdown').change(function () {
+                var universityId = $(this).val();
+                if (universityId) {
+                    $.ajax({
+                        url: '@Url.Action("GetCoursesByUniversity", "Student")',
+                        type: 'GET',
+                        data: { universityId: universityId },
+                        success: function (data) {
+                            var programDropdown = $('#programDropdown');
+                            programDropdown.empty();
+                            programDropdown.append('<option value="" disabled selected>-- Select Program --</option>');
+
+                            $.each(data, function (index, course) {
+                                programDropdown.append('<option value="' + course.courseId + '">' + course.courseName + '</option>');
+                            });
+
+                            // Reinitialize Select2 if used
+                            // $('#programDropdown').select2();
+                        },
+                        error: function () {
+                            alert('Error fetching courses for the selected university.');
+                        }
+                    });
+                } else {
+                    $('#programDropdown').empty().append('<option value="" disabled selected>-- Select Program --</option>');
+                }
+            });
+        });
+    </script>
+}

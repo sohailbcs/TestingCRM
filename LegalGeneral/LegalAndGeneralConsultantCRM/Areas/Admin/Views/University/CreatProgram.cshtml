@@ -1,0 +1,127 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.OfferProgram
+
+ 
+    <title>Create University Program</title>
+
+    <!-- Bootstrap CSS (Include the necessary Bootstrap CSS file) -->
+ 
+    <style>
+        .border1 {
+            border: 2px solid #605e5e4c;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 20px 0px;
+        }
+
+        legend {
+            background-color: lightgray;
+            width: auto;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-top: -30px;
+            font-size: medium;
+            margin-left: 5%;
+            font-weight: bold;
+            font-family: arial;
+        }
+
+        .wor {
+            margin-top: 20px;
+        }
+    </style>
+
+
+<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <div class="row">
+            <div class="col-2 grid-margin stretch-card"></div>
+
+            <div class="col-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add University Programs</h4>
+
+                        <form class="forms-sample" asp-controller="University" asp-action="CreateProgram" method="post" asp-area="Admin" id="programForm">
+
+                            <div class="col-md-12">
+                                <div id="programs-container">
+                                    <!-- Initial program row, you can remove the fixed loop -->
+                                    <div class="row program-row">
+                                        <div class="col-md-12">
+                                            <label class="form-label">Program 1</label>
+                                            <input type="text" name="programNames[]" class="form-control program-input" required>
+                                            <div class="invalid-feedback">Please enter Program 1.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="float-end">
+                                    <button type="button" class="btn btn-success float-end" onclick="addProgram()">+</button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary mr-2 mt-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 grid-margin stretch-card"></div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+<!-- main-panel ends -->
+<!-- Bootstrap JS and jQuery (Include the necessary Bootstrap JS and jQuery files) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+    function addProgram() {
+        var container = document.getElementById('programs-container');
+        var programCount = container.getElementsByClassName('program-row').length + 1;
+
+        var newRow = document.createElement('div');
+        newRow.classList.add('row', 'program-row');
+
+        var newCol = document.createElement('div');
+        newCol.classList.add('col-md-12');
+
+        var label = document.createElement('label');
+        label.classList.add('form-label');
+        label.textContent = 'Program ' + programCount;
+
+        var input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'programNames[]';
+        input.classList.add('form-control', 'program-input');
+        input.required = true;
+
+        var invalidFeedback = document.createElement('div');
+        invalidFeedback.classList.add('invalid-feedback');
+        invalidFeedback.textContent = 'Please enter Program ' + programCount + '.';
+
+        newCol.appendChild(label);
+        newCol.appendChild(input);
+        newCol.appendChild(invalidFeedback);
+
+        newRow.appendChild(newCol);
+
+        container.appendChild(newRow);
+    }
+</script>
+}

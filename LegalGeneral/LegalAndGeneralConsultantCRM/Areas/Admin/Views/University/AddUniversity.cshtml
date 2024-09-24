@@ -1,0 +1,213 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.University
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Add University</h3>
+                            <div class="float-right">
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+
+                            <div class="p-5" style="background-color:#ECEEF7;padding:20px!important; border-radius:10px;">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <form class="forms-sample" asp-controller="University" asp-action="Create" method="post" asp-area="Admin">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">University Name</label>
+                                                <input type="text" id="universityName" class="form-control" asp-for="Name" placeholder="University Name" required>
+                                                <span id="nameError" class="text-danger" style="display:none;">Please enter a valid university name.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail3">Email</label>
+                                                <input type="email" id="contactEmail" class="form-control" asp-for="ContactEmail" placeholder="Email Address" required>
+                                                <span id="emailError" class="text-danger" style="display:none;">Please enter a valid email address.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Type</label>
+                                                <select id="universityType" class="form-control" asp-for="Type" required>
+                                                    <option value="">-- Select Type --</option>
+                                                    <option>Public</option>
+                                                    <option>Private</option>
+                                                </select>
+                                                <span id="typeError" class="text-danger" style="display:none;">Please select a type.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Contact Number</label>
+                                                <input type="text" id="contactNumber" class="form-control" asp-for="ContactPhone" placeholder="Contact Number" required>
+                                                <span id="phoneError" class="text-danger" style="display:none;">Please enter a valid contact number.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail3">Chancellor</label>
+                                                <input type="text" class="form-control" asp-for="Chancellor" placeholder="Chancellor">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Founded Date</label>
+                                                <input type="date" class="form-control" asp-for="Founded">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Ranking</label>
+                                                <input type="text" class="form-control" asp-for="Ranking" placeholder="University Rank">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail3">Website Url</label>
+                                                <input type="text" id="website" class="form-control" asp-for="Website" placeholder="Website" required>
+                                                <span id="websiteError" class="text-danger" style="display:none;">Please enter a valid website URL.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Country</label>
+                                                <input type="text" id="country" class="form-control" asp-for="Country" placeholder="Country" required>
+                                                <span id="countryError" class="text-danger" style="display:none;">Please enter a valid country name.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Address</label>
+                                                <textarea type="text" id="address" class="form-control" asp-for="StreetAddress" placeholder="Address"></textarea>
+                                                <span id="addressError" class="text-danger" style="display:none;">Please enter a valid address.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                    <a class="btn btn-light" href="/Admin/University/Index">Cancel</a>
+                                </form>
+                                 </<div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+                    </div>
+
+        </section>
+
+    </div>
+</div>
+
+  
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                var isValid = true;
+
+                // Validate University Name
+                var namePattern = /^[^\d][\w\s]{2,}$/;
+                var universityName = $('#universityName').val().trim();
+                if (!namePattern.test(universityName)) {
+                    $('#nameError').show();
+                    isValid = false;
+                } else {
+                    $('#nameError').hide();
+                }
+
+                // Validate Email
+                var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailPattern.test($('#contactEmail').val().trim())) {
+                    $('#emailError').show();
+                    isValid = false;
+                } else {
+                    $('#emailError').hide();
+                }
+
+                // Validate Type
+                if ($('#universityType').val().trim() === '') {
+                    $('#typeError').show();
+                    isValid = false;
+                } else {
+                    $('#typeError').hide();
+                }
+
+                // Validate Contact Number
+                var phonePattern = /^[0-9-+() ]{7,15}$/;
+                if (!phonePattern.test($('#contactNumber').val().trim())) {
+                    $('#phoneError').show();
+                    isValid = false;
+                } else {
+                    $('#phoneError').hide();
+                }
+
+                // Validate Website URL
+                var urlPattern = /^(https?:\/\/)?([\w\d\-_]+\.+\S{2,})$/;
+                if (!urlPattern.test($('#website').val().trim())) {
+                    $('#websiteError').show();
+                    isValid = false;
+                } else {
+                    $('#websiteError').hide();
+                }
+
+                // Validate Country
+                if ($('#country').val().trim() === '') {
+                    $('#countryError').show();
+                    isValid = false;
+                } else {
+                    $('#countryError').hide();
+                }
+
+                // Validate Address
+                if ($('#address').val().trim() === '') {
+                    $('#addressError').show();
+                    isValid = false;
+                } else {
+                    $('#addressError').hide();
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+}

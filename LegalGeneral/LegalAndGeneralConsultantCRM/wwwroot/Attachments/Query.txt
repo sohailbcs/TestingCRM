@@ -1,0 +1,21 @@
+QUERY1
+
+
+ALTER TABLE [gracevalley].[dbo].[Member]
+ALTER COLUMN [dealerid] int;  -- Change 255 to the desired length
+
+QUERY2
+
+
+
+ALTER TABLE [gracevalley].[dbo].[Member]
+ADD 
+    dealer2id INT NULL,
+    dealer3id INT NULL,
+    dealer2name VARCHAR(255) NULL,
+    dealer3name VARCHAR(255) NULL,
+    dealer2rebateamount FLOAT NULL,
+    remarksVARCHAR(255) NULL,
+    dealer3rebateamount FLOAT NULL;
+
+

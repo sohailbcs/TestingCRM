@@ -1,0 +1,142 @@
+﻿<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        <section class="content">
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <!-- Breadcrumb navigation can be added here if needed -->
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Universities & Their Programs</h3>
+                            <div class="container mt-4">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="col-md-12">
+                                            <label for="SelectedUniversity" class="form-label">University</label>
+                                            @Html.DropDownList("SelectedUniversity", ViewBag.UniversityList as SelectList, "-- Select University --", new { @class = "form-control col-md-12", id = "SelectedUniversity" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12">
+                                            <label for="PrintButton" class="form-label"></label>
+                                            <button id="downloadPDF" class="btn btn-secondary float-end">
+                                                <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadDetailsTable" class="display expandable-table mt-3" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973; color: white;">Program Name</th>
+                                            <th style="background-color: #4e0973; color: white;">Duration</th>
+                                            <th style="background-color: #4e0973; color: white;">Fees</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+ 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Example image URL (replace with your actual image URL)
+            var logoUrl = 'https://legalandgen.technologyinn.net/images/logo/logo1.png';  // Replace with your actual image URL
+
+
+            // Initialize DataTable with empty data
+            var table = $('#leadDetailsTable').DataTable({
+                "destroy": true,
+                "data": [],
+                "columns": [
+                    { "data": "programName" },
+                    { "data": "duration" },
+                    { "data": "fees" }
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+
+            $('#SelectedUniversity').change(function () {
+                var uniId = $(this).val();
+
+                $.ajax({
+                    "url": "/Admin/Reports/GetUniCourses",
+                    type: 'GET',
+                    data: { uniId: uniId },
+                    dataType: 'json',
+                    success: function (data) {
+                        // Clear existing rows
+                        table.clear().draw();
+
+                        // Populate DataTable with retrieved data
+                        table.rows.add(data.data).draw();
+                    },
+                    error: function () {
+                        alert('Error fetching data.');
+                    }
+                });
+            });
+            $('#downloadPDF').click(function () {
+                var doc = new jspdf.jsPDF();  // Create jsPDF instance
+                var table = $('#leadDetailsTable').DataTable();
+                var data = table.rows({ search: 'applied' }).data().toArray();  // Get the filtered data
+
+                // Add image to the PDF
+                doc.addImage(logoUrl, 'PNG', 10, 10, 50, 20);  // Add logo at x=10, y=10, width=50, height=20
+
+                // Generate PDF table using autoTable plugin
+                doc.autoTable({
+                    startY: 40,  // Start below the image
+                    head: [['ProgramName', 'Duration', 'Course',]],
+                    body: data.map(function (row) {
+                        return [
+                            row.programName,
+                            row.duration,
+                            row.fees,
+
+                        ];
+                    }),
+                });
+
+            $('.btn-print').click(function () {
+                var uniId = $('#SelectedUniversity').val(); // Get the selected university ID
+
+                if (uniId) {
+                    window.open("/Admin/Reports/PrintUniversityReport?uniId=" + uniId, '_blank');
+                } else {
+                    alert('Please select a university.');
+                }
+            });
+
+        });
+
+    </script>
+}

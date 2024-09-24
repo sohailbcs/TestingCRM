@@ -1,0 +1,147 @@
+﻿ <!-- partial -->
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        <section class="content">
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <!-- Breadcrumb navigation can be added here if needed -->
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Enrolled Students</h3>
+                            <div class="container mt-4">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="col-md-12">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="SelectedTeamMember" class="form-label"></label>
+                                            <button id="downloadPDF" class="btn btn-secondary float-end">
+                                                <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973; color: white;">  Name</th>
+                                            <th style="background-color: #4e0973; color: white;">Email</th>
+                                            <th style="background-color: #4e0973; color: white;">Phone Number</th>
+                                            <th style="background-color: #4e0973; color: white;">Program  </th>
+                                            <th style="background-color: #4e0973; color: white;">University  </th>
+                                         </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+<script>
+
+ 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+                       // Example image URL (replace with your actual image URL)
+                            var logoUrl = 'https://legalandgen.technologyinn.net/images/logo/logo1.png';  // Replace with your actual image URL
+
+
+            // DataTable initialization
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/Report/GetEnrolledStudent",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "courseName", "autoWidth": true },
+                    { "data": "universityName", "autoWidth": true },
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+
+            // Delete button click event
+            $('#brandTable tbody').on('click', '.delete-btn', function () {
+                // Delete functionality
+            });
+
+            // Print button click event
+            $('#printButton').on('click', function () {
+
+                window.open("/Employee/Report/PrintEnrolledStudentsReport", '_blank');
+
+
+            });
+                $('#downloadPDF').click(function () {
+                    var doc = new jspdf.jsPDF();  // Create jsPDF instance
+                var table = $('#brandTable').DataTable();
+                var data = table.rows({search: 'applied' }).data().toArray();  // Get the filtered data
+
+                // Add image to the PDF
+                doc.addImage(logoUrl, 'PNG', 10, 10, 50, 20);  // Add logo at x=10, y=10, width=50, height=20
+
+                // Generate PDF table using autoTable plugin
+                doc.autoTable({
+                    startY: 40,  // Start below the image
+                head: [['Name', 'Phone no', 'Email', 'CourseName , universityName']],
+                body: data.map(function (row) {
+                            return [
+                row.fullName,
+                row.phoneNumber,
+                row.email,
+                row.courseName,
+                row.universityName,
+                ];
+                        }),
+                    });
+
+                // Create a Blob from the PDF
+                var pdfBlob = doc.output('blob');
+
+                // Create a URL for the Blob and open it in a new tab
+                var pdfUrl = URL.createObjectURL(pdfBlob);
+                window.open(pdfUrl, '_blank');
+                });
+        });
+    </script>
+}
+

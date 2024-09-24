@@ -1,0 +1,181 @@
+﻿ <!-- Include Toastr CSS and JS, jQuery, and FontAwesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Team Members Summary</h3>
+                            <div class="float-right">
+
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <a class="btn btn-primary" href="/Admin/Employee/EmployeeRegister">
+                                        <i class="bi bi-plus-circle"></i>&nbsp;Add Team Member
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Branch</th>
+                                            <th style="background-color: #4e0973;color:white;">Status</th> <!-- New Status Column -->
+                                            <th style="background-color: #4e0973;color:white;"> Action Status</th> <!-- New Status Column -->
+                                            <th style="background-color: #4e0973;color:white;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Employee/GetUserData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullname", "name": "FirstName", "autoWidth": true },
+                    { "data": "gender", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "branchName", "autoWidth": true },
+                    {
+                        "data": "status",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            // Check the status value
+                            if (data === true) {
+                                // If status is true (active), show green text in bold
+                                return '<span style="color: green; font-weight: bold;">Active</span>';
+                            } else {
+                                // If status is false (inactive), show red text in bold
+                                return '<span style="color: red; font-weight: bold;">Inactive</span>';
+                            }
+                        }
+                    },
+
+                    {
+                        "data": "status",
+                        "render": function (data, type, row) {
+                            if (data) {
+                                return `<button class="btn btn-danger changeStatus" data-id="${row.id}" data-status="false">Deactivate</button>`;
+                            } else {
+                                return `<button class="btn btn-success changeStatus" data-id="${row.id}" data-status="true">Activate</button>`;
+                            }
+                        },
+                        "autoWidth": true
+                    },
+                    {
+                        "data": "id",
+                        "render": function (data) {
+                            return `
+                            <a style="padding: 12px;margin-right: 5px;" href="/Admin/Employee/Edit?id=${data}" class="btn btn-primary">
+                                <i class="bi bi-pencil" style="margin-right: 5px;"></i>
+                            </a>
+                            <a style="padding: 12px;margin-right: 5px;" href="/Admin/Employee/ChangePassword?id=${data}" class="btn btn-warning">
+                                <i class="bi bi-key" style="margin-right: 5px;"></i>
+                            </a>`;
+                        },
+                        "autoWidth": true
+                    }
+                ],
+                "fixedHeader": true
+            });
+            $(document).on('click', '.changeStatus', function () {
+                var userId = $(this).data('id');
+                var newStatus = $(this).data('status');
+
+                $.ajax({
+                    url: '/Admin/Employee/ChangeStatus',
+                    type: 'POST',
+                    data: {
+                        id: userId,
+                        status: newStatus
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            $('#brandTable').DataTable().ajax.reload(); // Reload table
+                        } else {
+                            toastr.error(response.message);
+                        }
+                    }
+                });
+            });
+
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+
+            var errorMessage = '@TempData["Error"]';
+            var successMessage = '@TempData["Success"]';
+            if (successMessage) {
+                toastr.success(successMessage);
+            }
+            if (errorMessage) {
+
+
+                toastr.error(errorMessage);
+            }
+        });
+    </script>
+}

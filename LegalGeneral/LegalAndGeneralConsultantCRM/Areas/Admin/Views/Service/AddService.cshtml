@@ -1,0 +1,105 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Services.Service
+
+
+<style>
+    .border1 {
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: white;
+        width: auto;
+        padding: 5px 2px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: larger;
+        margin-left: 5%;
+        font-weight: bolder;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+
+<main id="main" class="main ">
+
+
+
+    <div id="Lead" class="tabcontent">
+
+        <section class="section">
+            <div class="row">
+
+                <div class="col-md-3">
+                </div>
+
+
+                <div class="col-md-6">
+
+
+
+                    <div class="card" style="width: 100%">
+                        <div class="card-body">
+
+                            <form class="row wor g-3 g-3 needs-validation" novalidate asp-controller="Service" asp-action="AddService" method="post" asp-area="Admin">
+
+                                <div class="col-md-12 border1">
+                                    <legend>  Services  </legend>
+                                    <!-- Multi Columns Form -->
+
+
+                                    <div class="col-md-12">
+                                        <label asp-for="Name" class="form-label">Category</label>
+
+                                        <select class="form-select" asp-for="Name" required>
+                                            <option value="">--- Select a category ---</option>
+                                            <option value="Education">Education</option>
+                                            <option value="Family Immigration">Family Immigration</option>
+                                            <option value="Skilled Visa">Skilled Visa</option>
+                                            <option value="Job Visa">Job Visa</option>
+                                        </select>                                       
+                                        <div class="invalid-feedback">Please enter your Project Name.</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label asp-for="Name" class="form-label">Service Type</label>
+
+                                        <input asp-for="ServiceType" type="text" class="form-control" required />
+
+                                        <div class="invalid-feedback">Please enter your Project Name.</div>
+                                    </div>
+
+                                    <br>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="float-end">
+                                        <button type="submit" class="btn btn-primary  float-end">Submit</button>
+                                    </div>
+                                </div>
+
+
+
+                            </form><!-- End Multi Columns Form -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</main>

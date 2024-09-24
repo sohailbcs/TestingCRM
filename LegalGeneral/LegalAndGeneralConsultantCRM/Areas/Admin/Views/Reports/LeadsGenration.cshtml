@@ -1,0 +1,274 @@
+﻿﻿<!-- partial -->
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">  Registered Leads</h3>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="fromDate" class="form-label">From Date</label>
+                                        <input type="date" id="fromDate" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="toDate" class="form-label">To Date</label>
+                                        <input type="date" id="toDate" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3"></div>
+
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="SelectedTeamMember" class="form-label"></label>
+                                        <a class="btn btn-primary float-end">
+                                            <i class="bi bi-printer"></i> Print
+                                        </a>
+                                        <button id="downloadPDF" class="btn btn-secondary float-end" style="margin-right: 10px;">
+                                            <i class="bi bi-file-earmark-pdf"></i> Download as PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadDetailsTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">First Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Last Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Source</th>
+                                            <th style="background-color: #4e0973;color:white;">University</th>
+                                            <th style="background-color: #4e0973;color:white;">Domain</th>
+                                            <th style="background-color: #4e0973;color:white;">Course</th>
+                                            <th style="background-color: #4e0973;color:white;">Created Date</th>
+                                            <th style="background-color: #4e0973;color:white;">Assign Status</th>
+                                             </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var defaultTeamMemberId = "";
+
+        // Example image URL (replace with your actual image URL)
+        var logoUrl = 'https://legalandgen.technologyinn.net/images/logo/logo1.png';  // Replace with your actual image URL
+
+        // Function to check if both fromDate and toDate are entered
+        var areDatesEntered = function () {
+            var fromDateValue = $('#fromDate').val();
+            var toDateValue = $('#toDate').val();
+            return fromDateValue && toDateValue;
+        };
+
+        // Function to open the print window with fromDate and toDate parameters
+        var openPrintWindow = function () {
+            if (areDatesEntered()) {
+                var fromDateValue = $('#fromDate').val();
+                var toDateValue = $('#toDate').val();
+                window.open("/Admin/Reports/LeadsPrint?fromDate=" + fromDateValue + "&toDate=" + toDateValue, '_blank');
+            }
+        };
+
+        // Initialize DataTable
+        var initializeDataTable = function () {
+            if (areDatesEntered()) {
+                var fromDateValue = $('#fromDate').val();
+                var toDateValue = $('#toDate').val();
+                var url = "/Admin/Reports/GetLeadData?fromDate=" + fromDateValue + "&toDate=" + toDateValue;
+
+                // Initialize DataTable
+                $('#leadDetailsTable').DataTable({
+                    "ajax": {
+                        "url": url,
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                  
+                    {
+                        "data": "firstName",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "lastName",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "gender",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "phoneNumber",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "email",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "leadSource",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "universityName", // New Column
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "domainName", // New Column
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "interestedprogram",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? data : 'Not set';
+                        }
+                    },
+                    {
+                        "data": "createdDate",
+                        "autoWidth": true,
+                    },
+                    {
+                        "data": "IsLeadAssign",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            return data ? 'Assigned' : 'Not Assigned';
+                        }
+                    },
+
+                 
+                ],
+                });
+                $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+            }
+        };
+
+        // Optional: Refresh the DataTable when the date inputs change
+        $('#fromDate, #toDate').on('change', function () {
+            $('#leadDetailsTable').DataTable().destroy();
+            initializeDataTable();
+        });
+
+        // Handle click event for the Print button
+        $('.btn-primary').on('click', function () {
+            openPrintWindow();
+        });
+
+        // Download as PDF button functionality
+        $('#downloadPDF').on('click', function () {
+            var doc = new jspdf.jsPDF();  // Create jsPDF instance
+            var table = $('#leadDetailsTable').DataTable();
+            var data = table.rows({ search: 'applied' }).data().toArray();  // Get the filtered data
+
+            // Add image to the PDF
+            doc.addImage(logoUrl, 'PNG', 10, 10, 20, 20);  // Add logo at x=10, y=10, width=50, height=20
+
+            // Generate PDF table using autoTable plugin
+            doc.autoTable({
+                startY: 40,  // Start below the image
+                head: [['Name', 'Phone no', 'Email', 'Gender', 'Lead Source', 'Registered Date']],
+                body: data.map(function (row) {
+                    return [
+                        row.fullName,
+                        row.phoneNumber,
+                        row.email,
+                        row.gender,
+                        row.leadSource,
+                        row.createdDate ? new Date(row.createdDate).toDateString() : ''
+                    ];
+                }),
+            });
+
+            // Create a Blob from the PDF
+            var pdfBlob = doc.output('blob');
+
+            // Create a URL for the Blob and open it in a new tab
+            var pdfUrl = URL.createObjectURL(pdfBlob);
+            window.open(pdfUrl, '_blank');
+        });
+
+        // Initial DataTable setup
+        initializeDataTable();
+    });
+</script>

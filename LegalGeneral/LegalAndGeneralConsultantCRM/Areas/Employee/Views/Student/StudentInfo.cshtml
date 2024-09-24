@@ -1,0 +1,432 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
+ 
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Student Application Form</h3>
+@*                             <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+ *@                             
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <!-- /.box-header -->
+                        <div class="box-body wizard-content">
+                            <form asp-controller="Student" asp-action="SaveStudent" method="post" asp-area="Employee" enctype="multipart/form-data">
+                                <!-- Step 1 -->
+                                <button href="#" class="btn col-12 btn-primary mb-3">  Student Information</button>
+                                <input type="hidden" asp-for="Students.LeadId" value="@ViewBag.LeadId" />
+
+                                <section>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                 <label for="firstName5">First Name :</label>
+                                                <input   class="form-control" type="text" asp-for="Students.FirstName" value="@ViewBag.FirstName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Last Name :</label>
+                                                <input type="text" class="form-control" asp-for="Students.LastName" value="@ViewBag.LastName" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="emailAddress1">Email Address :</label>
+                                                <input type="email" class="form-control" asp-for="Students.Email" value="@ViewBag.Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneNumber1">Phone Number :</label>
+                                                <input type="tel" class="form-control" asp-for="Students.PhoneNumber" value="@ViewBag.PhoneNumber" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gender :</label>
+                                                @Html.DropDownListFor(model => model.Students.Gender,
+                                                         new SelectList(new[] { "male", "female", "other" },
+                                                         ViewBag.Gender),
+                                                         "Select Gender",
+                                                         new { @class = "form-control", required = "required" })
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputName5" class="form-label">Work Experiance</label>
+                                            <input asp-for="Students.BloodGroup" type="text" class="form-control">
+                                            <div class="invalid-feedback">Please enter your Blood Group</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputName5" class="form-label">Study Gap</label>
+                                            <input asp-for="Students.StudyGap" type="text" class="form-control">
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <br><br>
+                                            <label for="inputName5" class="form-label">Disable</label>
+                                            <input type="checkbox" asp-for="Students.IsDisable">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputName5" class="form-label">Applicant status*</label>
+                                            <select asp-for="Applicantstatus" class="form-control">
+                                                <option class="text-center">------ Select Applicant status ------</option>
+                                                <option value="Dependent">Dependent</option>
+                                                <option value="Independent">Independent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Cnic">Cnic :</label>
+                                                <input type="text" class="form-control" asp-for="Students.Cnic" id="cnicInput" required maxlength="15" placeholder="71103-0213190-7">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneNumber1">Language :</label>
+                                                <input type="tel" class="form-control" asp-for="Students.Language"   required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="addressline1">Address Line 1 :</label>
+                                                <input type="text" class="form-control" asp-for="Students.TemporaryAddress">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                            <div class="form-group">
+                                                <label for="addressline2">Address Line 2 :</label>
+                                                <input type="text" class="form-control" asp-for="Students.PermanentAddress">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="location3">  Nationality :</label>
+                                                <input type="text" class="form-control" asp-for="Students.Nationality">
+
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="date1">Date of Birth :</label>
+                                                <input type="date" class="form-control" asp-for="Students.BirthDate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- Step 2 -->
+                                <button href="#" class="btn col-12 btn-primary mb-3"> Education</button>
+
+                                 <section>
+                                    <div class="row">
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Degree Title 1:</label>
+                                                <input type="text" class="form-control" asp-for="Educations.title1" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="password123">Attachment  :</label>
+                                                <input type="file" class="form-control" id="EducationImageFile" name="EducationImageFile" placeholder="Upload Document" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Degree Title 2:</label>
+                                                <input type="text" class="form-control" asp-for="Educations.title2"  >
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="password123">Attachment  :</label>
+                                                <input type="file" class="form-control" id="attachment2ImagePath" name="attachment2ImagePath" placeholder="Upload Document">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Degree Title 3:</label>
+                                                <input type="text" class="form-control" asp-for="Educations.title3"  >
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="password123">Attachment  :</label>
+                                                <input type="file" class="form-control" id="attachment3ImagePath" name="attachment3ImagePath" placeholder="Upload Document">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Degree Title 4:</label>
+                                                <input type="text" class="form-control" asp-for="Educations.title4"  >
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="password123">Attachment  :</label>
+                                                <input type="file" class="form-control" id="attachment4ImagePath" name="attachment4ImagePath" placeholder="Upload Document">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- Step 3 -->
+                                <button href="#" class="col-12 btn btn-primary mb-3"> Program Intake</button>
+
+                                 <section>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Select Univeristy</label>
+                                            <!-- University Dropdown -->
+                                                <select id="universityDropdown" class="form-control" name="UniversityId">
+                                                <option value="">Select University</option>
+                                                @foreach (var university in ViewBag.Universities)
+                                                {
+                                                    <option value="@university.UniversityId">@university.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Select Domain</label>
+                                            <!-- Domain Dropdown (to be populated based on selected university) -->
+                                                <select id="domainDropdown" class="form-control" name="domain">
+                                                <option value="">Select Domain</option>
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Select Course</label>
+                                            <!-- Course Dropdown (to be populated based on selected domain) -->
+                                                <select id="courseDropdown" class="form-control" name="course">
+                                                <option value="">Select Course</option>
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                <label for="username123">Select Intake</label>
+                                            <!-- Intake Dropdown (to be populated based on selected course) -->
+                                                <select id="intakeDropdown" class="form-control" name="intake">
+                                                <option value="">Select Intake</option>
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                                        <script>
+                                            // When University is selected
+                                            $('#universityDropdown').change(function () {
+                                                var universityId = $(this).val();
+
+                                                if (universityId) {
+                                                    $.ajax({
+                                                        url: '@Url.Action("GetDomainsByUniversity", "Student")',
+                                                        type: 'GET',
+                                                        data: { universityId: universityId },
+                                                        success: function (data) {
+                                                            $('#domainDropdown').empty();
+                                                            $('#domainDropdown').append('<option value="">Select Domain</option>');
+                                                            $.each(data, function (i, domain) {
+                                                                $('#domainDropdown').append('<option value="' + domain.value + '">' + domain.text + '</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('#domainDropdown').empty().append('<option value="">Select Domain</option>');
+                                                }
+                                            });
+
+                                            // When Domain is selected
+                                            $('#domainDropdown').change(function () {
+                                                var domainId = $(this).val();
+
+                                                if (domainId) {
+                                                    $.ajax({
+                                                        url: '@Url.Action("GetCoursesByDomain", "Student")',
+                                                        type: 'GET',
+                                                        data: { domainId: domainId },
+                                                        success: function (data) {
+                                                            $('#courseDropdown').empty();
+                                                            $('#courseDropdown').append('<option value="">Select Course</option>');
+                                                            $.each(data, function (i, course) {
+                                                                $('#courseDropdown').append('<option value="' + course.value + '">' + course.text + '</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('#courseDropdown').empty().append('<option value="">Select Course</option>');
+                                                }
+                                            });
+
+                                            // When Course is selected
+                                            $('#courseDropdown').change(function () {
+                                                var courseId = $(this).val();
+
+                                                if (courseId) {
+                                                    $.ajax({
+                                                        url: '@Url.Action("GetIntakesByCourse", "Student")',
+                                                        type: 'GET',
+                                                        data: { courseId: courseId },
+                                                        success: function (data) {
+                                                            $('#intakeDropdown').empty();
+                                                            $('#intakeDropdown').append('<option value="">Select Intake</option>');
+                                                            $.each(data, function (i, intake) {
+                                                                $('#intakeDropdown').append('<option value="' + intake + '">' + intake + '</option>');
+                                                            });
+                                                        }
+                                                    });
+                                                } else {
+                                                    $('#intakeDropdown').empty().append('<option value="">Select Intake</option>');
+                                                }
+                                            });
+                                        </script>
+
+                                    </div>
+                               
+                                
+                                </section>
+                                <!-- Step 4 -->
+                                <button href="#" class="col-12 btn btn-primary mb-3">    Consultation Fee</button>
+
+                               
+                                <section>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="decisions1">Amount</label>
+                                                <input type="number" class="form-control" asp-for="Fees.Amount" required placeholder="Amount ">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="decisions1">Date</label>
+                                                <input type="date" class="form-control" asp-for="Fees.Date"  required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="decisions1">Receipt</label>
+                                                <input type="file" class="form-control" id="ReceiptFile" name="ReceiptFile">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </section>
+
+                                <div class="modal-footer d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary me-2" >Save</button>
+                                    <a href="/Employee/Application/Form" class="btn btn-secondary">Close</a>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                        <!-- /.box-body -->
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('cnicInput').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');  // Remove any non-numeric characters
+            if (value.length > 5 && value.length <= 12) {
+                value = value.replace(/^(\d{5})(\d+)/, '$1-$2'); // Add hyphen after 5 digits
+            } else if (value.length > 12) {
+                value = value.replace(/^(\d{5})(\d{7})(\d+)/, '$1-$2-$3'); // Add another hyphen after the next 7 digits
+            }
+            e.target.value = value;
+        });
+        $('#universityDropdown').change(function () {
+            var universityId = $(this).val();
+            if (universityId) {
+                $.ajax({
+                    url: '/Employee/Student/GetCoursesByUniversity?universityId=' + universityId,
+                    type: 'GET',
+                    data: { universityId: universityId },
+                    success: function (data) {
+                        var programDropdown = $('#programDropdown');
+                        programDropdown.empty();
+                        programDropdown.append('<option value="" disabled selected>-- Select Program --</option>');
+
+                        // Populate programDropdown with course options
+                        $.each(data, function (index, course) {
+                            programDropdown.append('<option value="' + course.courseId + '" data-duration="' + course.durationInYears + '" data-tuition="' + course.tuitionFee + '">' + course.courseName + '</option>');
+                        });
+
+                        // Trigger change event to update duration and tuition fee inputs
+                        programDropdown.trigger('change');
+                    },
+
+                    error: function () {
+                        alert('Error fetching courses for the selected university.');
+                    }
+                });
+            }
+        });
+
+
+    </script>
+} 

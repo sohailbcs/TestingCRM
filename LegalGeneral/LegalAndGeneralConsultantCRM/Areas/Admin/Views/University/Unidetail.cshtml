@@ -1,0 +1,257 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">@Model.University.Name</h3>
+                            <h4 class="university-name" hidden>@Model.University.UniversityId</h4>
+                            <div class="float-right">
+
+                                
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="courseTable" class="display expandable-table" style="width:100%">
+                                    <thead>
+                                        <tr style="height:40px">
+                                            <th style="background-color: #4e0973;color:white;">Course Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Duration</th>
+                                            <th style="background-color: #4e0973;color:white;">Tuition Fee</th>
+                                            <th style="background-color: #4e0973;color:white;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var course in Model.UniversityCourses)
+                                        {
+                                            <tr data-course-id="@course.CourseId">
+                                                <td class="course-name">@course.Name</td>
+                                                <td class="course-duration">@course.DurationInYears</td>
+                                                <td class="course-fee">@course.TuitionFee</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-primary edit-btn" style="padding:12px">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-danger delete-btn" style="padding:12px" data-course-id="@course.CourseId">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+
+
+@* <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">University Offering Various Programs</p>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <h4 class="university-name">@Model.University.Name</h4>
+                                <h4 class="university-name" hidden>@Model.University.UniversityId</h4>
+                            </div>
+                            
+                        </div>
+
+                        <table id="courseTable" class="display expandable-table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Duration</th>
+                                    <th>Tuition Fee</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var course in Model.UniversityCourses)
+                                {
+                                    <tr data-course-id="@course.CourseId">
+                                        <td class="course-name">@course.Name</td>
+                                        <td class="course-duration">@course.DurationInYears</td>
+                                        <td class="course-fee">@course.TuitionFee</td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary edit-btn" style="padding:12px">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger delete-btn" style="padding:12px" data-course-id="@course.CourseId">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+<!-- Edit Course Modal -->
+<!-- Edit Course Modal -->
+<div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCourseForm">
+                    <input type="hidden" id="editCourseId" name="CourseId" />
+                    <input type="hidden" id="editUniversityId" name="UniversityId" value="@Model.University.UniversityId" /> <!-- Hidden input for UniversityId -->
+                    <div class="mb-3">
+                        <label for="editCourseName" class="form-label">Course Name</label>
+                        <input type="text" class="form-control" id="editCourseName" name="Name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDuration" class="form-label">Duration (Years)</label>
+                        <input type="number" class="form-control" id="editDuration" name="DurationInYears" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTuitionFee" class="form-label">Tuition Fee</label>
+                        <input type="number" class="form-control" id="editTuitionFee" name="TuitionFee" step="0.01" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#courseTable').DataTable();
+        $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+
+        // Edit button click event
+        $('#courseTable').on('click', '.edit-btn', function () {
+            var row = $(this).closest('tr');
+            var courseId = row.data('course-id');
+            var courseName = row.find('.course-name').text();
+            var duration = row.find('.course-duration').text();
+            var tuitionFee = row.find('.course-fee').text();
+
+            $('#editCourseId').val(courseId);
+            $('#editCourseName').val(courseName);
+            $('#editDuration').val(duration);
+            $('#editTuitionFee').val(tuitionFee);
+
+            $('#editCourseModal').modal('show');
+        });
+
+        // Delete button click event
+        $('#courseTable').on('click', '.delete-btn', function (e) {
+            e.preventDefault();
+            debugger
+            var row = $(this).closest('tr');
+            var courseId = $(this).data('course-id');
+            var universityId = $('#editUniversityId').val(); // Get UniversityId from hidden input
+
+            if (confirm('Are you sure you want to delete this course?')) {
+                $.ajax({
+                    url: '@Url.Action("DelCourse", "University", new { area = "Admin" })',
+                    type: 'POST',
+                    data: {
+                        courseId: courseId,
+                        universityId: universityId
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);
+                            row.remove(); // Remove the row from the table
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('An error occurred: ' + error);
+                    }
+                });
+            }
+        });
+
+        // Form submission for editing course
+        $('#editCourseForm').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("EditCourses", "University", new { area = "Admin" })',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#editCourseModal').modal('hide');
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('An error occurred: ' + error);
+                }
+            });
+        });
+    });
+
+</script>

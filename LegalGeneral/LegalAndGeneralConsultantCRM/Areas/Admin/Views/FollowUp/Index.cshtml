@@ -1,0 +1,85 @@
+﻿@model List<LegalAndGeneralConsultantCRM.Models.LeadFollowUp.FollowUp>
+@using LegalAndGeneralConsultantCRM.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<LegalAndGeneralConsultantCRMUser> _userManager
+
+
+<main id="main" class="main ">
+    <br /><br />
+    <a asp-action="Create" class="btn btn-primary" asp-asp-controller="Followup" asp-area="Admin">Create FollowUp</a>
+
+
+
+<!-- Bordered Table -->
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">Follow-Up Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Reminder</th>
+            <th scope="col">Description</th>
+            <th scope="col">Follow Process</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var followUp in Model)
+        {
+            var employee = await _userManager.FindByIdAsync(followUp.EmployeeId);
+
+            <tr>
+         
+                    <td>@(employee != null ? employee.FirstName : "Unknown")</td>
+                    <td>@followUp.FollowUpDate?.ToString("yyyy-MM-dd")</td>
+                    <td>@followUp.Status</td>
+                    <td>@followUp.FollowUpDate?.ToString("yyyy-MM-dd")</td>
+                    <td>@followUp.Description</td>
+                    <td>@followUp.FollowUpCompleted</td>
+                <td>
+                        <a asp-action="Edit" class="btn btn-primary" asp-asp-controller="Followup" asp-area="Admin" asp-route-id="@followUp.FollowUpId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</main>
+@* <h1>Follow-Ups</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>FollowUpId</th>
+            <th>EmployeeId</th>
+            <th>EmployeeName</th>
+            <th>FollowUpDate</th>
+            <th>Status</th>
+            <th>Reminder</th>
+            <th>Description</th>
+            <th>FollowUpCompleted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var followUp in Model)
+        {
+            var employee = await _userManager.FindByIdAsync(followUp.EmployeeId);
+
+            <tr>
+                <td>@followUp.FollowUpId</td>
+                <td>@followUp.EmployeeId</td>
+                <td>@(employee != null ? employee.FirstName : "Unknown")</td>
+                <td>@followUp.FollowUpDate</td>
+                <td>@followUp.Status</td>
+                <td>@followUp.Reminder</td>
+                <td>@followUp.Description</td>
+                <td>@followUp.FollowUpCompleted</td>
+                <td>
+                    <a asp-action="Edit" asp-asp-controller="Followup" asp-area="Admin" asp-route-id="@followUp.FollowUpId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+ *@

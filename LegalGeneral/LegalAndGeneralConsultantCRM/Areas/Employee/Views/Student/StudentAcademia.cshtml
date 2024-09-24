@@ -1,0 +1,52 @@
+﻿<main id="main" class="main ">
+    <div class="row ">
+        <div class="col-md-9">
+            <h3>Student Academies  </h3>
+        </div>
+       
+    </div>
+
+    <table id="studentTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email  </th>
+                <th>Phone Number  </th>
+                <th>Address  </th>
+                <th>Action  </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</main>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/Student/GetStudentData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "firstName", "autoWidth": true },
+                    { "data": "lastName", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "address", "autoWidth": true },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<a href="/Employee/Student/Detail/' + row.studentId + '" class="btn btn-secondary btn-sm"><i class="bi bi-info-circle"></i> Details</a>';
+                            ;
+                        },
+                        "autoWidth": true
+                    }
+                ]
+            });
+        });
+    </script>
+}

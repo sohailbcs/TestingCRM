@@ -1,0 +1,340 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Leads.LeadViewModel
+  <div class="content-wrapper">
+	  <div class="content-wrapper-before"></div>
+	  <div class="container-full">	  
+
+		<!-- Main content -->
+		<section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">Add New Lead</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class=" "><a href="#"> </a></li>
+                                    <li class="breadcrumb-item" aria-current="page">Add New Lead</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Manage Leads</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+			<div class="row">			  
+				<div class="col-lg-12 col-12">
+					  <div class="box">
+						<div class="box-header with-border">
+                            <h4 class="box-title">New Lead</h4>
+						</div>
+						<!-- /.box-header -->
+                        <form  class="form" asp-controller="Lead" asp-action="LeadForm" method="post" asp-area="Admin">
+                            <div class="box-body" >
+								<h4 class="box-title text-info"><i class="ti-user mr-15"></i> Lead Info</h4>
+								<hr class="my-15  ">
+                                <div class="p-5" style="background-color:#ECEEF7;padding:20px!important; border-radius:10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+
+                                                <input type="text" class="form-control" asp-for="FirstName" placeholder="First Name" required>
+                                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control" asp-for="LastName" placeholder="Last Name" required>
+                                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>E-mail</label>
+                                                <input type="email" class="form-control" asp-for="Email" placeholder="Email" required>
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Contact Number</label>
+                                                <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Phone Number" required pattern="\d{12,}">
+                                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <select asp-for="Gender" class="form-control" required>
+                                                    <option value="">--- Select Gender ---</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                                <span asp-validation-for="Gender" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Lead Source</label>
+                                                <select class="form-control" asp-for="LeadSource">
+                                                    <option value="">Select Lead Source</option>
+                                                    <option value="Social Media">Social Media</option>
+                                                    <option value="Website">Website</option>
+                                                    <option value="Event">Event</option>
+                                                    <option value="Walk in">Walk in</option>
+                                                    <option value="Partner/Referral">Partner/Referral</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                                <span asp-validation-for="LeadSource" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="University">Select University</label>
+                                                    <select class="form-control" asp-for="UniversityId" asp-items="@(new SelectList(ViewBag.Universities, "Value", "Text"))" id="universityDropdown" required>
+                                                        <option value="">--- Select University ---</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Domain">Select Domain</label>
+                                                    <select class="form-control" asp-for="DomainId" id="domainDropdown" required>
+                                                        <option value="">--- Select Domain ---</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="InterestedProgram">Select Interested Program</label>
+                                                    <select class="form-control" asp-for="InterestedProgram" id="programDropdown" required>
+                                                        <option value="">--- Select Program ---</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Interested Country</label>
+                                                    <input type="text" class="form-control" asp-for="InterestedCountry" placeholder="Interested Country" required>
+                                                    <span asp-validation-for="InterestedCountry" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Latest Education</label>
+                                                    <input type="text" class="form-control" asp-for="Eaducation" placeholder="Eaducation Required" required>
+                                                    <span asp-validation-for="Eaducation" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Year of Completion</label>
+                                                    <input type="text" class="form-control" asp-for="YearCompletion" placeholder="Year of Completion" required>
+                                                    <span asp-validation-for="YearCompletion" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea class="form-control" asp-for="Address" placeholder="Lead Address" rows="4"></textarea>
+                                                <span asp-validation-for="Address" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+								
+                            
+                            
+                            </div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+                                <a href="/Admin/Dashboard/Index" class="btn btn-rounded btn-warning btn-outline mr-1">
+								  <i class="ti-trash"></i> Cancel
+                                </a>                            
+								<button type="submit" class="btn btn-rounded btn-primary btn-outline">
+								  <i class="ti-save-alt"></i> Save
+								</button>
+							</div>  
+						</form>
+					  </div>
+					  <!-- /.box -->			
+				</div>  
+
+			 
+			 
+		    </div>
+			 
+		</section>
+		<!-- /.content -->
+	  </div>
+  </div>
+ 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle university dropdown change
+            // Handle university dropdown change
+            $('#universityDropdown').change(function () {
+                var universityId = $(this).val();
+
+                // Clear the domain and program dropdowns
+                $('#domainDropdown').empty().append('<option value="">--- Select Domain ---</option>');
+                $('#programDropdown').empty().append('<option value="">--- Select Program ---</option>');
+
+                if (universityId) {
+                    $.ajax({
+                        url: '/Admin/Lead/GetDomains',
+                        type: 'GET',
+                        data: { universityId: universityId },
+                        success: function (domains) {
+                            console.log(domains); // Log the received domains
+                            $.each(domains, function (i, domain) {
+                                $('#domainDropdown').append('<option value="' + domain.domainId + '">' + domain.domainNme + '</option>');
+                            });
+                        },
+
+                        error: function () {
+                            console.log('Error fetching domains');
+                        }
+                    });
+                }
+            });
+            // Handle domain dropdown change
+            $('#domainDropdown').change(function () {
+                var domainId = $(this).val();
+
+                // Clear the program dropdown
+                $('#programDropdown').empty().append('<option value="">--- Select Program ---</option>');
+
+                if (domainId) {
+                    $.ajax({
+                        url: '/Admin/Lead/GetPrograms',
+                        type: 'GET',
+                        data: { domainId: domainId },
+                        success: function (programs) {
+                            console.log(programs); // Log the received domains
+                            $.each(programs, function (i, program) {
+                                $('#programDropdown').append('<option value="' + program.courseName + '">' + program.courseName + '</option>');
+                            });
+                        },
+                        error: function () {
+                            console.log('Error fetching programs');
+                        }
+                    });
+                }
+            });
+
+            // Display Toastr notification if there is an error
+            var errorMessage = '@TempData["error"]';
+            if (errorMessage) {
+                toastr.error(errorMessage);
+            }
+
+            // Form validation on submit
+            $('form').submit(function (event) {
+                var isValid = true;
+                var namePattern = /^(?![0-9]*$)[a-zA-Z0-9 ]{3,}$/;
+
+                var firstName = $('input[name="FirstName"]').val();
+                if (!namePattern.test(firstName)) {
+                    isValid = false;
+                    $('span[data-valmsg-for="FirstName"]').text("First Name must be at least 3 characters long and cannot be only numbers");
+                } else {
+                    $('span[data-valmsg-for="FirstName"]').text("");
+                }
+
+                var lastName = $('input[name="LastName"]').val();
+                if (!namePattern.test(lastName)) {
+                    isValid = false;
+                    $('span[data-valmsg-for="LastName"]').text("Last Name must be at least 3 characters long and cannot be only numbers");
+                } else {
+                    $('span[data-valmsg-for="LastName"]').text("");
+                }
+
+                var leadSource = $('input[name="LeadSource"]').val();
+                if (leadSource.length > 30) {
+                    isValid = false;
+                    $('span[data-valmsg-for="LeadSource"]').text("Lead Source must not exceed 30 characters");
+                } else {
+                    $('span[data-valmsg-for="LeadSource"]').text("");
+                }
+
+                var address = $('textarea[name="Address"]').val();
+                if (address.length > 250) { // Adjusted to match your validation
+                    isValid = false;
+                    $('span[data-valmsg-for="Address"]').text("Address must not exceed 250 characters");
+                } else {
+                    $('span[data-valmsg-for="Address"]').text("");
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+
+            // Input validation for Lead Source
+            $('input[name="LeadSource"]').on('input', function () {
+                var leadSource = $(this).val();
+                if (leadSource.length > 30) {
+                    $('span[data-valmsg-for="LeadSource"]').text("Lead Source must not exceed 30 characters");
+                } else {
+                    $('span[data-valmsg-for="LeadSource"]').text("");
+                }
+            });
+
+            // Input validation for Address
+            $('textarea[name="Address"]').on('input', function () {
+                var address = $(this).val();
+                if (address.length > 250) { // Adjusted to match your validation
+                    $('span[data-valmsg-for="Address"]').text("Address must not exceed 250 characters");
+                } else {
+                    $('span[data-valmsg-for="Address"]').text("");
+                }
+            });
+
+            // Referral dropdown change
+            $('#referralDropdown').change(function () {
+                var selectedReferralId = $(this).val();
+
+                $.ajax({
+                    url: '/Admin/Lead/GetContactInfo',
+                    type: 'GET',
+                    data: { referralId: selectedReferralId },
+                    success: function (data) {
+                        $('#contactInfoDiv').empty();
+                        $('#contactInfoDiv').append('<div class="form-group"><input type="text" class="form-control mt-1" id="contact1" value="' + data.contact1 + '" readonly></div>');
+                    },
+                    error: function () {
+                        console.log('Error fetching contact info');
+                    }
+                });
+            });
+        });
+    </script>
+}

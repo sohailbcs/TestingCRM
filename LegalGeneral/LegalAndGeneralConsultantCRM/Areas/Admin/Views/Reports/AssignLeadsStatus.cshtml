@@ -1,0 +1,177 @@
+﻿<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">Leads Follow-Up Status</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="SelectedTeamMember" class="form-label">Team Member</label>
+                                        @Html.DropDownList("SelectedTeamMember", ViewBag.UserList as SelectList, "-- Select Team Member --", new { @class = "form-control col-md-12", id = "SelectedTeamMember" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="SelectedTeamMember" class="form-label"></label>
+                                        <a class="btn btn-primary float-end btn-print">
+                                            <i class="bi bi-printer"></i> Print
+                                        </a>
+                                        <button id="downloadPDF" class="btn btn-secondary float-end">
+                                            <i class="bi bi-file-earmark-pdf"></i> Download PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadDetailsTable" class="display expandable-table mt-3" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone no</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var defaultTeamMemberId = "";
+
+        // Example image URL (replace with your actual image URL)
+        var logoUrl = 'https://legalandgen.technologyinn.net/images/logo/logo2.png';  // Replace with your actual image URL
+
+        // Function to initialize DataTable
+        var initializeDataTable = function (teamMemberId) {
+            $('#leadDetailsTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Reports/GetStatus?teamMemberId=" + teamMemberId,
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "name": "First Name", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                    {
+                        "data": "status",
+                        "name": "Status",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (data === "Converted Lead") {
+                                return '<span class="badge bg-success text-white">Converted Lead</span>';
+                            } else if (data === "Dead Lead") {
+                                return '<span class="badge bg-danger text-white">Dead Lead</span>';
+                            } else if (data === "Cold Lead") {
+                                return '<span class="badge bg-dark text-white">Cold Lead</span>';
+                            } else if (data === "Future Lead") {
+                                return '<span class="badge bg-secondary text-white">Future Lead</span>';
+                            } else if (data === "Hot Lead") {
+                                return '<span class="badge bg-primary text-white">Hot Lead</span>';
+                            } else if (data === "Warm Lead") {
+                                return '<span class="badge bg-info text-white">Warm Lead</span>';
+                            } else {
+                                return '<span class="badge bg-warning text-white">Pending Lead</span>';
+                            }
+                        }
+                    },
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+        };
+
+        // Initialize DataTable without selecting a dropdown option
+        initializeDataTable(defaultTeamMemberId);
+
+        // Handle change event of the dropdown
+        $('#SelectedTeamMember').change(function () {
+            var teamMemberId = $(this).val();
+            $('#leadDetailsTable').DataTable().destroy();
+            initializeDataTable(teamMemberId);
+
+            var printLink = "/Admin/Reports/Print?teamMemberId=" + teamMemberId;
+            $('.btn-print').attr('href', printLink);
+        });
+
+        // Handle click event of the print button
+        $('.btn-print').click(function () {
+            var teamMemberId = $('#SelectedTeamMember').val();
+            window.open("/Admin/Reports/Print?teamMemberId=" + teamMemberId, '_blank');
+        });
+
+        // Download as PDF button functionality
+        $('#downloadPDF').click(function () {
+            var doc = new jspdf.jsPDF();  // Create jsPDF instance
+            var table = $('#leadDetailsTable').DataTable();
+            var data = table.rows({ search: 'applied' }).data().toArray();  // Get the filtered data
+
+            // Add image to the PDF
+            doc.addImage(logoUrl, 'PNG', 10, 10, 20, 20);  // Add logo at x=10, y=10, width=50, height=20
+
+            // Generate PDF table using autoTable plugin
+            doc.autoTable({
+                startY: 40,  // Start below the image
+                head: [['Name', 'Phone no', 'Email', 'Status']],
+                body: data.map(function (row) {
+                    return [
+                        row.fullName,
+                        row.phoneNumber,
+                        row.email,
+                        row.status
+                    ];
+                }),
+            });
+
+            // Create a Blob from the PDF
+            var pdfBlob = doc.output('blob');
+
+            // Create a URL for the Blob and open it in a new tab
+            var pdfUrl = URL.createObjectURL(pdfBlob);
+            window.open(pdfUrl, '_blank');
+        });
+    });
+</script>

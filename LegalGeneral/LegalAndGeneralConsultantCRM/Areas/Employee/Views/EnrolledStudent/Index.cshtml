@@ -1,0 +1,105 @@
+﻿<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>My Converted Leads</h4>
+                <h6>Whose visa applications have been approved</h6>
+            </div>
+
+            
+        </div>
+        
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-top">
+                    <div class="search-set">
+                        <div class="search-path">
+                            <a class="btn btn-filter" id="filter_search">
+                                <img src="~/saleperson/assets/img/icons/filter.svg" alt="img">
+                                <span><img src="~/assets/img/icons/closes.svg" alt="img"></span>
+                            </a>
+                        </div>
+                        <div class="search-input">
+                            <a class="btn btn-searchset">
+                                <img src="~/saleperson/assets/img/icons/search-white.svg" alt="img">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="wordset">
+                        <ul>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                                    <img src="~/saleperson/assets/img/icons/pdf.svg" alt="img">
+                                </a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel">
+                                    <img src="~/saleperson/assets/img/icons/excel.svg" alt="img">
+                                </a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                                    <img src="~/saleperson/assets/img/icons/printer.svg" alt="img">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="brandTable" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Full Name</th>
+                                <th scope="col">Cnic</th>
+                                 <th scope="col">Phone Number  </th>
+                                <th scope="col">University Name   </th>
+                                <th scope="col">Program Name</th>
+                                <th scope="col">Account Number  </th>
+                                <th scope="col">Visa Status      </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody> <!-- Data will be loaded dynamically -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/EnrolledStudent/GetEnrolledStudentData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "student.fullName" }, // First Name
+                    { "data": "student.cnic" }, // First Name
+                     { "data": "student.phoneNumber" }, // Phone Number
+                    { "data": "student.universityName" }, // University Name
+                    { "data": "student.courseName" }, // Program Name
+                    {
+                        "data": "deposits",
+                        "render": function (data) {
+                            return data.length > 0 ? data[0].accountNumber : '';
+                        }
+                    }, // Account Number (first deposit)
+                    {
+                        "data": "visaApplications",
+                        "render": function (data) {
+                            var visaStatus = data.length > 0 ? data[0].visaStatus : '';
+                            return '<span class="badge bg-success">' + visaStatus + '</span>';
+                        }
+                    }
+                    // Visa Application No (first visa application)
+                ]
+            });
+        });
+    </script>
+}
+

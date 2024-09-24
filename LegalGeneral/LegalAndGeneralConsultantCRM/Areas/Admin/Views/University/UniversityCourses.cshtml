@@ -1,0 +1,426 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.UniversityCourse
+<head>
+    <!-- Include jQuery (required for Select2) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Select2 CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <!-- Include Flag Icons CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet" />
+    <style>
+
+
+    .grid-margin {
+        margin-top: 20px; /* Adjust as needed */
+        margin-bottom: 20px; /* Adjust as needed */
+    }
+
+    .stretch-card {
+        width: 100%; /* Ensures the card stretches to fill its container */
+    }
+
+    .card {
+        border: 1px solid #ddd; /* Add a border for better visibility */
+    }
+
+    .card-title {
+        margin-bottom: 20px; /* Add some space below the card title */
+    }
+
+</style>
+
+</head>
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Add  University Courses</h3>
+                            <div class="float-right">
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+
+                            <div class="p-5" style="background-color:#ECEEF7;padding:20px!important; border-radius:10px;">
+                                <form asp-action="UniversityCourses" asp-controller="University" asp-area="Admin" method="post" onsubmit="return validateForm()">
+                                    <div class="form-group">
+                                        <label for="university">Select University:</label>
+                                        <select class="form-control" id="university-dropdown" name="universityId" required onchange="fetchDomains()">
+                                            <option value="">Select a university</option>
+                                            @foreach (var uni in ViewBag.Uni)
+                                            {
+                                                <option value="@uni.UniversityId">@uni.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="domain">Select Domain:</label>
+                                        <select class="form-control" id="domain-dropdown" name="DomainId" required>
+                                            <option value="">Select a domain</option>
+                                            <!-- Domains will be populated here based on selected university -->
+                                        </select>
+                                    </div>
+
+
+
+                                    <h4 class="mt-4">Courses</h4>
+                                    <div id="courses-container" class="mb-4">
+                                        <!-- Courses will be appended here -->
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" onclick="addCourse()">Add Course</button>
+                                        <input type="submit" value="Submit" class="btn btn-success" />
+                                        <button type="button" class="btn btn-warning" onclick="goBack()">Back</button>
+
+                                    </div>
+                                </form>
+                                <script>
+                                    function goBack() {
+                                        if (confirm('Are you sure you want to go back? Unsaved changes may be lost.')) {
+                                            window.history.back(); // Go to the previous page
+                                        }
+                                    }
+                                    function fetchDomains() {
+                                        var universityId = $('#university-dropdown').val();
+
+                                        if (universityId) {
+                                            $.ajax({
+                                                url: '/Admin/University/GetDomains', // This is the action that returns domains
+                                                type: 'GET',
+                                                data: { universityId: universityId },
+                                                success: function (data) {
+                                                    var domainDropdown = $('#domain-dropdown');
+                                                    domainDropdown.empty(); // Clear the previous options
+
+                                                    if (data.length > 0) {
+                                                        domainDropdown.append('<option value="">Select a domain</option>');
+                                                        $.each(data, function (index, domain) {
+                                                            domainDropdown.append('<option value="' + domain.domainId + '">' + domain.domainNme + '</option>');
+                                                        });
+                                                    } else {
+                                                        domainDropdown.append('<option value="">No domains available</option>');
+                                                    }
+                                                },
+                                                error: function () {
+                                                    alert('Error fetching domains. Please try again.');
+                                                }
+                                            });
+                                        } else {
+                                            // Clear the domain dropdown if no university is selected
+                                            $('#domain-dropdown').empty().append('<option value="">Select a domain</option>');
+                                        }
+                                    }
+                                </script>
+
+                                 </<div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+                    </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+
+
+<!-- partial -->
+@* <div class="main-panel">
+    <div class="content-wrapper">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                // Display the success message as a popup alert
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <div class="row justify-content-center">
+            <!-- Center the form -->
+            <div class="col-lg-8 grid-margin stretch-card">
+                <!-- Adjust column size for responsiveness -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"> University Courses</h4>
+                        <form asp-action="UniversityCourses" asp-controller="University" asp-area="Admin" method="post" onsubmit="return validateForm()">
+                            <div class="form-group">
+                                <label for="university">Select University:</label>
+                                <select class="form-control" name="universityId" required>
+                                    <option value="">Select a university</option>
+                                    @foreach (var uni in ViewBag.Uni)
+                                    {
+                                        <option value="@uni.UniversityId">@uni.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+
+                            <h4 class="mt-4">Courses</h4>
+                            <div id="courses-container" class="mb-4">
+                                <!-- Courses will be appended here -->
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" onclick="addCourse()">Add Course</button>
+                                <input type="submit" value="Submit" class="btn btn-success" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ *@
+
+<script>
+     const courses = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Courses));
+
+    let courseCount = 0; // Initialize courseCount if it's not already defined
+
+    function addCourse() {
+        const coursesContainer = document.getElementById('courses-container');
+
+        const courseCard = document.createElement('div');
+        courseCard.classList.add('card', 'mb-3', 'course-entry');
+        courseCard.id = `course-entry-${courseCount}`;
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        const cardTitle = document.createElement('h5');
+        cardTitle.classList.add('card-title');
+        cardTitle.textContent = `Course ${courseCount + 1}`;
+
+        const select = document.createElement('select');
+        select.classList.add('form-control', 'mb-2');
+        select.name = `UniversityCourses[${courseCount}].CourseId`;
+        select.required = true;
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.textContent = "Select a course";
+        select.appendChild(defaultOption);
+
+        courses.forEach(course => {
+            const selectedCourses = document.querySelectorAll('select[name^="UniversityCourses["]');
+            const selectedIds = Array.from(selectedCourses).map(select => select.value);
+            if (!selectedIds.includes(course.CourseId.toString())) {
+                const option = document.createElement('option');
+                option.value = course.CourseId;
+                option.textContent = course.Name;
+                select.appendChild(option);
+            }
+        });
+
+        // Create a row for Tuition Fee and Currency
+        const tuitionCurrencyRow = document.createElement('div');
+        tuitionCurrencyRow.classList.add('row');
+
+        // Add Tuition Fee Input to the row
+        const tuitionFeeCol = document.createElement('div');
+        tuitionFeeCol.classList.add('col-md-6');
+
+        const tuitionFeeLabel = document.createElement('label');
+        tuitionFeeLabel.textContent = 'Tuition Fee:';
+        tuitionFeeLabel.htmlFor = `tuitionFee-${courseCount}`;
+
+        const tuitionFeeInput = document.createElement('input');
+        tuitionFeeInput.type = 'number';
+        tuitionFeeInput.classList.add('form-control', 'mb-2');
+        tuitionFeeInput.name = `UniversityCourses[${courseCount}].TuitionFee`;
+        tuitionFeeInput.id = `tuitionFee-${courseCount}`;
+        tuitionFeeInput.placeholder = 'Tuition Fee';
+        tuitionFeeInput.required = true;
+
+        tuitionFeeCol.appendChild(tuitionFeeLabel);
+        tuitionFeeCol.appendChild(tuitionFeeInput);
+        tuitionCurrencyRow.appendChild(tuitionFeeCol);
+
+        // Add Currency Select to the row
+        const currencyCol = document.createElement('div');
+        currencyCol.classList.add('col-md-6');
+
+        const currencyLabel = document.createElement('label');
+        currencyLabel.textContent = 'Currency:';
+        currencyLabel.htmlFor = `currency-${courseCount}`;
+
+        const currencySelect = document.createElement('select');
+        currencySelect.classList.add('form-control', 'mb-2');
+        currencySelect.name = `UniversityCourses[${courseCount}].Currency`;
+        currencySelect.id = `currency-${courseCount}`;
+        currencySelect.required = true;
+
+        const currencies = {
+            'Pakistan': 'PKR',
+            'China': 'CNY',
+            'Canada': 'CAD',
+            'Belarus': 'BYN',
+            'Australia': 'AUD',
+            'United States': 'USD',
+            'United Kingdom': 'GBP',
+            'Germany': 'EUR',
+            'Ireland': 'EUR',
+            'Uzbekistan': 'UZS',
+            'Japan': 'JPY',
+            'Turkey': 'TRY'
+        };
+
+        for (const [country, code] of Object.entries(currencies)) {
+            const option = document.createElement('option');
+            option.value = code;
+            option.textContent = `${country} (${code})`;
+            currencySelect.appendChild(option);
+        }
+
+        currencyCol.appendChild(currencyLabel);
+        currencyCol.appendChild(currencySelect);
+        tuitionCurrencyRow.appendChild(currencyCol);
+
+        // Append the row to the card body
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(select);
+        cardBody.appendChild(tuitionCurrencyRow);
+
+        // Add Intake Dropdowns
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        const intakeLabels = ['Intake1', 'Intake2', 'Intake3'];
+        intakeLabels.forEach((label) => {
+            const intakeLabel = document.createElement('label');
+            intakeLabel.textContent = `${label}:`;
+            intakeLabel.htmlFor = `${label.toLowerCase()}-${courseCount}`;
+
+            const intakeSelect = document.createElement('select');
+            intakeSelect.classList.add('form-control', 'mb-2');
+            intakeSelect.name = `UniversityCourses[${courseCount}].${label}`;
+            intakeSelect.id = `${label.toLowerCase()}-${courseCount}`;
+            intakeSelect.required = true;
+
+            const defaultIntakeOption = document.createElement('option');
+            defaultIntakeOption.value = "";
+            defaultIntakeOption.textContent = `Select ${label}`;
+            intakeSelect.appendChild(defaultIntakeOption);
+
+            months.forEach(month => {
+                const option = document.createElement('option');
+                option.value = month;
+                option.textContent = month;
+                intakeSelect.appendChild(option);
+            });
+
+            cardBody.appendChild(intakeLabel);
+            cardBody.appendChild(intakeSelect);
+        });
+
+        // Add English Proficiency Input
+        const englishProficiencyLabel = document.createElement('label');
+        englishProficiencyLabel.textContent = 'English Proficiency:';
+        englishProficiencyLabel.htmlFor = `englishProficiency-${courseCount}`;
+
+        const englishProficiencyInput = document.createElement('input');
+        englishProficiencyInput.type = 'text';
+        englishProficiencyInput.classList.add('form-control', 'mb-2');
+        englishProficiencyInput.name = `UniversityCourses[${courseCount}].EnglishProfiency`;
+        englishProficiencyInput.id = `englishProficiency-${courseCount}`;
+        englishProficiencyInput.placeholder = 'e.g., IELTS, TOEFL';
+        englishProficiencyInput.required = false;
+
+        // Add Minimum Education Required Input
+        const minEducationLabel = document.createElement('label');
+        minEducationLabel.textContent = 'Minimum Education Required:';
+        minEducationLabel.htmlFor = `minEducation-${courseCount}`;
+
+        const minEducationInput = document.createElement('input');
+        minEducationInput.type = 'text';
+        minEducationInput.classList.add('form-control', 'mb-2');
+        minEducationInput.name = `UniversityCourses[${courseCount}].EaducationRequired`;
+        minEducationInput.id = `minEducation-${courseCount}`;
+        minEducationInput.placeholder = 'e.g., Bachelor\'s degree';
+        minEducationInput.required = false;
+
+        // Add Remove Button
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.classList.add('btn', 'btn-danger', 'mt-2');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeCourse(courseCard.id);
+
+        cardBody.appendChild(englishProficiencyLabel);
+        cardBody.appendChild(englishProficiencyInput);
+        cardBody.appendChild(minEducationLabel);
+        cardBody.appendChild(minEducationInput);
+        cardBody.appendChild(removeButton);
+        courseCard.appendChild(cardBody);
+
+        coursesContainer.appendChild(courseCard);
+
+        courseCount++;
+    }
+
+    function removeCourse(courseId) {
+        const courseCard = document.getElementById(courseId);
+        courseCard.remove();
+    }
+
+    function validateForm() {
+        const coursesSelected = document.querySelectorAll('select[name^="UniversityCourses["]').length;
+        if (coursesSelected === 0) {
+            alert('Please select at least one course.');
+            return false;
+        }
+
+        const invalidElements = document.querySelectorAll('select:invalid, input:invalid'); // Check for invalid elements
+        if (invalidElements.length > 0) {
+            alert('Please fill out all required fields.'); // Alert if any required fields are empty
+            return false;
+        }
+
+        return true;
+    }
+</script>

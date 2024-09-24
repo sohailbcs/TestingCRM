@@ -1,0 +1,687 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
+
+
+
+
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 50px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+ 
+
+<main id="main" class="main">
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            // Display the success message as a popup alert
+            $(document).ready(function () {
+                alert('@TempData["Success"]');
+            });
+        </script>
+    }
+
+    <div class="pagetitle">
+        <h1>Student</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="tablink nav-link active" onclick="openPage('Lead', this, 'lightgray')" id="defaultOpen"
+                   style="color:#000000; cursor:pointer;"><b>Personal Details</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="tablink nav-link active" onclick="openPage('Login', this, 'lightgray')"
+                   style="color:#000000; cursor:pointer;"><b>Educational Details</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="tablink nav-link active" onclick="openPage('Program', this, 'lightgray')"
+                   style="color:#000000; cursor:pointer;"><b>  Program Intalks </b></a>
+            </li>
+            <li class="nav-item">
+                <a class="tablink nav-link active" onclick="openPage('Deposit', this, 'lightgray')"
+                   style="color:#000000; cursor:pointer;"><b> Deposit Paid </b></a>
+            </li>
+            <li class="nav-item">
+                <a class="tablink nav-link active" onclick="openPage('Visa', this, 'lightgray')"
+                   style="color:#000000; cursor:pointer;"><b> Application Visa   </b></a>
+            </li>
+        </ul>
+
+
+    </div><!-- End Page Title -->
+    <br>
+
+    <div id="Lead" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 95%">
+                        <div class="card-body">
+                            <!-- Multi Columns Form -->
+
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="Student" asp-action="EditStudent" method="post" asp-area="Employee">
+                                <!-- Student Basic information -->
+                                <input type="hidden" asp-for="Students.LeadId" value="@ViewBag.LeadId" />
+                                <input type="hidden" asp-for="Students.StudentId" />
+
+                                <div class="col-md-12 border1">
+                                    <legend>Basic Details</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">First Name</label>
+                                                <input asp-for="Students.FirstName" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your First Name.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Last Name</label>
+                                                <input asp-for="Students.LastName" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Last Name.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Email</label>
+                                                <input asp-for="Students.Email" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Email.</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Phone No</label>
+                                                <input asp-for="Students.PhoneNumber" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Phone No.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Date Of Birth</label>
+                                                <input asp-for="Students.BirthDate " type="date" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your BirthDate .</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Gender</label>
+                                                <select asp-for="Students.Gender" class="form-control">
+                                                    <option disabled selected class="text-center">------ Select Gender ------</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">CNIC</label>
+                                                <input asp-for="Students.Cnic " type="text" class="form-control" maxlength="15" required>
+                                                <div class="invalid-feedback">Please enter your CNIC .</div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Domicile Province/State</label>
+                                                <input asp-for="Students.Domicile" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Domicile Province/State.</div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputState" class="form-label">Address </label>
+                                                <textarea class="form-control" style="height: 100px" asp-for="Students.Address" required></textarea>
+                                                <div class="invalid-feedback">Please enter your Address .</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Student Additional information -->
+                                <div class="col-md-12 border1">
+                                    <legend>Additional Details</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Nationality</label>
+                                                <input asp-for="Students.Nationality" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Nationality.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Major</label>
+                                                <input asp-for="Students.Major" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Major.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputState" class="form-label">Additional Information </label>
+                                                <textarea class="form-control" style="height: 85px" asp-for="Students.AdditionalInformation" required></textarea>
+                                                <div class="invalid-feedback">Please enter your Additional Information  .</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Profile Image</label>
+                                                <input asp-for="Students.ProfileImageUrl" type="file" class="form-control">
+                                                <div class="invalid-feedback">Please enter your ProfileImage.</div>
+                                                <label for="inputState" class="form-label"></label>
+                                                <br>
+                                                <label for="checkbox">Foreign Student</label>
+                                                <input type="checkbox" asp-for="Students.IsInternationalStudent">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Student Emergency contact information -->
+                                <div class="col-md-12 border1">
+                                    <legend>Emergency Contact Details</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Name</label>
+                                                <input asp-for="Students.EmergencyName" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Name.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Contact Number</label>
+                                                <input asp-for="Students.EmergencyPhoneNumber" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Contact Number.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputState" class="form-label">Address </label>
+                                                <textarea class="form-control" style="height: 70px" asp-for="Students.EmergencyAddress" required></textarea>
+                                                <div class="invalid-feedback">Please enter your Address .</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Student Guardian information -->
+                                <div class="col-md-12 border1">
+                                    <legend>Guardian Details</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Guardian Name</label>
+                                                <input asp-for="Students.GuardianName" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Contact Name.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Guardian Email</label>
+                                                <input asp-for="Students.GuardianPhoneNumber" type="email" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Guardian Email.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Contact No</label>
+                                                <input asp-for="Students.GuardianPhoneNumber" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Contact No.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Relation</label>
+                                                <input asp-for="Students.Relation" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Relation.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputState" class="form-label">Address </label>
+                                                <textarea class="form-control" style="height: 70px" asp-for="Students.GuardianAddress" required></textarea>
+                                                <div class="invalid-feedback">Please enter your Address .</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Student Health information -->
+                                <div class="col-md-12 border1">
+                                    <legend>Health Details</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Work Experiance</label>
+                                                <input asp-for="Students.BloodGroup" type="text" class="form-control">
+                                                <div class="invalid-feedback">Please enter your Blood Group</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Study Gap</label>
+                                                <input asp-for="Students.StudyGap" type="text" class="form-control">
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <br><br>
+                                                <label for="inputName5" class="form-label">Disable</label>
+                                                <input type="checkbox" asp-for="Students.IsDisable">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Applicant status*</label>
+                                                <select asp-for="Applicantstatus" class="form-control">
+                                                    <option class="text-center">------ Select Applicant status ------</option>
+                                                    <option value="Dependent">Dependent</option>
+                                                    <option value="Independent">Independent</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <br><br>
+                                                <label for="inputName5" class="form-label">Disable</label>
+                                                <input type="checkbox" asp-for="Students.IsDisable">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- Student Language information -->
+                                <div class="col-md-12 border1">
+                                    <legend>Language Details</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Language</label>
+                                                <input asp-for="Students.Language" type="text" class="form-control" required>
+                                                <div class="invalid-feedback">Please enter your Language</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="float-end mt-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- End Multi Columns Form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="Login" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 95%">
+                        <div class="card-body">
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="Student" asp-action="AddEducation" method="post" asp-area="Employee">
+                              
+
+                                <div class="col-md-12 border1">
+                                    <legend>Education Details</legend>
+                                    <input type="hidden" asp-for="Students.StudentId"   />
+                                   
+                                    
+                                    <div class="col-md-3 float-end">
+                                        <a class="btn btn-primary" href="/Employee/Student/NewEducation?studentId=@Model.Students.StudentId">
+                                            <i class="bi bi-plus-circle"></i>&nbsp;Add Education
+                                        </a>
+                                    </div>
+
+
+                                    <br />
+                                    <table id="educationTable" class="table table-bordered table-striped mt-3" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Education Level</th>
+                                                <th scope="col">Major Subject  </th>
+                                                <th scope="col">School/College/University  </th>
+                                                <th scope="col">Obtained Marks  </th>
+                                                <th scope="col">  Total Marks  </th>
+                                                <th scope="col">  Percentage    </th>
+                                                <th scope="col">    Board  </th>
+                                                <th scope="col">    CGPA  </th>
+                                                <th scope="col">    Action  </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model != null && Model.EducationsList != null)
+                                            {
+                                                foreach (var education in Model.EducationsList)
+                                                {
+                                                    <tr>
+                                                        <td>@education.EducationLevel</td>
+                                                        <td>@education.MajorSubject</td>
+                                                        <td>@education.SchoolUni</td>
+                                                        <td>@education.ObjMarks</td>
+                                                        <td>@education.TotalMarks</td>
+                                                        <td>@education.Percentage</td>
+                                                        <td>@education.Board</td>
+                                                        <td>@education.CGPA</td>
+                                                        <td>
+                                                            <a href="/Employee/Student/EditEducation/@education.EducationLevelId" class="btn btn-sm btn-secondary">
+                                                                <i class="bi bi-pencil"></i> Edit
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td colspan="2">No education records available</td>
+                                                    <!-- Adjust colspan based on the number of columns in your table -->
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+
+
+
+
+
+
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    @* ******************************************************************************************** *@
+
+    <div id="Program" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 95%">
+                        <div class="card-body">
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="Student" asp-action="EditStudentProgram" method="post" asp-area="Employee">
+                                <input type="hidden" asp-for="Educations.LeadId" value="@ViewBag.LeadId" />
+                                <input type="hidden" asp-for="Educations.StudentId" value="@ViewBag.StudentId" />
+
+
+                                 <div class="col-md-12 border1">
+                                    <legend>University Program Intalks</legend>
+
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Select University</label>
+                                                <select asp-for="Universities.UniversityId" id="selectedUniversity" class="form-control">
+                                                    <option disabled selected class="text-center">------ Select University Name ------</option>
+                                                    @foreach (var university in ViewBag.AddUniversity)
+                                                    {
+                                                        <option value="@university.UniversityId">@university.Name</option>
+                                                    }
+                                                </select>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for=" " class="form-label"> University Offered  Programs </label>
+
+                                                <select asp-for="SelectedProgram" id="offeredProgramsDropdown" class="form-control">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="float-end mt-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+    <div id="Deposit" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 95%">
+                        <div class="card-body">
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="Student" asp-action="EditDeposit" method="post" asp-area="Employee">
+                                <div class="col-md-12 border1">
+                                    <input type="hidden" asp-for="Educations.LeadId" value="@ViewBag.LeadId" />
+                                    <input type="hidden" asp-for="Educations.StudentId" value="@ViewBag.StudentId" />
+
+                                    <legend>Deposit Paid </legend>
+                                    
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Account Number  </label>
+                                                <input asp-for="Deposits.AccountNumber" type="text" class="form-control" required>
+
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for=" " class="form-label">  Amount </label>
+                                                <input asp-for="Deposits.Amount" type="text" class="form-control" required>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">  Deposit Date  </label>
+                                                <input asp-for="Deposits.DepositDate" type="date" class="form-control" required>
+
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for=" " class="form-label">   Deposit Pay Image </label>
+                                                <input asp-for="Deposits.DepositPayImagePath" type="file" class="form-control">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="float-end mt-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div id="Visa" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 95%">
+                        <div class="card-body">
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="Student" asp-action="EditVisa" method="post" asp-area="Employee">
+                                <div class="col-md-12 border1">
+                                    <input type="hidden" asp-for="Educations.LeadId" value="@ViewBag.LeadId" />
+                                    <input type="hidden" asp-for="Educations.StudentId" value="@ViewBag.StudentId" />
+
+                                    <legend>Visa Application </legend>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <label for="inputName5" class="form-label">Application Number    </label>
+                                            <input asp-for="VisaApplications.ApplicationNumber" type="text" class="form-control" required>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for=" " class="form-label">  Passport Number </label>
+                                            <input asp-for="VisaApplications.PassportNumber" type="text" class="form-control" required>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row">
+                                           
+                                            <div class="col-md-6">
+                                                <label for=" " class="form-label">  Visa Submission Date   </label>
+                                                <input asp-for="VisaApplications.SubmissionDate" type="date" class="form-control" required>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">  Destination Country    </label>
+                                                <input asp-for="VisaApplications.DestinationCountry" type="text" class="form-control" required>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <div class="row">
+                                           
+                                            <div class="col-md-6">
+                                                <label for=" " class="form-label">  Visa Status </label>
+                                                <select asp-for="VisaApplications.VisaStatus" class="form-select">
+                                                    <option value="">---  Select Visa Status (Accept , Reject)      ---</option>
+                                                    <option value="accept">Accept</option>
+                                                    <option value="reject">Reject</option>
+                                                    <option value="awaiting">Awaiting</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="float-end mt-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    </div>
+    </div>
+
+
+</main><!-- End #main -->
+@section Scripts {
+
+
+    <script>
+        function calculatePercentage() {
+            // Get values from Obtain Marks and Total Marks inputs
+            var obtainMarks = parseFloat(document.getElementById('obtainMarksInput').value) || 0;
+            var totalMarks = parseFloat(document.getElementById('totalMarksInput').value) || 1;
+
+            // Calculate percentage
+            var percentage = (obtainMarks / totalMarks) * 100;
+
+            // Update the Percentage input field
+            document.getElementById('percentageInput').value = percentage.toFixed(2) + '%';
+        }
+
+        function openPage(pageName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+        $(document).ready(function () {
+            // Add an event listener to the university dropdown
+            $('#selectedUniversity').change(function () {
+                // Get the selected university ID
+                var selectedUniversityId = $(this).val();
+
+                // Clear the existing options in the Offered Programs dropdown
+                $('#offeredProgramsDropdown').empty();
+
+                // Make an AJAX request to retrieve the Offered Programs for the selected university
+                $.ajax({
+                    url: '/Admin/Student/GetPrograms',
+                    type: 'GET',
+                    data: { universityId: selectedUniversityId },
+                    success: function (data) {
+                        console.log('Received data:', data);
+
+                        if (Array.isArray(data) && data.length > 0) {
+                            // Populate the Offered Programs dropdown with the retrieved data
+                            $.each(data, function (index, program) {
+                                $('#offeredProgramsDropdown').append('<option value="' + program + '">' + program + '</option>');
+                            });
+                        } else {
+                            // If no programs available, display a default option
+                            $('#offeredProgramsDropdown').append('<option value="">No programs available</option>');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+        });
+
+    </script>
+    }

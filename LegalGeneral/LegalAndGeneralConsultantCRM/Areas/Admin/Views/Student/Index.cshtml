@@ -1,0 +1,54 @@
+﻿<main id="main" class="main ">
+    <div class="row ">
+        <div class="col-md-9">
+            <h3>Students</h3>
+        </div>
+        <div class="col-md-3 ">
+            <a class="btn btn-primary" href="/Admin/Student/AddStudent"><i class="bi bi-plus-circle"></i>&nbsp;Add Student </a>
+        </div>
+    </div>
+
+    <table id="studentTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email  </th>
+                <th>Phone Number  </th>
+                <th>Address  </th>
+                <th>Action  </th>
+              </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</main>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Student/GetStudentData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                     { "data": "firstName",   "autoWidth": true },
+                    { "data": "lastName",     "autoWidth": true },
+                    { "data": "email",     "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "address",      "autoWidth": true },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<a href="/Admin/Student/Edit/' + row.studentId + '" class="btn btn-info btn-sm">Edit</a>' +
+                                '&nbsp;<a href="/Admin/Student/Details/' + row.studentId + '" class="btn btn-success btn-sm">Details</a>';
+                        },
+                        "autoWidth": true
+                    }
+                 ]
+            });
+        });
+    </script>
+}

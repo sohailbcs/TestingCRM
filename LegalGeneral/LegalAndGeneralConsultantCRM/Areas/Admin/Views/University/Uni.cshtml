@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>University Curriculum</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        #universityTable thead th::before,
+        #universityTable thead th::after {
+            content: "";
+            right: 0;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="container-full">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <script>
+                    // Display the success message as a popup alert
+                    $(document).ready(function () {
+                        alert('@TempData["SuccessMessage"]');
+                    });
+                </script>
+            }
+            <!-- Main content -->
+            <section class="content">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="d-flex align-items-center">
+                        <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                            <h3 class="page-title">   </h3>
+                            <div class="d-inline-block align-items-center">
+                                <nav>
+                                    <ol class="breadcrumb">
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Educational Institutions and Their Academic Offerings</h3>
+                                <div class="float-right">
+
+                                    <div class="mb-3 d-flex justify-content-end">
+                                        <a class="btn float-end  btn-primary" href="/Admin/University/UniversityCourses"><i class="bi bi-plus-circle"></i>&nbsp;Add University Courses </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="universityTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th style="background-color: #4e0973;color:white;">University Name</th>
+                                                <th style="background-color: #4e0973;color:white;">Domain Name</th>
+
+                                                <th style="background-color: #4e0973;color:white;">Offered Courses</th>
+                                                <th style="background-color: #4e0973;color:white;">Fees</th>
+                                                <th style="background-color: #4e0973;color:white;">English</th>
+                                                <th style="background-color: #4e0973;color:white;">Eaducation</th>
+
+                                                <th style="background-color: #4e0973;color:white;">Intake 1</th>
+                                                <th style="background-color: #4e0973;color:white;">Intake 2</th>
+                                                <th style="background-color: #4e0973;color:white;">Intake 3</th>
+                                                <th style="background-color: #4e0973;color:white;">Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="universityDetailModal" tabindex="-1" role="dialog" aria-labelledby="universityDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="universityDetailModalLabel">University Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="universityDetails">
+                        <p><strong>University Name:</strong> <span id="universityName"></span></p>
+                        <p><strong>Courses:</strong></p>
+                        <ul id="courseList"></ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('#universityTable').DataTable({
+                    "ajax": {
+                        "url": "/Admin/University/GetAllUniversityData",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "name", "autoWidth": true }, // University Name
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                var domainNames = '';
+                                data.forEach(function (course) {
+                                    if (course.domainName) {
+                                        domainNames = course.domainName; // Assuming all courses belong to the same domain
+                                    }
+                                });
+                                return domainNames;
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                var courses = '<ul>';
+                                data.forEach(function (course) {
+                                    courses += '<li>' + course.courseName + '</li>';
+                                });
+                                courses += '</ul>';
+                                return courses;
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                return data[0].tuitionFee ? data[0].tuitionFee + ' ' + data[0].currency : ''; // Show Tuition Fee and Currency
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                return data[0].englishProfiency ? data[0].englishProfiency : ''; // Show English Proficiency
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                return data[0].eaducationRequired ? data[0].eaducationRequired : ''; // Show Minimum Education Required
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                var intake1 = '';
+                                data.forEach(function (course) {
+                                    if (course.intake1) {
+                                        intake1 = course.intake1; // Assuming all courses have the same intake value
+                                    }
+                                });
+                                return intake1;
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                var intake2 = '';
+                                data.forEach(function (course) {
+                                    if (course.intake2) {
+                                        intake2 = course.intake2; // Assuming all courses have the same intake value
+                                    }
+                                });
+                                return intake2;
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                var intake3 = '';
+                                data.forEach(function (course) {
+                                    if (course.intake3) {
+                                        intake3 = course.intake3; // Assuming all courses have the same intake value
+                                    }
+                                });
+                                return intake3;
+                            }
+                        },
+                        {
+                            "data": "courses",
+                            "render": function (data, type, row) {
+                                var buttons = '';
+                                data.forEach(function (course) {
+                                    var deleteButton = '<button type="button" class="btn btn-danger delete-btn mt-2" style="padding: 10px;" data-id="' + course.universityCourseId + '"><i class="bi bi-trash" style="margin-right: 0;"></i> </button>';
+                                    var detailButton = '<button type="button" class="btn btn-info detail-btn mt-2" style="padding: 10px;" data-id="' + row.universityId + '"><i class="bi bi-info-circle" style="margin-right: 0;"></i> </button>';
+                                    buttons += deleteButton + " " + detailButton + "<br/>";
+                                });
+                                return buttons;
+                            }
+                        }
+                    ]
+                });
+                $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+
+                $('#universityTable').on('click', '.delete-btn', function () {
+                    var universityCourseId = $(this).data('id');
+                    if (confirm('Are you sure you want to delete this university course?')) {
+                        $.ajax({
+                            url: '/Admin/University/DeleteUniversityCourse',
+                            type: 'POST',
+                            data: { universityCourseId: universityCourseId },
+                            success: function (result) {
+                                alert(result.message);
+                                $('#universityTable').DataTable().ajax.reload(); // Reload the DataTable
+                            },
+                            error: function (err) {
+                                alert('Error deleting university course');
+                            }
+                        });
+                    }
+                });
+
+                $('#universityTable').on('click', '.detail-btn', function () {
+                    var universityId = $(this).data('id');
+                    window.location.href = '/Admin/University/Unidetail?universityId=' + universityId;
+                });
+            });
+
+        </script>
+    }
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Employee\Views\Application\Detail.cshtml" />
+    <Content Remove="Areas\Employee\Views\Application\Documents.cshtml" />
+    <Content Remove="Areas\Employee\Views\Report\LeadsGenration.cshtml" />
+    <Content Remove="wwwroot\js\noti.js" />
+    <Content Remove="wwwroot\Reports\EnrolledReport.rdlc" />
+    <Content Remove="wwwroot\Reports\LeadRPT.rdlc" />
+    <Content Remove="wwwroot\Reports\LeadsStatusReport.rdlc" />
+    <Content Remove="wwwroot\Reports\UniversityReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\Reports\EnrolledReport.rdlc" />
+    <EmbeddedResource Include="wwwroot\Reports\LeadRPT.rdlc" />
+    <EmbeddedResource Include="wwwroot\Reports\LeadsStatusReport.rdlc" />
+    <EmbeddedResource Include="wwwroot\Reports\UniversityReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="CSC.EPPlus.Core" Version="1.5.6" />
+    <PackageReference Include="CsvHelper" Version="33.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.23" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.23" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.23">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Employee\Data\" />
+    <Folder Include="Areas\Employee\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Reports\AssignLeadsStatus.cshtml" />
+    <None Include="Areas\Admin\Views\Reports\LeadsGenration.cshtml" />
+    <None Include="Areas\Employee\Views\Application\Detail.cshtml" />
+    <None Include="Areas\Employee\Views\Application\Documents.cshtml" />
+    <None Include="Areas\Employee\Views\Report\LeadsGenration.cshtml" />
+    <None Include="wwwroot\assets\icons\cryptocoins-master\cryptocoins.woff2" />
+    <None Include="wwwroot\assets\icons\feather-icons\feather.min.js" />
+    <None Include="wwwroot\assets\icons\glyphicons\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\assets\icons\glyphicons\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\assets\icons\icomoon\fonts\icomoon4a27.svg" />
+    <None Include="wwwroot\assets\icons\iconsmind\icomoonca27.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-arrows-10.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-basic-10.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-basic-elaboration-10.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-ecommerce-10.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-music-10.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-software-10.svg" />
+    <None Include="wwwroot\assets\icons\linea-icons\fonts\linea-weather-10.svg" />
+    <None Include="wwwroot\assets\icons\themify-icons\fonts\themify9f24.svg" />
+    <None Include="wwwroot\assets\vendor_components\apexcharts-bundle\dist\apexcharts.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-colorpicker\dist\js\bootstrap-colorpicker.min.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-daterangepicker\daterangepicker.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-markdown-master\js\bootstrap-markdown.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-select\dist\js\bootstrap-select.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-tagsinput\dist\bootstrap-tagsinput.js" />
+    <None Include="wwwroot\assets\vendor_components\bootstrap-touchspin\dist\jquery.bootstrap-touchspin.min.js" />
+    <None Include="wwwroot\assets\vendor_components\c3\c3.min.js" />
+    <None Include="wwwroot\assets\vendor_components\c3\d3.min.js" />
+    <None Include="wwwroot\assets\vendor_components\chart.js-master\Chart.min.js" />
+    <None Include="wwwroot\assets\vendor_components\chartist-js-develop\chartist.js" />
+    <None Include="wwwroot\assets\vendor_components\ckeditor\ckeditor.js" />
+    <None Include="wwwroot\assets\vendor_components\d3\d3.min.js" />
+    <None Include="wwwroot\assets\vendor_components\d3\d3_tooltip.js" />
+    <None Include="wwwroot\assets\vendor_components\datatable\datatables.min.js" />
+    <None Include="wwwroot\assets\vendor_components\date-paginator\bootstrap-datepaginator.min.js" />
+    <None Include="wwwroot\assets\vendor_components\date-paginator\moment.min.js" />
+    <None Include="wwwroot\assets\vendor_components\dropzone\dropzone.js" />
+    <None Include="wwwroot\assets\vendor_components\easypiechart\dist\jquery.easypiechart.js" />
+    <None Include="wwwroot\assets\vendor_components\echarts\dist\echarts-en.min.js" />
+    <None Include="wwwroot\assets\vendor_components\flexslider\fonts\flexslider-icon.svg" />
+    <None Include="wwwroot\assets\vendor_components\flexslider\jquery.flexslider.js" />
+    <None Include="wwwroot\assets\vendor_components\Flot\jquery.flot.categories.js" />
+    <None Include="wwwroot\assets\vendor_components\Flot\jquery.flot.js" />
+    <None Include="wwwroot\assets\vendor_components\Flot\jquery.flot.pie.js" />
+    <None Include="wwwroot\assets\vendor_components\Flot\jquery.flot.resize.js" />
+    <None Include="wwwroot\assets\vendor_components\formatter\formatter.js" />
+    <None Include="wwwroot\assets\vendor_components\formatter\jquery.formatter.js" />
+    <None Include="wwwroot\assets\vendor_components\fullcalendar\fullcalendar.js" />
+    <None Include="wwwroot\assets\vendor_components\fullcalendar\fullcalendar.min.js" />
+    <None Include="wwwroot\assets\vendor_components\fullcalendar\lib\moment.min.js" />
+    <None Include="wwwroot\assets\vendor_components\gallery\js\animated-masonry-gallery.js" />
+    <None Include="wwwroot\assets\vendor_components\gallery\js\jquery.isotope.min.js" />
+    <None Include="wwwroot\assets\vendor_components\gmaps\gmaps.min.js" />
+    <None Include="wwwroot\assets\vendor_components\gmaps\jquery.gmaps.js" />
+    <None Include="wwwroot\assets\vendor_components\gridstack\gridstack.jQueryUI.js" />
+    <None Include="wwwroot\assets\vendor_components\gridstack\gridstack.js" />
+    <None Include="wwwroot\assets\vendor_components\gridstack\lodash.js" />
+    <None Include="wwwroot\assets\vendor_components\horizontal-timeline\js\horizontal-timeline.js" />
+    <None Include="wwwroot\assets\vendor_components\ion-rangeSlider\js\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery-knob\js\jquery.knob.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery-steps-master\build\jquery.steps.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery-toast-plugin-master\src\jquery.toast.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery-ui\jquery-ui.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery-ui\jquery-ui.min.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery-validation-1.17.0\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\assets\vendor_components\jquery.peity\jquery.peity.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jquery-jvectormap-2.0.2.min.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jquery-jvectormap-au-mill.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jquery-jvectormap-in-mill.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jquery-jvectormap-uk-mill-en.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jquery-jvectormap-us-aea-en.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jquery-jvectormap-world-mill-en.js" />
+    <None Include="wwwroot\assets\vendor_components\jvectormap\lib2\jvectormap.custom.js" />
+    <None Include="wwwroot\assets\vendor_components\lightbox-master\dist\ekko-lightbox.js" />
+    <None Include="wwwroot\assets\vendor_components\Magnific-Popup-master\dist\jquery.magnific-popup-init.js" />
+    <None Include="wwwroot\assets\vendor_components\Magnific-Popup-master\dist\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\assets\vendor_components\marked\marked.js" />
+    <None Include="wwwroot\assets\vendor_components\moment\min\moment.min.js" />
+    <None Include="wwwroot\assets\vendor_components\moment\src\moment2.js" />
+    <None Include="wwwroot\assets\vendor_components\morris.js\morris.min.js" />
+    <None Include="wwwroot\assets\vendor_components\nestable\jquery.nestable.js" />
+    <None Include="wwwroot\assets\vendor_components\OwlCarousel2\dist\owl.carousel.js" />
+    <None Include="wwwroot\assets\vendor_components\PACE\pace.min.js" />
+    <None Include="wwwroot\assets\vendor_components\perfect-scrollbar-master\perfect-scrollbar.jquery.min.js" />
+    <None Include="wwwroot\assets\vendor_components\prism\prism.js" />
+    <None Include="wwwroot\assets\vendor_components\raphael\raphael.min.js" />
+    <None Include="wwwroot\assets\vendor_components\raty-master\lib\fonts\raty.svg" />
+    <None Include="wwwroot\assets\vendor_components\raty-master\lib\jquery.raty.js" />
+    <None Include="wwwroot\assets\vendor_components\select2\dist\js\select2.full.js" />
+    <None Include="wwwroot\assets\vendor_components\sweetalert\jquery.sweet-alert.custom.js" />
+    <None Include="wwwroot\assets\vendor_components\sweetalert\sweetalert.min.js" />
+    <None Include="wwwroot\assets\vendor_components\tiny-editable\mindmup-editabletable.js" />
+    <None Include="wwwroot\assets\vendor_components\tiny-editable\numeric-input-example.js" />
+    <None Include="wwwroot\assets\vendor_components\to-markdown\to-markdown.js" />
+    <None Include="wwwroot\assets\vendor_components\weather-icons\weathericons-regular-webfont.svg" />
+    <None Include="wwwroot\assets\vendor_components\x-editable\dist\bootstrap3-editable\js\bootstrap-editable.js" />
+    <None Include="wwwroot\assets\vendor_plugins\ace-builds-master\src-min-noconflict\ace.js" />
+    <None Include="wwwroot\assets\vendor_plugins\bootstrap-slider\bootstrap-slider.js" />
+    <None Include="wwwroot\assets\vendor_plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
+    <None Include="wwwroot\assets\vendor_plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
+    <None Include="wwwroot\assets\vendor_plugins\bootstrap-wysihtml5\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\assets\vendor_plugins\bootstrap-wysihtml5\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\assets\vendor_plugins\iCheck\icheck.js" />
+    <None Include="wwwroot\assets\vendor_plugins\iCheck\icheck.min.js" />
+    <None Include="wwwroot\assets\vendor_plugins\input-mask\jquery.inputmask.date.extensions.js" />
+    <None Include="wwwroot\assets\vendor_plugins\input-mask\jquery.inputmask.extensions.js" />
+    <None Include="wwwroot\assets\vendor_plugins\input-mask\jquery.inputmask.js" />
+    <None Include="wwwroot\assets\vendor_plugins\JqueryPrintArea\demo\jquery.PrintArea.js" />
+    <None Include="wwwroot\assets\vendor_plugins\timepicker\bootstrap-timepicker.min.js" />
+    <None Include="wwwroot\assets\vendor_plugins\weather-icons\WeatherIcon.js" />
+    <None Include="wwwroot\js\jquery.smartmenus.min.js" />
+    <None Include="wwwroot\js\menus.min.js" />
+    <None Include="wwwroot\js\pages\advanced-form-element.js" />
+    <None Include="wwwroot\js\pages\app-contact.js" />
+    <None Include="wwwroot\js\pages\app-ticket.js" />
+    <None Include="wwwroot\js\pages\c3-axis.js" />
+    <None Include="wwwroot\js\pages\c3-bar-pie.js" />
+    <None Include="wwwroot\js\pages\c3-data.js" />
+    <None Include="wwwroot\js\pages\c3-line.js" />
+    <None Include="wwwroot\js\pages\c3-multi-xy-line.js" />
+    <None Include="wwwroot\js\pages\c3-stap-line.js" />
+    <None Include="wwwroot\js\pages\calendar.js" />
+    <None Include="wwwroot\js\pages\chart-widgets.js" />
+    <None Include="wwwroot\js\pages\chartjs-int.js" />
+    <None Include="wwwroot\js\pages\component-animations-css3.js" />
+    <None Include="wwwroot\js\pages\component-rating-init.js" />
+    <None Include="wwwroot\js\pages\coundown-timer.js" />
+    <None Include="wwwroot\js\pages\custom-scroll.js" />
+    <None Include="wwwroot\js\pages\dashboard.js" />
+    <None Include="wwwroot\js\pages\dashboard2.js" />
+    <None Include="wwwroot\js\pages\dashboard3.js" />
+    <None Include="wwwroot\js\pages\dashboard4.js" />
+    <None Include="wwwroot\js\pages\data-table.js" />
+    <None Include="wwwroot\js\pages\date-paginator.js" />
+    <None Include="wwwroot\js\pages\echart-bar.js" />
+    <None Include="wwwroot\js\pages\echart-line-charts.js" />
+    <None Include="wwwroot\js\pages\echart-pie-doghnut.js" />
+    <None Include="wwwroot\js\pages\ecommerce_details.js" />
+    <None Include="wwwroot\js\pages\editable-tables.js" />
+    <None Include="wwwroot\js\pages\editor.js" />
+    <None Include="wwwroot\js\pages\extra_taskboard.js" />
+    <None Include="wwwroot\js\pages\form-code-editor.js" />
+    <None Include="wwwroot\js\pages\form-compose.js" />
+    <None Include="wwwroot\js\pages\form-validation.js" />
+    <None Include="wwwroot\js\pages\form-x-editable.js" />
+    <None Include="wwwroot\js\pages\formatter.js" />
+    <None Include="wwwroot\js\pages\fullscreen.js" />
+    <None Include="wwwroot\js\pages\gallery.js" />
+    <None Include="wwwroot\js\pages\gridstackjs.js" />
+    <None Include="wwwroot\js\pages\icons.js" />
+    <None Include="wwwroot\js\pages\invoice.js" />
+    <None Include="wwwroot\js\pages\list.js" />
+    <None Include="wwwroot\js\pages\mailbox.js" />
+    <None Include="wwwroot\js\pages\media.js" />
+    <None Include="wwwroot\js\pages\nestable.js" />
+    <None Include="wwwroot\js\pages\notification.js" />
+    <None Include="wwwroot\js\pages\pace.js" />
+    <None Include="wwwroot\js\pages\peity.js" />
+    <None Include="wwwroot\js\pages\range-sliders.init.js" />
+    <None Include="wwwroot\js\pages\slider.js" />
+    <None Include="wwwroot\js\pages\statistic.js" />
+    <None Include="wwwroot\js\pages\steps.js" />
+    <None Include="wwwroot\js\pages\timeline.js" />
+    <None Include="wwwroot\js\pages\toastr.js" />
+    <None Include="wwwroot\js\pages\validation.js" />
+    <None Include="wwwroot\js\pages\weather.js" />
+    <None Include="wwwroot\js\pages\widget-blog.js" />
+    <None Include="wwwroot\js\pages\widget-chartist.js" />
+    <None Include="wwwroot\js\pages\widget-charts2.js" />
+    <None Include="wwwroot\js\pages\widget-flot-charts.js" />
+    <None Include="wwwroot\js\pages\widget-inline-charts.js" />
+    <None Include="wwwroot\js\pages\widget-morris-charts.js" />
+    <None Include="wwwroot\js\pages\widgets.js" />
+    <None Include="wwwroot\js\template.min.js" />
+    <None Include="wwwroot\js\noti.js" />
+    <None Include="wwwroot\js\vendors.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DataSets\dsLeads.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsLeads.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="Datasets\dsLeadsStatus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsLeadsStatus.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="DataSets\dsLeadStatus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsLeadStatus.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="Datasets\dsUniversity.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>dsUniversity.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="Datasets\Enrolled.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Enrolled.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataSets\dsLeads.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsLeads.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="Datasets\dsLeadsStatus.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsLeadsStatus.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="DataSets\dsLeadStatus.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsLeadStatus.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="Datasets\dsUniversity.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsUniversity.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="Datasets\Enrolled.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Enrolled.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Employee\Views\Application\Documents.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Employee\Views\Application\Detail.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Employee\Views\Application\Documents.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Employee\Views\Report\EnrolledStudent.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Employee\Views\Application\Detail.cshtml" />
+  </ItemGroup>
+
+</Project>

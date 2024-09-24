@@ -1,0 +1,205 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    .badge {
+        
+        color: white;
+    }
+</style>
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Leads History Summary</h3>
+                             <div class="float-right">
+ 
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group ml-2">
+                                            <label class="control-label">Lead Name</label>
+                                            <select id="leadDropdown" class="form-control col-6 ">
+                                                <option value="">-- Select Lead --</option>
+                                                @foreach (var item in ViewBag.Lead as List<SelectListItem>)
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            </select>
+
+                                            <div class="table-responsive">
+                                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th style="background-color: #4e0973;color:white;">Full Name</th>
+                                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                                            <th style="background-color: #4e0973;color:white;">Team Member </th>
+                                                            <th style="background-color: #4e0973;color:white;">Last Follow-Ups </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                             </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+
+<!-- partial -->
+@* @* <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Leads History</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group ml-2">
+                                    <label class="control-label">Lead Name</label>
+                                    <select id="leadDropdown" class="form-control col-6">
+                                        <option value="">-- Select Lead --</option>
+                                        @foreach (var item in ViewBag.Lead as List<SelectListItem>)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="brandTable" class="display expandable-table" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Team Member </th>
+                                        <th>FollowUp Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@ 
+<!-- main-panel ends -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Lead/GetLeadDetails",
+                    "type": "GET",
+                    "data": function (d) {
+                        d.leadId = $('#leadDropdown').val();
+                    },
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "leadFullName", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                     {
+                        "data": "status",
+                        "name": "Status",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            // Check if the followUpStatus is "Converted Lead" and apply the badge
+                            if (data === "Converted Lead") {
+                                return '<span class="badge bg-success"  >Converted Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Dead Lead" and apply the badge
+                            else if (data === "Dead Lead") {
+                                return '<span class="badge bg-danger">Dead Lead</span>';
+                            }
+                            else if (data === "Cold Lead") {
+                                return '<span class="badge bg-dark">Cold Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Future Lead" and apply the badge
+                            else if (data === "Future Lead") {
+                                return '<span class="badge bg-secondary">Future Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Hot Lead" and apply the badge
+                            else if (data === "Hot Lead") {
+                                return '<span class="badge bg-primary">Hot Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Warm Lead" and apply the badge
+                            else if (data === "Warm Lead") {
+                                return '<span class="badge bg-info">Warm Lead</span>';
+                            } else {
+                                // You can add more conditions for other statuses if needed
+                                return '<span class="badge bg-warning">Pending Lead</span>';
+                            }
+                        }
+                    },
+
+                    { "data": "username", "autoWidth": true },
+                    {
+                        "data": "sLeadFollowupDatetatus",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? new Date(data).toDateString() : null;
+                        }
+                    }
+                ],
+            });
+
+            $('#leadDropdown').change(function () {
+                table.ajax.reload();
+            });
+
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+        });
+    </script>
+}

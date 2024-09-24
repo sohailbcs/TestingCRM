@@ -1,0 +1,135 @@
+﻿@model LegalAndGeneralConsultantCRM.Areas.Identity.Data.LegalAndGeneralConsultantCRMUser
+
+
+@* <form asp-action="Index" asp-asp-controller="Profile" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control" value="@ViewBag.FirstName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" value="@ViewBag.LastName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" value="@ViewBag.Email" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Message
+    </div>
+} *@
+
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">My Account Setting</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class=" "><a href="#"> </a></li>
+                                    <li class="breadcrumb-item" aria-current="page">Account Setting</li>
+                                    <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h4 class="box-title"></h4>
+                        </div>
+                        <div class="row mt-4 justify-content-center">
+                            <div class="col-md-6">
+                                @if (ViewBag.Message != null)
+                                {
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Success!</strong> @ViewBag.Message
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                            </div>
+                       
+
+                        <!-- /.box-header -->
+                        <form class="form" asp-controller="Profile" asp-action="Index" method="post" asp-area="Admin">
+                            <div class="box-body">
+                                <h4 class="box-title text-info"><i class="ti-user mr-15"></i> Profile Info</h4>
+                                <hr class="my-15  ">
+                                <div class="p-5" style="background-color:#ECEEF7;padding:20px!important; border-radius:10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+
+                                                <input type="text" class="form-control" asp-for="FirstName" placeholder="First Name" required>
+                                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control" asp-for="LastName" placeholder="Last Name" required>
+                                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>E-mail</label>
+                                                <input type="email" class="form-control" asp-for="Email" placeholder="Email" required>
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <a href="/Admin/Dashboard/Index" class="btn btn-rounded btn-warning btn-outline mr-1">
+                                    <i class="ti-trash"></i> Cancel
+                                </a>
+                                <button type="submit" class="btn btn-rounded btn-primary btn-outline">
+                                    <i class="ti-save-alt"></i> Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+
+
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+</div>

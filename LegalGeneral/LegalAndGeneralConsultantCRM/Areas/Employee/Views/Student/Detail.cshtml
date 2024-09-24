@@ -1,0 +1,226 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Students.Student
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+<main id="main" class="main ">
+
+
+    <h3><b>Student Details</b></h3>
+
+<div>
+      <p><strong>Name:</strong> @Model.FirstName @Model.LastName</p>
+      <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
+     <p><strong>Email:</strong> @Model.Email  </p>
+     <p><strong>Address:</strong> @Model.Address  </p>
+     <p><strong>Languages:</strong> @Model.Language  </p>
+ </div>
+
+<div>
+         <h3><b>Education Information: </b></h3>
+
+    @if (Model.Education != null && Model.Education.Any())
+    {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="min-width: 120px;">Education  </th>
+                            <th style="min-width: 120px;">Degree Title</th>
+                            <th style="min-width: 120px;">  Subject</th>
+                            <th style="min-width: 150px;">School/University</th>
+                            <th style="min-width: 100px;">Start Date</th>
+                            <th style="min-width: 100px;">End Date</th>
+                            <th style="min-width: 100px;">Obtained Marks</th>
+                            <th style="min-width: 100px;">Total Marks</th>
+                            <th style="min-width: 100px;">Division</th>
+                            <th style="min-width: 100px;">Percentage</th>
+                            <th style="min-width: 100px;">CGPA</th>
+                            <th style="min-width: 120px;">Board</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var education in Model.Education)
+                        {
+                            <tr>
+                                <td>@education.EducationLevel</td>
+                                <td>@education.DegreeTitle</td>
+                                <td>@education.MajorSubject</td>
+                                <td>@education.SchoolUni</td>
+                                <td>@education.StartDate?.ToShortDateString()</td>
+                                <td>@education.EndDate?.ToShortDateString()</td>
+                                <td>@education.ObjMarks</td>
+                                <td>@education.TotalMarks</td>
+                                <td>@education.Division</td>
+                                <td>@education.Percentage</td>
+                                <td>@education.CGPA</td>
+                                <td>@education.Board</td>
+                             </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+    }
+    else
+    {
+        <p>No education information available for this student.</p>
+    }
+</div>
+<br/>
+
+    <div>
+        <h3><b>Program In Talks Information:</b></h3>
+
+        @if (Model.ProgramInTalks != null && Model.ProgramInTalks.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                      
+                        <tr>
+                            <th>University Name</th>
+                            <th>Program InTalks</th>
+                          
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        @foreach (var programInTalk in Model.ProgramInTalks)
+                        {
+                            <tr>
+                                <td>@programInTalk.University?.Name</td>  
+
+                                 <td>@programInTalk.ProgramName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+        }
+        else
+        {
+            <p>No education information available for this student.</p>
+
+           
+        }
+    </div>
+    <br />
+    <div>
+        <h3><b>Deposits Paid:</b></h3>
+
+        @if (Model.Deposits != null && Model.Deposits.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                             <th>Account Number</th>
+                            <th>Amount</th>
+                            <th>Deposit Date</th>
+                            <th>Payment Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var deposit in Model.Deposits)
+                        {
+                            <tr>
+                                 <td>@deposit.AccountNumber</td>
+                                <td>@deposit.Amount</td>
+                                <td>@deposit.DepositDate.ToString("yyyy-MM-dd")</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(deposit.DepositPayImagePath))
+                                    {
+                                        <img src="@deposit.DepositPayImagePath" alt="Payment Image" style="max-width: 100px;" />
+                                    }
+                                    else
+                                    {
+                                        <p>No image available</p>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No deposit information available for this student.</p>
+        }
+    </div>
+    <br />
+    <div>
+        <h3><b>Visa Application:</b></h3>
+
+        @if (Model.VisaApplications != null && Model.VisaApplications.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Application Number  </th>
+                            <th>Passport Number</th>
+                            <th>Destination Country  </th>
+                            <th>Status   </th>
+                            <th>SubmissionDate  </th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var deposit in Model.VisaApplications)
+                        {
+                            <tr>
+                                <td>@deposit.ApplicationNumber</td>
+                                <td>@deposit.PassportNumber</td>
+                                <td>@deposit.DestinationCountry</td>
+                                <td>
+                                    <div style="background-color: #007bff; color: #fff; padding: 5px; border-radius: 10px; text-align: center;">
+                                        @deposit.VisaStatus
+                                    </div>
+
+                                    
+                                </td>
+                                <td>@deposit.SubmissionDate?.ToString("yyyy-MM-dd")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No deposit information available for this student.</p>
+        }
+    </div>
+    <br /> 
+
+
+
+ 
+</main>

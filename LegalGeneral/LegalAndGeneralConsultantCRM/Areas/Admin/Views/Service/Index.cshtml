@@ -1,0 +1,95 @@
+﻿<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title"> Services</p>
+                        <div class="row">
+                          
+                            <div class="col-12">
+                                <p>
+                                    <a class="btn btn-primary" href="/Admin/Service/AddService"><i class="bi bi-plus-circle"></i>&nbsp;Add Service </a>
+                                </p>
+                                <div class="table-responsive">
+                                    <table id="brandTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Service Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- main-panel ends -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Service/GetService", // Replace with your actual endpoint for retrieving data
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "name", "autoWidth": true },
+                    {
+                        "render": function (data, type, row) {
+                            return '<div class="btn-group" role="group">' +
+                                '<a href="/Admin/Brand/Edit/' + row.serviceId + '" class="btn btn-primary"><i class="bi bi-pencil"></i> </a>&nbsp;' +
+                                ' <button class="btn btn-danger delete-btn" data-id="' + row.serviceId + '"><i class="bi bi-trash"></i> </button>' +
+                                '</div>';
+                        }
+                    }
+                ],
+                "initComplete": function (settings, json) {
+                    $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+                }
+            });
+
+            // Delete button click event
+            $('#brandTable tbody').on('click', '.delete-btn', function () {
+                var brandId = $(this).data('id');
+                // Set the data-id attribute of the confirmDeleteBtn
+                $('#confirmDeleteBtn').attr('data-id', brandId);
+                // Show the delete confirmation modal
+                $('#deleteModal').modal('show');
+            });
+
+            // Confirm delete button click event
+            $('#confirmDeleteBtn').on('click', function () {
+                var brandId = $(this).data('id');
+                // Perform AJAX delete request
+                $.ajax({
+                    url: '/Admin/Brand/Delete/' + brandId, // Replace with your actual endpoint for deleting data
+                    type: 'POST', // Change to 'DELETE' if your server supports it
+                    success: function () {
+                        // Reload the DataTable after successful deletion
+                        $('#brandTable').DataTable().ajax.reload();
+                    },
+                    error: function (error) {
+                        console.error('Error deleting record:', error);
+                    }
+                });
+                // Hide the delete confirmation modal
+                $('#deleteModal').modal('hide');
+            });
+
+        });
+    </script>
+}

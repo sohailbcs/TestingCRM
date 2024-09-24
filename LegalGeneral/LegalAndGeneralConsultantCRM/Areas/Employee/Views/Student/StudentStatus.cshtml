@@ -1,0 +1,98 @@
+﻿@model List<LegalAndGeneralConsultantCRM.Models.Students.Student>
+<style>
+    .text-center {
+        text-align: center;
+    }
+
+    .bg-yellow {
+        background-color: yellow;
+        display: inline-block; /* Ensures the background color only covers the text */
+    }
+</style>
+<main id="main" class="main">
+    <h3><b>Student Status</b></h3>
+
+    <table id="studentTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number </th>
+                <th>Email </th>
+                <th>Status </th>
+                <th>Comments</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.FirstName</td>
+                    <td>@student.LastName</td>
+                    <td>@student.PhoneNumber</td>
+                    <td>@student.Email</td>
+                    @foreach (var message in student.StudentMessages)
+                    {
+                        <td class="text-center">
+                            @if (message.Status.Trim() == "Approved")
+                            {
+                                <span class="badge bg-success">@message.Status</span>
+                            }
+                            else if (message.Status.Trim() == "Rejected")
+                            {
+                                <span class="badge bg-danger">@message.Status</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning">@message.Status</span>
+                            }
+                        </td>
+                        <td>@message.Message</td>
+                    }
+
+                   
+                    <td>
+                        <a href="@Url.Action("Edit", "Student", new { id = student.StudentId })" class="btn btn-secondary">
+                            <i class="bi bi-pencil"></i>  
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>
+
+@section Scripts {
+    <script>
+
+
+        @functions {
+        string GetBackgroundColor(string status)
+        {
+            switch (status)
+            {
+                case "Pending":
+                    return "yellow";
+                case "Accepted":
+                    return "green";
+                case "Rejected":
+                    return "red";
+                default:
+                    return "white"; // or any default color you prefer
+            }
+        }
+    }
+
+
+
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "info": true,
+                "order": []
+            });
+        });
+    </script>
+}

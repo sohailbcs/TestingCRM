@@ -1,0 +1,345 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Students.StudentProgramViewModel
+
+
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Deposit Payment</h3>
+                            
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                            <th style="background-color: #4e0973;color:white;">University </th>
+                                            <th style="background-color: #4e0973;color:white;">Program </th>
+                                            <th style="background-color: #4e0973;color:white;">Deposit</th>
+                                            <th style="background-color: #4e0973;color:white;">Make Deposit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="followUpModalLabel">Deposit Payment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="followUpForm" action="/Employee/Application/PaymentDeposit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="leadId" name="Deposits.LeadId">
+                    <div class="form-group">
+                        <label for="leadName">Name</label>
+                        <input type="text" class="form-control" id="leadName" name="leadName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="depositStatus">Deposit Status</label>
+                        <select id="depositStatus" name="Deposits.AccountTitle" class="form-control">
+                            <option value="">-- Deposit Status --</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Submitted">Submitted</option>
+                        </select>
+                        <span id="depositStatusError" class="text-danger" style="display:none;">Please select a deposit status.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="depositDate">Deposit Date</label>
+                        <input type="date" class="form-control" id="depositDate" name="Deposits.DepositDate">
+                        <span id="depositDateError" class="text-danger" style="display:none;">Please enter a deposit date.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="amountnumber">Amount</label>
+                        <input type="number" id="amountnumber" class="form-control" name="Deposits.Amount">
+                        <span id="amountnumberError" class="text-danger" style="display:none;">Please enter a valid amount.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency" class="form-control" name="Deposits.Currency">
+                            <option value="CNY">Chinese Yuan (CNY)</option>
+                            <option value="CAD">Canadian Dollar (CAD)</option>
+                            <option value="BYN">Belarusian Ruble (BYN)</option>
+                            <option value="AUD">Australian Dollar (AUD)</option>
+                            <option value="USD">United States Dollar (USD)</option>
+                            <option value="GBP">British Pound (GBP)</option>
+                            <option value="EUR">Euro (EUR)</option>
+                            <option value="IRP">Irish Pound (IRP)</option>
+                            <option value="UZS">Uzbekistani Som (UZS)</option>
+                            <option value="JPY">Japanese Yen (JPY)</option>
+                            <option value="TRY">Turkish Lira (TRY)</option>
+                            <option value="PKR">Pakistani Rupee (PKR)</option>
+                        </select>
+                        <span id="currencyError" class="text-danger" style="display:none;">Please select a valid currency.</span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="accountNumber">Account Number</label>
+                        <input type="number" id="accountNumber" class="form-control" name="Deposits.AccountNumber">
+                        <span id="accountNumberError" class="text-danger" style="display:none;">Please enter an account number.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="DepositPayImagePath">Deposit Receipt</label>
+                        <input type="file" class="form-control" id="DepositPayImagePath" name="DepositPayImagePath">
+                        <span id="DepositPayImagePathError" class="text-danger" style="display:none;">Please upload a deposit receipt.</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveFollowUp">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.content-wrapper -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#leadTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/Application/GetAllocatedLeadData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                    { "data": "gender", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    {
+                        "data": "followUpStatus",
+
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (data === "Converted Lead") {
+                                return '<span class="badge badge-pill bg-success">Converted Lead</span>';
+                            } else if (data === "Dead Lead") {
+                                return '<span class="badge badge-pill bg-danger">Dead Lead</span>';
+                            } else if (data === "Cold Lead") {
+                                return '<span class="badge badge-pill bg-dark">Cold Lead</span>';
+                            } else if (data === "Future Lead") {
+                                return '<span class="badge badge-pill bg-secondary">Future Lead</span>';
+                            } else if (data === "Hot Lead") {
+                                return '<span class="badge badge-pill bg-primary">Hot Lead</span>';
+                            } else if (data === "Warm Lead") {
+                                return '<span class="badge badge-pill bg-info">Warm Lead</span>';
+                            } else {
+                                return '<span class="badge badge-pill bg-warning">Pending Lead</span>';
+                            }
+                        }
+                    },
+
+                    { "data": "universityName", "autoWidth": true },
+                    { "data": "courseName", "autoWidth": true },
+                    {
+                        "data": "accountTitle",
+
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (data === "Submitted") {
+                                return '<span class="badge badge-pill bg-success">Submitted</span>';
+                            } else if (data === "Pending") {
+                                return '<span class="badge badge-pill bg-danger">  Pending</span>';
+                            } else if (data === "Cold Lead") {
+                                return '<span class="badge badge-pill bg-dark">Cold Lead</span>';
+                            } else if (data === "Future Lead") {
+                                return '<span class="badge badge-pill bg-secondary">Future Lead</span>';
+                            } else if (data === "Pending") {
+                                return '<span class="badge badge-pill bg-primary">Pending</span>';
+                            } else if (data === "Warm Lead") {
+                                return '<span class="badge badge-pill bg-info">Warm Lead</span>';
+                            } else {
+                                return '<span class="badge badge-pill bg-warning">Pending</span>';
+                            }
+                        }
+                    },
+                    {
+                        "data": "leadId", // Ensure this matches the field name in JSON
+                        "render": function (data, type, row) {
+                            return '<a class="open-modal btn btn-link me-5" data-leadid="' + row.leadId + '" data-fullname="' + row.fullName + '" style="cursor: pointer;"> <i class="bi bi-wallet2"></i></a> ' +
+
+                                '<input type="hidden" class="leadId" value="' + row.leadId + '" />';
+                        }
+                    }
+
+
+
+
+
+                ]
+            });
+            $(document).on('click', '.open-modal', function () {
+                var leadId = $(this).data('leadid');
+                var fullName = $(this).data('fullname');
+
+                // Set leadId and fullName values in the modal form
+                $('#followUpModal #leadId').val(leadId);
+                $('#followUpModal #leadName').val(fullName);
+
+                // AJAX call to fetch deposit details based on leadId
+                $.ajax({
+                    url: '/Employee/Application/GetDepositByLeadId', // Adjust URL based on your routing setup
+                    type: 'GET',
+                    data: { leadId: leadId },
+                    success: function (response) {
+                        if (response.success) {
+                            // Populate the modal fields with the response data
+                            $('#depositStatus').val(response.data.accountTitle);
+                            $('#depositDate').val(response.data.depositDate ? response.data.depositDate.split('T')[0] : '');
+                            $('#amountnumber').val(response.data.amount);
+                            $('#accountNumber').val(response.data.accountNumber);
+
+                            // Optional: Handle file input display if needed
+                            // For example, if you have a way to display uploaded files
+                            // $('#DepositPayImagePath').val(response.data.depositPayImagePath);
+
+                        } else {
+                            // Clear the form fields if no data found
+                            $('#depositStatus').val('');
+                            $('#depositDate').val('');
+                            $('#amountnumber').val('');
+                            $('#accountNumber').val('');
+                            $('#DepositPayImagePath').val('');
+
+                           
+                        }
+
+                        // Show the modal
+                        $('#followUpModal').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error); // Log error for debugging
+                        alert('Failed to fetch deposit details.'); // Show an alert for the error
+                    }
+                });
+            });
+
+            // Save follow-up button click event
+            $('#saveFollowUp').on('click', function () {
+                var isValid = true;
+
+                // Validate Deposit Status
+                if ($('#depositStatus').val().trim() === '') {
+                    $('#depositStatusError').show();
+                    isValid = false;
+                } else {
+                    $('#depositStatusError').hide();
+                }
+
+                // Validate Deposit Date
+                if ($('#depositDate').val().trim() === '') {
+                    $('#depositDateError').show();
+                    isValid = false;
+                } else {
+                    $('#depositDateError').hide();
+                }
+
+                // Validate Amount
+                if ($('#amountnumber').val().trim() === '' || parseFloat($('#amountnumber').val()) <= 0) {
+                    $('#amountnumberError').show();
+                    isValid = false;
+                } else {
+                    $('#amountnumberError').hide();
+                }
+
+                // Validate Account Number
+                if ($('#accountNumber').val().trim() === '') {
+                    $('#accountNumberError').show();
+                    isValid = false;
+                } else {
+                    $('#accountNumberError').hide();
+                }
+
+                // Validate Deposit Receipt
+                 
+
+                if (isValid) {
+                    var form = $('#followUpForm')[0];
+                    var formData = new FormData(form);
+
+                    $.ajax({
+                        type: form.method,
+                        url: form.action,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            console.log(response);
+                            if (response.success) {
+                                alert(response.message);
+                                $('#followUpModal').modal('hide');
+                                $('#leadTable').DataTable().ajax.reload(); // Reload the data table
+                            } else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error); // Log the error for debugging
+                            alert('Failed to save follow-up');
+                        }
+                    });
+                }
+            });
+
+
+
+
+
+        });
+
+
+
+    </script>
+}
+
+

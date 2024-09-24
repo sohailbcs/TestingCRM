@@ -1,0 +1,64 @@
+﻿ 
+
+<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">   Enrolled Students</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="brandTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Phone Number  </th>
+                                                <th scope="col">University Name   </th>
+                                                <th scope="col">Program Name</th>
+                                                <th scope="col">Account Number  </th>
+                                                <th scope="col">Visa Application No    </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- main-panel ends -->
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/EnrolledStudent/GetEnrolledStudentData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "name": "FirstName", "autoWidth": true },
+                     { "data": "phoneNumber", "name": "PhoneNumber", "autoWidth": true },
+                    { "data": "uniName",   "autoWidth": true },
+                    { "data": "programName", "name": "ProgramName", "autoWidth": true },
+                    { "data": "accountNumber", "name": "AccountNumber", "autoWidth": true },
+                    { "data": "applicationNumber", "name": "ApplicationNumber", "autoWidth": true },
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+        });
+    </script>
+}

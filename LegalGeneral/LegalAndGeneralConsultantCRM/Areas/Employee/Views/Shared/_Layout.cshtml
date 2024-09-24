@@ -1,0 +1,704 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@using LegalAndGeneralConsultantCRM.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<LegalAndGeneralConsultantCRMUser> UserManager
+@using LegalAndGeneralConsultantCRM.Models.Branches
+@using Microsoft.EntityFrameworkCore
+
+@inject LegalAndGeneralConsultantCRMContext DbContext
+@{
+	// Initialize variables
+	var branchName = string.Empty;
+
+	// Fetch branch name if the user is logged in
+
+	var user = await UserManager.GetUserAsync(User);
+	 
+	var currentUser = user?.Id;
+	if (user != null && user.BrandId > 0)
+	{
+		var branch = await DbContext.Branches
+			.AsNoTracking() // Optional: Improves performance if you don't need tracking
+			.FirstOrDefaultAsync(b => b.BranchId == user.BrandId);
+
+		if (branch != null)
+		{
+			branchName = branch.BranchName;
+		}
+	}
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<title>Legal And Genereal Consultant -CRM</title>
+	<link rel="icon" href="~/images/logo/eee.png"   type="image/png" />
+
+	<link href="~/css/vendors_css.css" rel="stylesheet" />
+	<link href="~/css/horizontal-menu.css" rel="stylesheet" />
+	<link href="~/css/style.css" rel="stylesheet" />
+	<link href="~/css/skin_color.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+	
+	<style>
+		.badge-number {
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			background-color: red;
+			color: white;
+			border-radius: 50%;
+			padding: 5px 8px;
+			font-size: 12px;
+			font-weight: bold;
+			display: inline-block;
+			min-width: 20px;
+			text-align: center;
+		}
+		.active > a {
+			color: black; /* Active link text color for parent menu */
+			background-color: white; /* Active link background color for parent menu */
+		}
+
+		.parent-menu > a {
+			background-color: white;
+			color: black;
+			pointer-events: none; /* Disable click on parent menu */
+		}
+
+			.parent-menu > a:hover {
+				background-color: white; /* Disable background change on hover */
+				color: black; /* Disable text color change on hover */
+			}
+	</style>
+
+</head>
+
+<body class="layout-top-nav light-skin  theme-primary">
+	@{
+		// Assuming you have access to the UserManager or some way to get the current user
+		var userId = UserManager.GetUserId(User);
+
+		// Retrieve the LeadAssignEmployee record for the current user
+		var leadAssignEmployee = DbContext.LeadAssignEmployees
+		.Where(l => l.EmployeeId == userId)
+		.OrderByDescending(l => l.AssignmentDate)
+		.FirstOrDefault();
+		// Fetch notifications for the current user where status is false (unread)
+		var notifications = await DbContext.Notifications
+		.Where(n => n.UserId == userId && n.IsRead == false)
+		.OrderByDescending(n => n.NotificationTime)
+		.ToListAsync();
+	}
+	
+
+	@functions {
+		// Helper method to display time difference
+		string GetTimeAgo(TimeSpan timeDifference)
+		{
+			if (timeDifference.TotalMinutes < 1)
+			{
+				return "Just now";
+			}
+			else if (timeDifference.TotalMinutes < 60)
+			{
+				return $"{(int)timeDifference.TotalMinutes} min. ago";
+			}
+			else if (timeDifference.TotalHours < 24)
+			{
+				return $"{(int)timeDifference.TotalHours} hours ago";
+			}
+			else
+			{
+				return "More than a day ago";
+			}
+		}
+	}
+
+
+	<div class="wrapper">
+
+		<header class="main-header">
+			<div class="inside-header">
+				<div class="d-flex align-items-center logo-box justify-content-between">
+					<!-- Logo -->
+					<a href="index.html" class="logo">
+						<!-- logo-->
+						<div class="logo-lg">
+							<span class="light-logo"><img src="~/images/logo/logo2.png" height="56px!important" alt="logo"></span>
+							<span class="dark-logo"><img src="~/images/logo/logo2.png" height="56px!important" alt="logo"></span>
+						</div>
+					</a>
+				</div>
+				<!-- Header Navbar -->
+				<nav class="navbar navbar-static-top pl-10">
+					<!-- Sidebar toggle button-->
+					<div class="app-menu">
+						<ul class="header-megamenu nav">
+							<li class="btn-group nav-item d-none d-xl-inline-block">
+								<a href="#" class="waves-effect waves-light nav-link rounded  " title="">
+									<p>Branch: @branchName</p>
+								</a>
+							</li>
+
+							<li class="btn-group nav-item d-none d-xl-inline-block">
+								<a href="#" class="waves-effect waves-light nav-link rounded  " title="">
+									@{
+										var a = await UserManager.GetUserAsync(User);
+										var fullName = user != null ? $"{a.FirstName} {a.LastName}" : "Guest";
+									}
+
+									<p>Welcome, @fullName</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="navbar-custom-menu r-side">
+						<ul class="nav navbar-nav">
+							<li class="btn-group nav-item d-lg-inline-flex d-none">
+								<a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link rounded full-screen" title="Full Screen">
+									<i class="icon-Expand-arrows"><span class="path1"></span><span class="path2"></span></i>
+								</a>
+							</li>
+							<li class="btn-group d-lg-inline-flex d-none">
+								<div class="app-menu">
+									<div class="search-bx mx-5">
+									</div>
+								</div>
+							</li>
+							<!-- Notifications -->
+							<li class="dropdown notifications-menu">
+								<a href="#" class="waves-effect waves-light dropdown-toggle" data-toggle="dropdown" title="Notifications" style="position: relative;">
+									<i class="bi bi-bell" style="font-size: 24px;"></i>
+
+									@if (notifications.Count > 0)
+									{
+										<!-- Only show badge if there are notifications -->
+										<span class="badge-number badge badge-danger">@notifications.Count</span>
+									}
+								</a>
+
+								<ul class="dropdown-menu animated bounceIn" style="width: 300px; padding: 0; margin: 0; max-height: 400px; overflow-y: auto;">
+									<li class="header" style="padding: 20px; border-bottom: 1px solid #e5e5e5;">
+										<div style="display: flex; justify-content: space-between; align-items: center;">
+											<h4 style="margin: 0;">Notifications</h4>
+
+											@if (notifications.Count > 0)
+											{
+												<!-- Only show 'Mark All as Read' link if there are notifications -->
+												<a href="/Employee/EmployeeDashboard/MarkAllAsRead" class="btn btn-link" style="font-size: 12px;padding: 2px!important;">Mark All as Read</a>
+											}
+										</div>
+									</li>
+
+									@if (notifications.Any())
+									{
+										foreach (var notification in notifications)
+										{
+											<li class="notification-item" style="display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #e5e5e5;">
+												<div style="flex: 1;">
+													<p style="margin: 0;">
+														@notification.Message
+													</p>
+													<small class="text-muted">@notification.NotificationTime</small>
+												</div>
+												<a href="/Employee/EmployeeDashboard/MarkAsRead/@notification.NotificationId" class="btn btn-sm btn-link"style="font-size: 12px;padding: 2px!important;">Mark as Read</a>
+											</li>
+										}
+									}
+									else
+									{
+										<li class="notification-item" style="padding: 20px; text-align: center;">
+											<p style="margin: 0;">No new notifications</p>
+										</li>
+									}
+								</ul>
+							</li>
+
+
+
+
+							<!-- User Account-->
+							<li class="dropdown user user-menu">
+								<a href="#" class="waves-effect waves-light dropdown-toggle" data-toggle="dropdown" title="User">
+									<i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+								</a>
+								<ul class="dropdown-menu animated flipInX">
+									<li class="user-body">
+										<a class="dropdown-item" href="/Employee/Profile/Index"><i class="ti-user text-muted mr-2"></i> Profile</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="/Employee/Profile/ChangePassword"><i class="ti-key text-muted mr-2"></i>Change Password</a>
+
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="/Identity/Account/Login"><i class="ti-lock text-muted mr-2"></i> Logout</a>
+									</li>
+								</ul>
+							</li>
+
+							<!-- Control Sidebar Toggle Button -->
+
+
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<script>
+			$(document).ready(function () {
+				// Mark a single notification as read
+				$('.mark-as-read').click(function (e) {
+					e.preventDefault();
+					var notificationId = $(this).data('notification-id');
+
+					$.ajax({
+						url: '/Employee/EmployeeDashboard/MarkAsRead', // Endpoint for marking a notification as read
+						type: 'POST',
+						data: { id: notificationId },
+						success: function (response) {
+							if (response.success) {
+								location.reload(); // Reload page to update the notifications
+							}
+						}
+					});
+				});
+
+				// Mark all notifications as read
+				$('#mark-all-as-read').click(function (e) {
+					e.preventDefault();
+
+					$.ajax({
+						url: '/Employee/EmployeeDashboard/MarkAllAsRead', // Endpoint for marking all notifications as read
+						type: 'POST',
+						success: function (response) {
+							if (response.success) {
+								location.reload(); // Reload page to update the notifications
+							}
+						}
+					});
+				});
+			});
+		</script>
+
+		<nav class="main-nav" role="navigation">
+
+			<!-- Mobile menu toggle button (hamburger/x icon) -->
+			<input id="main-menu-state" type="checkbox" />
+			<label class="main-menu-btn" for="main-menu-state">
+				<span class="main-menu-btn-icon"></span> Toggle main menu visibility
+			</label>
+
+			<!-- Sample menu definition -->
+			<ul id="main-menu" class="sm sm-blue">
+				<li>
+					<a href="/Employee/EmployeeDashboard/Index"><i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>Dashboard</a>
+
+				</li>
+
+				<li>
+					<a href="#"><i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>My Leads</a>
+					<ul>
+						<li><a href="/Employee/MyLead/InProcessLead"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Leads </a></li>
+						<li><a href="/Employee/MyLead/UniversityProgram"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>  University Program</a></li>
+						<li><a href="/Employee/MyLead/Followup"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Follow-Ups</a></li>
+						<li><a href="/Employee/MyLead/Status"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Status</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#"><i class="icon-Chat-locked"><span class="path1"></span><span class="path2"></span></i>  Application </a>
+					<ul>
+						<li><a href="/Employee/Application/Form"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Application Form </a></li>
+						<li><a href="/Employee/Application/ApplicationStatus"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>    Application Status</a></li>
+						<li><a href="/Employee/Application/DepositPay"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Deposit Payment </a></li>
+						<li><a href="/Employee/Application/VisaApplication"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Visa Application</a></li>
+						<li><a href="/Employee/Application/Enrolled"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i> Enrolled </a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="/Employee/MyLead/Followup"><i class="icon-Write"><span class="path1"></span><span class="path2"></span></i>Follow-Ups  </a>
+					<ul>
+						<li><a href="/Employee/MyLead/Followup"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>  Leads Follow-Ups </a></li>
+
+					</ul>
+				</li>
+				<li>
+					<a href="#"><i class="icon-Brush"><span class="path1"></span><span class="path2"></span></i> Status</a>
+					<ul>
+						<li><a href="/Employee/MyLead/Status"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>  Leads By Status </a></li>
+						<li>
+							<a href="/Employee/Meeting/Target"><i class="icon-Cart"><span class="path1"></span><span class="path2"></span></i>Target</a>
+
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="/Employee/Invoice/MyInvoice"><i class="icon-User"><span class="path1"></span><span class="path2"></span></i>  Invoices</a>
+
+				</li>
+
+				<li>
+					<a href="#"><i class="icon-Library"><span class="path1"></span><span class="path2"></span></i> Reports</a>
+					<ul>
+						<li><a href="/Employee/Report/UniverisityCourses"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>   Univerisity Programs </a></li>
+						<li><a href="/Employee/Report/EnrolledStudent"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>   Enrolled Students   </a></li>
+
+					</ul>
+				</li>
+				<li>
+					<a href="/Employee/Meeting/Event"><i class="icon-Cart"><span class="path1"></span><span class="path2"></span></i>Meeting & Events</a>
+
+				</li>
+				<li>
+					<a href="/Employee/ActivityLog/Index"><i class="icon-Cart"><span class="path1"></span><span class="path2"></span></i>Activity Logs</a>
+
+				</li>
+			</ul>
+		</nav>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar">
+
+			<div class="rpanel-title"><span class="pull-right btn btn-circle btn-danger"><i class="ion ion-close text-white" data-toggle="control-sidebar"></i></span> </div>  <!-- Create the tabs -->
+			<ul class="nav nav-tabs control-sidebar-tabs">
+				<li class="nav-item"><a href="#control-sidebar-home-tab" data-toggle="tab" class="active"><i class="mdi mdi-message-text"></i></a></li>
+				<li class="nav-item"><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="mdi mdi-playlist-check"></i></a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!-- Home tab content -->
+				<div class="tab-pane active" id="control-sidebar-home-tab">
+					<div class="flexbox">
+						<a href="javascript:void(0)" class="text-grey">
+							<i class="ti-more"></i>
+						</a>
+						<p>Users</p>
+						<a href="javascript:void(0)" class="text-right text-grey"><i class="ti-plus"></i></a>
+					</div>
+					<div class="lookup lookup-sm lookup-right d-none d-lg-block">
+						<input type="text" name="s" placeholder="Search" class="w-p100">
+					</div>
+					<div class="media-list media-list-hover mt-20">
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-success" href="#">
+								<img src="~/images/avatar/1.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Tyler</strong></a>
+								</p>
+								<p>Praesent tristique diam...</p>
+								<span>Just now</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-danger" href="#">
+								<img src="~/images/avatar/2.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Luke</strong></a>
+								</p>
+								<p>Cras tempor diam ...</p>
+								<span>33 min ago</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-warning" href="#">
+								<img src="~/images/avatar/3.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Evan</strong></a>
+								</p>
+								<p>In posuere tortor vel...</p>
+								<span>42 min ago</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-primary" href="#">
+								<img src="~/images/avatar/4.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Evan</strong></a>
+								</p>
+								<p>In posuere tortor vel...</p>
+								<span>42 min ago</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-success" href="#">
+								<img src="~/images/avatar/1.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Tyler</strong></a>
+								</p>
+								<p>Praesent tristique diam...</p>
+								<span>Just now</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-danger" href="#">
+								<img src="~/images/avatar/2.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Luke</strong></a>
+								</p>
+								<p>Cras tempor diam ...</p>
+								<span>33 min ago</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-warning" href="#">
+								<img src="~/images/avatar/3.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Evan</strong></a>
+								</p>
+								<p>In posuere tortor vel...</p>
+								<span>42 min ago</span>
+							</div>
+						</div>
+
+						<div class="media py-10 px-0">
+							<a class="avatar avatar-lg status-primary" href="#">
+								<img src="~/images/avatar/4.jpg" alt="...">
+							</a>
+							<div class="media-body">
+								<p class="font-size-16">
+									<a class="hover-primary" href="#"><strong>Evan</strong></a>
+								</p>
+								<p>In posuere tortor vel...</p>
+								<span>42 min ago</span>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- /.tab-pane -->
+				<!-- Settings tab content -->
+				<div class="tab-pane" id="control-sidebar-settings-tab">
+					<div class="flexbox">
+						<a href="javascript:void(0)" class="text-grey">
+							<i class="ti-more"></i>
+						</a>
+						<p>Todo List</p>
+						<a href="javascript:void(0)" class="text-right text-grey"><i class="ti-plus"></i></a>
+					</div>
+					<ul class="todo-list mt-20">
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_1" class="filled-in">
+							<label for="basic_checkbox_1" class="mb-0 h-15"></label>
+							<!-- todo text -->
+							<span class="text-line">Nulla vitae purus</span>
+							<!-- Emphasis label -->
+							<small class="badge bg-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+							<!-- General tools such as edit or delete-->
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_2" class="filled-in">
+							<label for="basic_checkbox_2" class="mb-0 h-15"></label>
+							<span class="text-line">Phasellus interdum</span>
+							<small class="badge bg-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_3" class="filled-in">
+							<label for="basic_checkbox_3" class="mb-0 h-15"></label>
+							<span class="text-line">Quisque sodales</span>
+							<small class="badge bg-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_4" class="filled-in">
+							<label for="basic_checkbox_4" class="mb-0 h-15"></label>
+							<span class="text-line">Proin nec mi porta</span>
+							<small class="badge bg-success"><i class="fa fa-clock-o"></i> 3 days</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_5" class="filled-in">
+							<label for="basic_checkbox_5" class="mb-0 h-15"></label>
+							<span class="text-line">Maecenas scelerisque</span>
+							<small class="badge bg-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_6" class="filled-in">
+							<label for="basic_checkbox_6" class="mb-0 h-15"></label>
+							<span class="text-line">Vivamus nec orci</span>
+							<small class="badge bg-info"><i class="fa fa-clock-o"></i> 1 month</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_7" class="filled-in">
+							<label for="basic_checkbox_7" class="mb-0 h-15"></label>
+							<!-- todo text -->
+							<span class="text-line">Nulla vitae purus</span>
+							<!-- Emphasis label -->
+							<small class="badge bg-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+							<!-- General tools such as edit or delete-->
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_8" class="filled-in">
+							<label for="basic_checkbox_8" class="mb-0 h-15"></label>
+							<span class="text-line">Phasellus interdum</span>
+							<small class="badge bg-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5 by-1">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_9" class="filled-in">
+							<label for="basic_checkbox_9" class="mb-0 h-15"></label>
+							<span class="text-line">Quisque sodales</span>
+							<small class="badge bg-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+						<li class="py-15 px-5">
+							<!-- checkbox -->
+							<input type="checkbox" id="basic_checkbox_10" class="filled-in">
+							<label for="basic_checkbox_10" class="mb-0 h-15"></label>
+							<span class="text-line">Proin nec mi porta</span>
+							<small class="badge bg-success"><i class="fa fa-clock-o"></i> 3 days</small>
+							<div class="tools">
+								<i class="fa fa-edit"></i>
+								<i class="fa fa-trash-o"></i>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- /.tab-pane -->
+			</div>
+		</aside>
+		<!-- /.control-sidebar -->
+		@RenderBody()
+		<footer class="main-footer">
+			<div class="pull-right d-none d-sm-inline-block">
+				<ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+				</ul>
+			</div>
+			&copy; 2024 <a href="https://bytetechsolutions.com/"> Developed By ByteTech Solution</a>. All Rights Reserved.
+		</footer>
+	</div>
+
+
+
+
+
+
+	<script src="~/js/vendors.min.js"></script>
+	<script src="~/assets/icons/feather-icons/feather.min.js"></script>
+	<script src="~/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
+	<script src="~/assets/vendor_components/fullcalendar/lib/moment.min.js"></script>
+	<script src="~/assets/vendor_components/fullcalendar/fullcalendar.js"></script>
+	<script src="~/assets/vendor_components/echarts/dist/echarts-en.min.js"></script>
+	<script src="~/js/jquery.smartmenus.min.js"></script>
+	<script src="~/js/menus.min.js"></script>
+	<script src="~/js/template.min.js"></script>
+	<script src="~/js/pages/dashboard3.js"></script>
+	<script src="~/js/pages/calendar.js"></script>
+
+
+	<script src="~/assets/vendor_components/magnific-popup-master/dist/jquery.magnific-popup.min.js"></script>
+	<script src="~/assets/vendor_components/magnific-popup-master/dist/jquery.magnific-popup-init.js"></script>
+	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/noti.js"></script>
+ 	@await RenderSectionAsync("Scripts", required: false)
+</body>
+
+
+</html>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		// Connect to the SignalR hub
+		var connection = new signalR.HubConnectionBuilder()
+			.withUrl("/notificationHub")
+			.build();
+
+		connection.start().then(function () {
+			// Call the MarkNotificationsAsRead method on page load
+			connection.invoke("MarkNotificationsAsRead");
+		});
+
+		// Add a listener for the "NotificationsMarkedAsRead" event
+		connection.on("NotificationsMarkedAsRead", function () {
+			// Perform any additional actions on the client side if needed
+			console.log("Notifications marked as read on the server.");
+		});
+
+		// ... Rest of your SignalR code ...
+	});
+
+	$(document).ready(function () {
+		var currentPath = window.location.pathname;
+
+		$('#main-menu li a').each(function () {
+			var $this = $(this);
+			if ($this.attr('href') === currentPath) {
+				$this.closest('li').addClass('active');
+				$this.parents('li').addClass('active');
+			}
+		});
+
+		$('#main-menu li a').on('click', function () {
+			$('#main-menu li').removeClass('active');
+			$(this).closest('li').addClass('active');
+			$(this).parents('li').addClass('active');
+		});
+	});
+</script>

@@ -1,0 +1,422 @@
+﻿<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+      
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+
+                        
+                        @if (TempData["Error"] != null)
+                        {
+                            <div class="alert alert-success col-12 alert-dismissible fade show" role="alert">
+                                @TempData["Error"]
+                                <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+
+
+                        @if (TempData["Successu"] != null)
+                        {
+                            <div class="alert alert-success col-12 alert-dismissible fade show" role="alert">
+                                @TempData["Successu"]
+                                <button type="button" class="close " data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        }
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">My Converted Leads Summary</h3>
+                             
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Search Filters</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="filterForm">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">First Name</label>
+                                                    <input type="text" class="form-control" id="firstNameFilter" placeholder="First Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="emailFilter">Email</label>
+                                                    <input type="text" class="form-control" id="emailFilter" placeholder="Email" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="genderFilter">Gender</label>
+                                                    <select class="form-control" id="genderFilter">
+                                                        <option value="">Select Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phoneFilter">Phone Number</label>
+                                                    <input type="text" class="form-control" id="phoneFilter" placeholder="Phone Number" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        </div>
+                                        <div class="row">
+                                          
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Status</label>
+                                                    <input type="text" class="form-control" id="sourceFilter" placeholder="Source" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="brandTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                            <th style="background-color: #4e0973;color:white;">Gender</th>
+                                            <th style="background-color: #4e0973;color:white;"> Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                            <th style="background-color: #4e0973;color:white;">   Form</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+
+    <div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content  ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="followUpModalLabel">Application Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Step wizard -->
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Converted Lead Registration</h4>
+                         </div>
+                        <!-- /.box-header -->
+                        <div class="box-body wizard-content">
+                            <form action="#" class="tab-wizard wizard-circle">
+                                <!-- Step 1 -->
+                                <h6>Student Information</h6>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="firstName5">First Name :</label>
+                                                <input type="text" class="form-control" id="firstName5">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lastName1">Last Name :</label>
+                                                <input type="text" class="form-control" id="lastName1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="emailAddress1">Email Address :</label>
+                                                <input type="email" class="form-control" id="emailAddress1">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneNumber1">Phone Number :</label>
+                                                <input type="tel" class="form-control" id="phoneNumber1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="addressline1">Address Line 1 :</label>
+                                                <input type="text" class="form-control" id="addressline1">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="addressline2">Address Line 2 :</label>
+                                                <input type="text" class="form-control" id="addressline2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="location3">Select City :</label>
+                                                <select class="custom-select form-control" id="location3" name="location">
+                                                    <option value="">Select City</option>
+                                                    <option value="Amsterdam">India</option>
+                                                    <option value="Berlin">USA</option>
+                                                    <option value="Frankfurt">Dubai</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="date1">Date of Birth :</label>
+                                                <input type="date" class="form-control" id="date1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- Step 2 -->
+                                <h6> Education  </h6>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="url123">Title :</label>
+                                                <input type="url" class="form-control" id="url123" placeholder="Title">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="username123">Start Date :</label>
+                                                <input type="date" class="form-control" id="username123">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="password123">End Date :</label>
+                                                <input type="date" class="form-control" id="password123">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="url123">Document :</label>
+                                                <input type="file" class="form-control" id="url123" placeholder="Upload Document">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- Step 3 -->
+                                <h6>  Program Intake </h6>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="int123">University Name :</label>
+                                                <select class="form-control" id="leadStatus">
+                                                    <option value=" ">--   University Name --</option>
+
+                                                    <option value="hot">  University of Oxford</option>
+                                                    <option value="hot">  Stanford University</option>
+                                                    < 
+                                                </select>
+                                            </div>
+                                            </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="int123">Program Name :</label>
+                                                <select class="form-control" id="leadStatus">
+                                                    <option value=" ">--   Program Name  --</option>
+
+                                                    <option value="hot">BSCS  </option>
+                                                    <option value="hot">LLB  </option>
+                                                    <option value="hot">MBBS  </option>
+                                                     
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- Step 4 -->
+                                
+                                <h6>   Consultation Fee</h6>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="decisions1">Amount</label>
+                                                <input type="number" class="form-control" id="url123" placeholder="Amount ">
+                                            </div>
+                                             
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="decisions1">Date</label>
+                                                <input type="date" class="form-control" id="url123" placeholder="Amount ">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="decisions1">Recipt</label>
+                                                <input type="file" class="form-control" id="url123" placeholder="Amount ">
+                                            </div>
+                                            </div>
+                                            </div>
+                                
+                                </section>
+                            </form>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveFollowUp">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+
+    <!-- /.content-wrapper -->
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                var table = $('#brandTable').DataTable({
+                    "ajax": {
+                        "url": "/Employee/MyLead/GetConvertedLead",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "fullName", "name": "Name", "autoWidth": true },
+                        { "data": "email", "autoWidth": true },
+                        { "data": "gender", "autoWidth": true },
+                        { "data": "phoneNumber", "name": "Phone No", "autoWidth": true },
+                        {
+                            "data": "followUpStatus",
+
+                            "autoWidth": true,
+                            "render": function (data, type, row) {
+                                if (data === "Converted Lead") {
+                                    return '<span class="badge badge-pill bg-success">Converted Lead</span>';
+                                } else if (data === "Dead Lead") {
+                                    return '<span class="badge badge-pill bg-danger">Dead Lead</span>';
+                                } else if (data === "Cold Lead") {
+                                    return '<span class="badge badge-pill bg-dark">Cold Lead</span>';
+                                } else if (data === "Future Lead") {
+                                    return '<span class="badge badge-pill bg-secondary">Future Lead</span>';
+                                } else if (data === "Hot Lead") {
+                                    return '<span class="badge badge-pill bg-primary">Hot Lead</span>';
+                                } else if (data === "Warm Lead") {
+                                    return '<span class="badge badge-pill bg-info">Warm Lead</span>';
+                                } else {
+                                    return '<span class="badge badge-pill bg-warning">Pending Lead</span>';
+                                }
+                            }
+                        },
+
+                        {
+                            "data": null,
+                            "name": "Action",
+                            "autoWidth": true,
+                            "render": function (data, type, row) {
+                                // Determine the action buttons based on the enrollment status
+                                  let addButton = (!row.referralName || row.referralName === "false")
+            ? ''  // Hide the button if ReferralName is false or empty
+            : (row.isEnrolled
+                ? '<button class="btn btn-link" style="background: #1b2850;color:white" disabled><i class="bi bi-file-earmark-plus"></i></button>'
+                : '<a href="/Employee/Student/StudentInfo/' + row.leadId + '" class="btn btn-link" style="background: #1b2850;color:white"><i class="bi bi-file-earmark-plus"></i></a>');
+
+                                // Add the "Details" button/link
+                                let detailsButton = '<a href="/Employee/Application/Detail/' + row.leadId + '" class="btn btn-link" style="background: #1b2850;color:white"><i class="bi bi-info-circle"></i></a>';
+
+                                // Add the "Edit" button/link
+                                let editButton = '<a href="/Employee/Application/EditForm/' + row.leadId + '" class="btn btn-link" style="background: #1b2850;color:white"><i class="bi bi-pencil"></i></a>';
+
+                                // Combine all buttons and return
+                                return addButton + ' ' + detailsButton + ' ' + editButton;
+                            }
+                        },
+
+
+                    ]
+                });
+                $('#firstNameFilter').on('keyup', function () {
+                    table.column(0).search(this.value).draw();
+                });
+                // Filter by Email
+                $('#emailFilter').on('keyup', function () {
+                    table.column(1).search(this.value).draw();
+                });
+                // Filter by Gender
+                $('#genderFilter').on('change', function () {
+                    table.column(2).search(this.value).draw();
+                });
+
+
+
+                // Filter by Phone Number
+                $('#phoneFilter').on('keyup', function () {
+                    table.column(3).search(this.value).draw();
+                });
+
+                // Filter by Source
+                $('#sourceFilter').on('keyup', function () {
+                    table.column(5).search(this.value).draw();
+                });
+
+                // Filter by Date Range (Exact or Partial Match)
+                $('#dateRangeFilter').on('keyup', function () {
+                    table.column(5).search(this.value).draw();
+                });
+            });
+        </script>
+    }

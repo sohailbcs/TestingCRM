@@ -1,0 +1,54 @@
+﻿@model IEnumerable<LegalAndGeneralConsultantCRM.Models.Leads.Lead>
+
+@if (Model != null && Model.Any())
+{
+    <h4>Lead Details</h4>
+    <table id="leadDetailsTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Lead Creation Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lead in Model)
+            {
+                <tr>
+                    <td>@lead.LeadId</td>
+                    <td>@lead.FirstName</td>
+                    <td>@lead.LastName</td>
+                    <td>@lead.PhoneNumber</td>
+                    <td>@lead.CreatedDate</td>
+                    <!-- Include other lead properties as needed -->
+                    <td>
+                        <a href="@Url.Action("EditLeadForm", "LeadManagement", new { area = "Admin", id = lead.LeadId })" class="btn btn-success">Edit</a> |
+                        <a href="@Url.Action("ManageLead", "LeadManagement", new { area = "Admin", leadId = lead.LeadId, employeeId = ViewBag.SelectedEmployeeId })" class="btn btn-secondary">Manage</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No lead data available for the selected team member.</p>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTable for lead details
+            $('#leadDetailsTable').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false
+            });
+        });
+    </script>
+}

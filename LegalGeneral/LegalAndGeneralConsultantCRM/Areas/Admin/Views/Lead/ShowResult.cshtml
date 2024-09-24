@@ -1,0 +1,98 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.ResultViewModel
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Results Stats </h3>
+                            <div class="float-right">
+                            </div>
+                        </div>
+
+                        <!-- /.box-header -->
+                        <div class="box-body" style="margin-left:5%!important">
+                            <p class="stat">Total Records: @Model.TotalRecords</p>
+                            <p class="stat">Saved Records: @Model.SavedRowCount</p>
+                            <p class="stat">Duplicate Records: @Model.DuplicateRecords</p>
+                            <p id="countdown" class="countdown">Redirecting in 5 seconds...</p>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<style>
+    .stat {
+        font-weight: bold;
+        color: #333;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .countdown {
+        font-size: 18px;
+        font-weight: bold;
+        color: #ff5733; /* Orange color for countdown */
+        animation: pump 1s infinite;
+    }
+
+    @@keyframes pump {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            var countdownElement = document.getElementById('countdown');
+            var countdownTime = 5;
+
+            function updateCountdown() {
+                if (countdownTime > 0) {
+                    countdownElement.textContent = 'Redirecting in ' + countdownTime + ' seconds...';
+                    countdownTime--;
+                } else {
+                    window.location.href = 'https://legalandgen.technologyinn.net/Admin/Lead/AllLead';
+                }
+            }
+
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+}

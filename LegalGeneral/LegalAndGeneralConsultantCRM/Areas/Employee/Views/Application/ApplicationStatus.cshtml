@@ -1,0 +1,129 @@
+﻿<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Application Status  Summary</h3>
+ 
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Email</th>
+                                             <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">  University </th>
+                                            <th style="background-color: #4e0973;color:white;">  Course</th>
+                                            <th style="background-color: #4e0973;color:white;">Application Status</th>
+                                            <th style="background-color: #4e0973;color:white;">Comments</th>
+                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+ 
+
+<!-- /.content-wrapper -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#leadTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/Application/LeadConvertedStatus",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "autoWidth": true },
+                    { "data": "email", "autoWidth": true },
+                    { "data": "phoneNumber", "autoWidth": true },
+                    { "data": "universityName", "autoWidth": true },
+                    { "data": "courseName", "autoWidth": true },
+                    {
+                        "data": "statuses",
+                         "autoWidth": true,
+                        "render": function (data, type, row) {
+                            // Check if the followUpStatus is "Converted Lead" and apply the badge
+                            if (data === "Approval") {
+                                return '<span class="badge bg-success">  Approval</span>';
+                            }
+                            // Check if the followUpStatus is "Dead Lead" and apply the badge
+                            else if (data === "Pending") {
+                                return '<span class="badge bg-primary">  Pending</span>';
+                            }
+                            else if (data === "Cold Lead") {
+                                return '<span class="badge bg-dark">Cold Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Future Lead" and apply the badge
+                            else if (data === "Reject") {
+                                return '<span class="badge bg-secondary">Reject</span>';
+                            }
+                            // Check if the followUpStatus is "Hot Lead" and apply the badge
+                            else if (data === "Hot Lead") {
+                                return '<span class="badge bg-primary">Hot Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Warm Lead" and apply the badge
+                            else if (data === "Warm Lead") {
+                                return '<span class="badge bg-info">Warm Lead</span>';
+                            } else {
+                                // You can add more conditions for other statuses if needed
+                                return '<span class="badge bg-warning">Pending </span>';
+                            }
+                        }
+                    },
+                    { "data": "messages", "autoWidth": true },
+
+
+
+
+                ]
+            });
+          
+
+
+
+        });
+
+
+
+    </script>
+}

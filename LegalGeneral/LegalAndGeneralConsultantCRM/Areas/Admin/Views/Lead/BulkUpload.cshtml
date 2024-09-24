@@ -1,0 +1,376 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.Leads.BulkUploadViewModel
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        @if (TempData["Message"] != null)
+        {
+            <script>
+                alert('@TempData["Message"]');
+            </script>
+        }
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">Add Bulk Leads</h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                    <li class=" "><a href="#"> </a></li>
+                                    <li class="breadcrumb-item" aria-current="page"> BulkUpload</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Manage Leads</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <!-- The div where the response will be shown -->
+                                    <div id="responseDiv" style="display: none;"></div>
+                                    <form asp-action="UploadEmployeeExcel" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="file">Upload Lead Excel File</label>
+                                            <input type="file" name="file" class="form-control" id="fileInput" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="leadSource">Lead Source</label>
+                                            <input type="text" name="leadSource" class="form-control" id="leadSourceInput" required />
+                                        </div>
+
+                                        <button type="button" id="uploadButton" class="btn btn-primary">Start Mapping</button>
+
+                                        <div class="col-md-6" id="columnMappingSection" style="display: none;">
+                                            <div class="local-forms label">
+                                                <label id="label-color">File Columns</label>
+                                                <select id="fileColumns" class="form-control"></select>
+                                            </div>
+                                            <br />
+                                            <div class="local-forms label">
+                                                <label id="label-color">Database Columns</label>
+                                                <select id="databaseColumns" class="form-control">
+                                                    <option value="FirstName">First Name</option>
+                                                    <option value="LastName">Last Name</option>
+                                                    <option value="PhoneNumber">Phone 1</option>
+                                                    <option value="PhoneNumber2">Phone 2</option>
+                                                    <option value="Eaducation">Eaducation</option>
+
+                                                    <option value="Gender">Gender</option>
+                                                    <option value="CompanyName">Company Name</option>
+                                                    <option value="JobTitle">Job Title</option>
+                                                    <option value="Email">Email</option>
+                                                    <option value="CreatedDate">Created Date</option>
+                                                    <option value="Address">Address</option>
+                                                    <option value="City">City</option>
+                                                    <option value="Eaducation">Latest Education</option>
+                                                    <option value="State">State</option>
+                                                    <option value="ZipCode">Zip Code</option>
+                                                    <option value="Country">Country</option>
+                                                    <option value="Notes">Notes</option>
+                                                    <option value="Industry">Industry</option>
+                                                    <option value="LeadSource">Lead Source</option>
+                                                    <option value="LeadSourceDetails">Lead Source Details</option>
+                                                  
+                                                </select>
+                                            </div>
+                                            <br />
+                                            <div class="student-submit" style="text-align: center;">
+                                                <button type="button" id="mapButton" class="btn btn-primary">Map</button>
+                                                <button type="button" id="autoMapButton" class="btn btn-secondary">Auto Map</button>
+
+                                            </div>
+                                        </div>
+
+                                        <div id="mappedDataSection" class="mt-4" style="display: none;">
+                                            <h5>Mapped Columns</h5>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>File Column</th>
+                                                        <th>Database Column</th>
+                                                        <th>Action</th> <!-- Add this -->
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody id="mappedColumnsTableBody">
+                                                    <!-- Mapped data will be displayed here -->
+                                                </tbody>
+                                            </table>
+                                            <button type="button" id="saveButton" class="btn btn-success">Save</button>
+
+                                        </div>
+                                        <input type="hidden" id="mappedColumns" name="mappedColumns" />
+                                        <input type="hidden" id="fileData" name="fileData" />
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script>
+    document.getElementById('autoMapButton').addEventListener('click', function () {
+        var fileColumns = Array.from(document.getElementById('fileColumns').options).map(option => option.value.toLowerCase());
+        var databaseColumns = Array.from(document.getElementById('databaseColumns').options).map(option => option.value.toLowerCase());
+
+        var tableBody = document.getElementById('mappedColumnsTableBody');
+        tableBody.innerHTML = ''; // Clear existing mappings
+
+        fileColumns.forEach(function (fileColumn) {
+            var matched = databaseColumns.find(function (dbColumn) {
+                return fileColumn === dbColumn.toLowerCase();
+            });
+
+            if (matched) {
+                // Create a new row with the matched columns
+                var row = document.createElement('tr');
+
+                var fileColumnCell = document.createElement('td');
+                fileColumnCell.textContent = fileColumns.find(option => option.toLowerCase() === fileColumn);
+
+                var databaseColumnCell = document.createElement('td');
+                databaseColumnCell.textContent = matched;
+
+                // Create the delete button cell
+                var deleteButtonCell = document.createElement('td');
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm';
+                deleteButton.addEventListener('click', function () {
+                    tableBody.removeChild(row);
+                });
+                deleteButtonCell.appendChild(deleteButton);
+
+                row.appendChild(fileColumnCell);
+                row.appendChild(databaseColumnCell);
+                row.appendChild(deleteButtonCell);
+
+                tableBody.appendChild(row);
+            }
+        });
+
+        // Show the mapped data section if there are mappings
+        if (tableBody.children.length > 0) {
+            document.getElementById('mappedDataSection').style.display = 'block';
+        } else {
+            alert('No matching columns found.');
+        }
+    });
+
+            document.getElementById('saveButton').addEventListener('click', function () {
+                var mappedColumns = [];
+                var tableRows = document.querySelectorAll('#mappedColumnsTableBody tr');
+
+                tableRows.forEach(function (row) {
+                    var cells = row.querySelectorAll('td');
+                    mappedColumns.push({
+                        fileColumn: cells[0].textContent,
+                        databaseColumn: cells[1].textContent
+                    });
+                });
+
+                document.getElementById('mappedColumns').value = JSON.stringify(mappedColumns);
+
+                var fileInput = document.getElementById('fileInput');
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var data = new Uint8Array(e.target.result);
+                    var workbook = XLSX.read(data, { type: 'array' });
+
+                    var firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    var json = XLSX.utils.sheet_to_json(firstSheet);
+
+                    document.getElementById('fileData').value = JSON.stringify(json);
+
+                    var form = document.createElement('form');
+                    form.method = 'post';
+                    form.action = '/Admin/Lead/UploadEmployeeExcel'; // Update with your action URL
+
+                    form.appendChild(createHiddenInput('mappedColumns', document.getElementById('mappedColumns').value));
+                    form.appendChild(createHiddenInput('fileData', document.getElementById('fileData').value));
+
+                    document.body.appendChild(form);
+                    form.submit();
+                };
+
+                reader.readAsArrayBuffer(file);
+            });
+
+            function createHiddenInput(name, value) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                return input;
+            }
+
+            document.getElementById('uploadButton').addEventListener('click', function () {
+                var fileInput = document.getElementById('fileInput');
+                if (fileInput.files.length === 0) {
+                    alert('Please select a file.');
+                    return;
+                }
+        // Append the leadSource value
+        var leadSourceValue = document.getElementById('leadSourceInput').value;
+        if (!leadSourceValue) {
+            alert("Please enter the lead source.");
+            e.preventDefault(); // Prevent further action like form submission
+            return false; // Stop further execution explicitly
+        }
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var data = new Uint8Array(e.target.result);
+                    var workbook = XLSX.read(data, { type: 'array' });
+
+                    // Get the first worksheet
+                    var firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+
+                    // Get the column headers
+                    var headers = XLSX.utils.sheet_to_json(firstSheet, { header: 1 })[0];
+
+                    // Populate the fileColumns dropdown with headers
+                    var fileColumns = document.getElementById('fileColumns');
+                    fileColumns.innerHTML = ''; // Clear previous options
+
+                    headers.forEach(function (header) {
+                        var option = document.createElement('option');
+                        option.text = header;
+                        option.value = header;
+                        fileColumns.add(option);
+                    });
+
+                    // Show the column mapping section
+                    document.getElementById('columnMappingSection').style.display = 'block';
+                };
+
+                reader.readAsArrayBuffer(file);
+            });
+    document.getElementById('mapButton').addEventListener('click', function () {
+        var fileColumn = document.getElementById('fileColumns').value;
+        var databaseColumn = document.getElementById('databaseColumns').value;
+
+        if (!fileColumn || !databaseColumn) {
+            alert('Please select both file and database columns.');
+            return;
+        }
+
+        // Check for existing mapping to prevent duplicates
+        var tableBody = document.getElementById('mappedColumnsTableBody');
+        var existingRows = tableBody.querySelectorAll('tr');
+        for (var i = 0; i < existingRows.length; i++) {
+            var fileColumnInRow = existingRows[i].querySelector('td:nth-child(1)').textContent;
+            var databaseColumnInRow = existingRows[i].querySelector('td:nth-child(2)').textContent;
+
+            if (fileColumnInRow === fileColumn || databaseColumnInRow === databaseColumn) {
+                alert('Mapping already exists for either the selected file column or database column.');
+                return;
+            }
+        }
+
+        // Create a new row with the mapped columns
+        var row = document.createElement('tr');
+
+        var fileColumnCell = document.createElement('td');
+        fileColumnCell.textContent = fileColumn;
+
+        var databaseColumnCell = document.createElement('td');
+        databaseColumnCell.textContent = databaseColumn;
+
+        // Create the delete button cell
+        var deleteButtonCell = document.createElement('td');
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'btn btn-danger btn-sm';
+        deleteButton.addEventListener('click', function () {
+            tableBody.removeChild(row);
+        });
+        deleteButtonCell.appendChild(deleteButton);
+
+        row.appendChild(fileColumnCell);
+        row.appendChild(databaseColumnCell);
+        row.appendChild(deleteButtonCell);
+
+        tableBody.appendChild(row);
+
+        // Show the mapped data section
+        document.getElementById('mappedDataSection').style.display = 'block';
+    });
+
+
+    document.getElementById('saveButton').addEventListener('click', function () {
+        var mappedColumns = [];
+        var tableRows = document.querySelectorAll('#mappedColumnsTableBody tr');
+
+        tableRows.forEach(function (row) {
+            var cells = row.querySelectorAll('td');
+            mappedColumns.push({
+                fileColumn: cells[0].textContent,
+                databaseColumn: cells[1].textContent
+            });
+        });
+
+        document.getElementById('mappedColumns').value = JSON.stringify(mappedColumns);
+
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var data = new Uint8Array(e.target.result);
+            var workbook = XLSX.read(data, { type: 'array' });
+
+            var firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            var json = XLSX.utils.sheet_to_json(firstSheet);
+
+            document.getElementById('fileData').value = JSON.stringify(json);
+
+            // Create a new form dynamically
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = '/Admin/Lead/UploadEmployeeExcel'; // Update with your action URL
+
+            // Append the mapped columns and file data
+            form.appendChild(createHiddenInput('mappedColumns', document.getElementById('mappedColumns').value));
+            form.appendChild(createHiddenInput('fileData', document.getElementById('fileData').value));
+
+            // Append the leadSource value
+            var leadSourceValue = document.getElementById('leadSourceInput').value;
+            if (!leadSourceValue) {
+                alert("Please enter the lead source.");
+                e.preventDefault(); // Prevent further action like form submission
+                return false; // Stop further execution explicitly
+            }
+            form.appendChild(createHiddenInput('leadSource', leadSourceValue));
+
+            document.body.appendChild(form);
+            form.submit();
+        };
+
+        reader.readAsArrayBuffer(file);
+    });
+
+
+
+</script>
+

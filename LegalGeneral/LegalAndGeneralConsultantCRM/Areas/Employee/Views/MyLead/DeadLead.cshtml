@@ -1,0 +1,123 @@
+﻿
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>My Dead Leads</h4>
+                <h6> Dead Leads</h6>
+            </div>
+            
+        </div>
+        
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-top">
+                    <div class="search-set">
+                        <div class="search-path">
+                            <a class="btn btn-filter" id="filter_search">
+                                <img src="~/saleperson/assets/img/icons/filter.svg" alt="img">
+                                <span><img src="~/assets/img/icons/closes.svg" alt="img"></span>
+                            </a>
+                        </div>
+                        <div class="search-input">
+                            <a class="btn btn-searchset">
+                                <img src="~/saleperson/assets/img/icons/search-white.svg" alt="img">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="wordset">
+                        <ul>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                                    <img src="~/saleperson/assets/img/icons/pdf.svg" alt="img">
+                                </a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel">
+                                    <img src="~/saleperson/assets/img/icons/excel.svg" alt="img">
+                                </a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                                    <img src="~/saleperson/assets/img/icons/printer.svg" alt="img">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="brandTable" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody> <!-- Data will be loaded dynamically -->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/MyLead/GetDeadLeads",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                     { "data": "fullName",   "autoWidth": true },
+                    { "data": "phoneNumber",  "autoWidth": true },
+                    { "data": "email",  "autoWidth": true },
+
+                    {
+                        "data": "followUpStatus",
+                        "name": "Status",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            // Check if the followUpStatus is "Converted Lead" and apply the badge
+                            if (data === "Converted Lead") {
+                                return '<span class="badge bg-success">Converted Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Dead Lead" and apply the badge
+                            else if (data === "Dead Lead") {
+                                return '<span class="badge bg-danger">Dead Lead</span>';
+                            }
+                            else if (data === "Cold Lead") {
+                                return '<span class="badge bg-dark">Cold Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Future Lead" and apply the badge
+                            else if (data === "Future Lead") {
+                                return '<span class="badge bg-secondary">Future Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Hot Lead" and apply the badge
+                            else if (data === "Hot Lead") {
+                                return '<span class="badge bg-primary">Hot Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Warm Lead" and apply the badge
+                            else if (data === "Warm Lead") {
+                                return '<span class="badge bg-info">Warm Lead</span>';
+                            } else {
+                                // You can add more conditions for other statuses if needed
+                                return '<span class="badge bg-warning">Pending Lead</span>';
+                            }
+                        }
+                    },
+                     
+
+                ]
+            });
+        });
+    </script>
+}

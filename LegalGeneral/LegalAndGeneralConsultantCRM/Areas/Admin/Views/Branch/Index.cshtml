@@ -1,0 +1,336 @@
+﻿@model IEnumerable<LegalAndGeneralConsultantCRM.ViewModels.BranchViewModel>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <script>
+                $(document).ready(function () {
+                    alert('@TempData["SuccessMessage"]');
+                });
+            </script>
+        }
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Our Branches Summary</h3>
+                             <div class="float-right">
+
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <button class="btn float-end btn-primary" data-bs-toggle="modal" data-bs-target="#addBranchModal"><i class="bi bi-plus-circle"></i>&nbsp;Add Branch</button>
+                                 </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="branchTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Type</th>
+                                            <th style="background-color: #4e0973;color:white;">Code</th>
+                                            <th style="background-color: #4e0973;color:white;">City</th>
+                                            <th style="background-color: #4e0973;color:white;">Description</th>
+                                            <th style="background-color: #4e0973;color:white;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var branch in Model)
+                                        {
+                                            <tr>
+                                                <td>@branch.BranchName</td>
+                                                <td>@branch.BranchType</td>
+                                                <td>@branch.BranchCode</td>
+                                                <td>@branch.City</td>
+                                                <td>@branch.Description</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary edit-btn me-2"
+                                                            data-id="@branch.BranchId"
+                                                            data-name="@branch.BranchName"
+                                                            data-code="@branch.BranchCode"
+                                                            data-city="@branch.City"
+                                                            data-type="@branch.BranchType"
+                                                            data-description="@branch.Description"
+                                                            style="padding: 12px; margin-right: 5px;">
+                                                        <i class="bi bi-pencil" style="margin-right: 5px;"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger delete-btn"
+                                                            data-id="@branch.BranchId"
+                                                            style="padding: 12px; margin-right: 5px;">
+                                                        <i class="bi bi-trash" style="margin-right: 5px;"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+ 
+<!-- Add Branch Modal -->
+<div class="modal fade" id="addBranchModal" tabindex="-1" aria-labelledby="addBranchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addBranchModalLabel">Add Branch</h5>
+            </div>
+            <div class="modal-body">
+                <form id="addBranchForm" novalidate>
+                    <div class="mb-3">
+                        <label for="addBranchName" class="form-label">Branch Name</label>
+                        <input type="text" class="form-control" id="addBranchName" name="BranchName" required />
+                        <div class="invalid-feedback">
+                            Please provide a branch name.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="branchType" class="form-label">Branch Type</label>
+                        <select class="form-select" id="branchType" name="branchType" required>
+                            <option value="" disabled selected>Select branch type</option>
+                            <option value="franchise">Franchise</option>
+                            <option value="branch">Branch</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a branch type.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="addBranchCode" class="form-label">Branch Code</label>
+                        <input type="text" class="form-control" id="addBranchCode" name="BranchCode" required />
+                        <div class="invalid-feedback">
+                            Please provide a branch code.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="City" class="form-label">City</label>
+                        <input type="text" class="form-control" id="City" name="City" required />
+                        <div class="invalid-feedback">
+                            Please provide a branch City.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="addBranchDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="addBranchDescription" name="Description" rows="3"></textarea>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveBranchButton">Save Branch</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Branch Modal -->
+<div class="modal fade" id="editBranchModal" tabindex="-1" aria-labelledby="editBranchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBranchModalLabel">Edit Branch</h5>
+            </div>
+            <div class="modal-body">
+                <form id="editBranchForm">
+                    <input type="hidden" id="branchId" name="BranchId" />
+                    <div class="mb-3">
+                        <label for="editBranchName" class="form-label">Branch Name</label>
+                        <input type="text" class="form-control" id="editBranchName" name="BranchName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editBranchType" class="form-label">Branch Type</label>
+                        <select class="form-select" id="editBranchType" name="branchType" required>
+                            <option value="" disabled>Select branch type</option>
+                            <option value="franchise">Franchise</option>
+                            <option value="branch">Branch</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a branch type.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editBranchCode" class="form-label">Branch Code</label>
+                        <input type="text" class="form-control" id="editBranchCode" name="BranchCode" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editBranchCode" class="form-label">City</label>
+                        <input type="text" class="form-control" id="editCity" name="City" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editBranchDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="editBranchDescription" name="Description" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updateBranchButton">Update Branch</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#branchTable').DataTable();
+
+
+            $('#branchTable').on('click', '.edit-btn', function () {
+                var branchId = $(this).data('id');
+                var branchName = $(this).data('name');
+                var branchCode = $(this).data('code');
+                var City = $(this).data('city');
+                var branchType = $(this).data('type'); // Retrieve branchType
+                var description = $(this).data('description');
+
+                $('#branchId').val(branchId);
+                $('#editBranchName').val(branchName);
+                $('#editBranchCode').val(branchCode);
+                $('#editCity').val(City);
+                $('#editBranchType').val(branchType); // Populate branchType
+                $('#editBranchDescription').val(description);
+
+                $('#editBranchModal').modal('show');
+            });
+
+            $('#saveBranchButton').on('click', function () {
+                var $form = $('#addBranchForm');
+                var isValid = $form[0].checkValidity();
+
+                if (!isValid) {
+                    $form.addClass('was-validated');
+                    return;
+                }
+
+                var branchName = $('#addBranchName').val();
+                var branchCode = $('#addBranchCode').val();
+                var City = $('#City').val();
+                var branchType = $('#branchType').val(); // Include branchType
+                var description = $('#addBranchDescription').val();
+
+                var data = {
+                    BranchName: branchName,
+                    BranchCode: branchCode,
+                    branchType: branchType, // Send branchType
+                    City: City, // Send branchType
+                    Description: description
+                };
+
+                $.ajax({
+                    url: '/Admin/Branch/AddBranch',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log('Server response:', response);
+
+                        if (response.success) {
+                            $('#addBranchModal').modal('hide');
+                            alert(response.message);
+                            $('#branchTable').DataTable().ajax.reload();
+
+                            // Reset form fields
+                            $('#addBranchForm')[0].reset();
+                            $form.removeClass('was-validated'); // Remove validation state
+                        } else {
+                            alert('Failed to add branch: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error adding branch:', error);
+                    }
+                });
+            });
+
+            $('#updateBranchButton').on('click', function () {
+                var $form = $('#editBranchForm');
+                var isValid = $form[0].checkValidity();
+
+                if (!isValid) {
+                    $form.addClass('was-validated');
+                    return;
+                }
+
+                var branchId = $('#branchId').val();
+                var branchName = $('#editBranchName').val();
+                var branchCode = $('#editBranchCode').val();
+                var City = $('#editCity').val();
+                var branchType = $('#editBranchType').val(); // Include branchType
+                var description = $('#editBranchDescription').val();
+
+                var data = {
+                    BranchId: branchId,
+                    BranchName: branchName,
+                    BranchCode: branchCode,
+                    City: City,
+                    branchType: branchType, // Send branchType
+                    Description: description
+                };
+
+                $.ajax({
+                    url: '/Admin/Branch/EditBranch',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log('Server response:', response);
+
+                        if (response.success) {
+                            $('#editBranchModal').modal('hide');
+                            alert(response.message);
+                            $('#branchTable').DataTable().ajax.reload();
+                        } else {
+                            alert('Failed to update branch: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error updating branch:', error);
+                    }
+                });
+            });
+        });
+    </script>
+
+}

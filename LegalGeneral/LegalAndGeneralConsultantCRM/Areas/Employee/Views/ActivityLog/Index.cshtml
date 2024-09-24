@@ -1,0 +1,128 @@
+﻿
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Activity Logs </h3>
+                           @*  <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> *@
+
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="leadTable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone Number</th>
+                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                            <th style="background-color: #4e0973;color:white;">  Action</th>
+                                            <th style="background-color: #4e0973;color:white;">Date   </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+<!-- /.content-wrapper -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#leadTable').DataTable({
+                "ajax": {
+                    "url": "/Employee/ActivityLog/MyActivityLog",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "leadName", "autoWidth": true },
+                    { "data": "leadPhone", "autoWidth": true },
+                  
+                    {
+                        "data": "status",
+
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            if (data === "Converted Lead") {
+                                return '<span class="badge badge-pill bg-success">Converted Lead</span>';
+                            } else if (data === "Dead Lead") {
+                                return '<span class="badge badge-pill bg-danger">Dead Lead</span>';
+                            } else if (data === "New Lead") {
+                                return '<span class="badge badge-pill bg-dark"> Add New Lead</span>';
+                            } else if (data === "Student Details Submission") {
+                                return '<span class="badge badge-pill bg-secondary">  Student Details Submission</span>';
+                            } else if (data === "Hot Lead") {
+                                return '<span class="badge badge-pill bg-primary">Hot Lead    </span>';
+                            } else if (data === "Make Deposit") {
+                                return '<span class="badge badge-pill bg-info">  Make Deposit</span>';
+                            } else if (data === "Warm Lead") {
+                                return '<span class="badge badge-pill bg-info">    Warm Lead</span>';
+                            }
+                            else if (data === "Future Lead") {
+                                return '<span class="badge badge-pill bg-secondary"> Future Lead</span>';
+                            }
+
+                            else {
+                                return '<span class="badge badge-pill bg-warning">  Visa Application</span>';
+                            }
+
+                        }
+                    },
+                    { "data": "action", "autoWidth": true },
+                    { "data": "activityLogDate", "autoWidth": true },
+                    
+
+
+                ]
+            });
+
+
+
+
+        });
+
+
+
+    </script>
+}
+
+ 

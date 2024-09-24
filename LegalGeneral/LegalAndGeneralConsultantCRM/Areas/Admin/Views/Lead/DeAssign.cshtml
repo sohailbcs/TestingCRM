@@ -1,0 +1,210 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    #brandTable thead th::before,
+    #brandTable thead th::after {
+        content: "";
+        right: 0;
+        bottom: 0;
+    }
+
+</style>
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+        
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Leads De-assign </h3>
+                             <div class="float-right">
+
+                               
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table id="brandTable" class="display expandable-table" style="width:100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="background-color: #4e0973;color:white;">Name</th>
+                                            <th style="background-color: #4e0973;color:white;">Phone No</th>
+                                            <th style="background-color: #4e0973;color:white;">Status   </th>
+                                            <th style="background-color: #4e0973;color:white;">Team Member</th>
+                                            <th style="background-color: #4e0973;color:white;">Allocation Date </th>
+                                            <th style="background-color: #4e0973;color:white;"> De-assign </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+@* <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">  Leads De-assign</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+
+
+                                    <table id="brandTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Phone No</th>
+                                                <th>Status   </th>
+                                                <th>Team Member</th>
+                                                <th>Allocation Date </th>
+                                                <th> De-assign </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+ *@
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#brandTable').DataTable({
+                "ajax": {
+                    "url": "/Admin/Lead/Leads",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "fullName", "name": "Name", "autoWidth": true },
+                    { "data": "phoneNumber", "name": "Phone No", "autoWidth": true },
+
+                    {
+                        "data": "followUpStatus",
+                        "name": "Status",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            // Check if the followUpStatus is "Converted Lead" and apply the badge
+                            if (data === "Converted Lead") {
+                                return '<span class="badge bg-success text-white">Converted Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Dead Lead" and apply the badge
+                            else if (data === "Dead Lead") {
+                                return '<span class="badge bg-danger text-white">Dead Lead</span>';
+                            }
+                            else if (data === "Cold Lead") {
+                                return '<span class="badge bg-dark text-white">Cold Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Future Lead" and apply the badge
+                            else if (data === "Future Lead") {
+                                return '<span class="badge bg-secondary text-white">Future Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Hot Lead" and apply the badge
+                            else if (data === "Hot Lead") {
+                                return '<span class="badge bg-primary text-white">Hot Lead</span>';
+                            }
+                            // Check if the followUpStatus is "Warm Lead" and apply the badge
+                            else if (data === "Warm Lead") {
+                                return '<span class="badge bg-info text-white">Warm Lead</span>';
+                            } else {
+                                // You can add more conditions for other statuses if needed
+                                return '<span class="badge bg-warning text-white">Pending Lead</span>';
+                            }
+                        }
+                    },
+
+                    { "data": "employeeFullName", "name": "Allocated To", "autoWidth": true },
+                    {
+                        "data": "createdDate",
+                        "name": "Creation Date",
+                        "autoWidth": true,
+                        "render": function (data) {
+                            return data ? new Date(data).toDateString() : null;
+                        }
+                    },
+                    {
+                        "data": "leadId",
+                        "name": "Action",
+                        "autoWidth": true,
+                        "render": function (data, type, row) {
+                            return `<button style="padding:10px" class="btn btn-danger btn-sm delete-btn" data-id="${data}"><i class="fas fa-user-slash"></i>
+                  De-assign</button>`;
+                        }
+                    }
+                ]
+            });
+            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+        });
+        $(document).on('click', '.delete-btn', function () {
+            var leadId = $(this).data('id');
+            if (confirm("Are you sure you want to De-assign this lead?")) {
+                $.ajax({
+                    url: '/Admin/Lead/Delete',
+                    type: 'POST',
+                    data: { leadid: leadId },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#brandTable').DataTable().ajax.reload(); // Reload the DataTable
+                            alert('Lead  De-assign successfully.');
+                        } else {
+                            alert('Error deleting lead.');
+                        }
+                    },
+                    error: function () {
+                        alert('Error deleting lead.');
+                    }
+                });
+            }
+        });
+
+    </script>
+}

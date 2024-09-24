@@ -1,0 +1,198 @@
+﻿<!-- partial -->
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">   Registered Leads</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="col-md-12">
+                                            <label for="fromDate" class="form-label">From Date</label>
+                                            <input type="date" id="fromDate" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="col-md-12">
+                                            <label for="toDate" class="form-label">To Date</label>
+                                            <input type="date" id="toDate" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3">
+                                        <div class="col-md-12">
+                                            <label for="SelectedTeamMember" class="form-label"></label>
+                                            <a class="btn btn-primary float-end">
+                                                <i class="bi bi-printer"></i> Print
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table id="leadDetailsTable" class="display expandable-table" style="width:100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                            <th>Name</th>
+                                            <th>Phone no</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Lead Source</th>
+                                            <th>Registered Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<script>
+    $(document).ready(function () {
+        // Example image URL (replace with your actual image URL)
+        var logoUrl = 'https://legalandgen.technologyinn.net/images/logo/logo1.png';  // Replace with your actual image URL
+
+
+        var defaultTeamMemberId = "";
+
+        // Function to check if both fromDate and toDate are entered
+        var areDatesEntered = function () {
+            debugger
+            var fromDateValue = $('#fromDate').val();
+            var toDateValue = $('#toDate').val();
+            return fromDateValue && toDateValue;
+        };
+
+        // Function to open the print window with fromDate and toDate parameters
+        var openPrintWindow = function () {
+            debugger
+            if (areDatesEntered()) {
+                debugger
+                var fromDateValue = $('#fromDate').val();
+                var toDateValue = $('#toDate').val();
+                window.open("/Admin/Reports/LeadsPrint?fromDate=" + fromDateValue + "&toDate=" + toDateValue, '_blank');
+
+                // Open a new window for printing
+             }
+        };
+
+
+
+
+
+        $('#downloadPDF').click(function () {
+            var doc = new jspdf.jsPDF();  // Create jsPDF instance
+            var table = $('#leadDetailsTable').DataTable();
+            var data = table.rows({ search: 'applied' }).data().toArray();  // Get the filtered data
+
+            // Add image to the PDF
+            doc.addImage(logoUrl, 'PNG', 10, 10, 50, 20);  // Add logo at x=10, y=10, width=50, height=20
+
+            // Generate PDF table using autoTable plugin
+            doc.autoTable({
+                startY: 40,  // Start below the image
+                head: [['Name', 'Phone no', 'Email', 'Status', 'Registered Date<']],
+                body: data.map(function (row) {
+                    return [
+                        row.fullName,
+                        row.phoneNumber,
+                        row.email,
+                        row.status,
+                        row.createdDate,
+                    ];
+                }),
+            });
+
+            // Create a Blob from the PDF
+            var pdfBlob = doc.output('blob');
+
+            // Create a URL for the Blob and open it in a new tab
+            var pdfUrl = URL.createObjectURL(pdfBlob);
+            window.open(pdfUrl, '_blank');
+        });
+
+
+
+
+        // Initialize DataTable
+        var initializeDataTable = function () {
+            if (areDatesEntered()) {
+                var fromDateValue = $('#fromDate').val();
+                var toDateValue = $('#toDate').val();
+                var url = "/Admin/Reports/GetLeadData?fromDate=" + fromDateValue + "&toDate=" + toDateValue;
+
+                // Initialize DataTable
+                $('#leadDetailsTable').DataTable({
+                    "ajax": {
+                        "url": url,
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "fullName", "autoWidth": true },
+                        { "data": "phoneNumber", "autoWidth": true },
+                        { "data": "email", "autoWidth": true },
+                        { "data": "gender", "autoWidth": true },
+                        { "data": "leadSource", "autoWidth": true },
+                        {
+                            "data": "createdDate",
+                            "name": "Creation Date",
+                            "autoWidth": true,
+                            "render": function (data) {
+                                return data ? new Date(data).toDateString() : null;
+                            }
+                        },
+                    ]
+                });
+                $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+            }
+        };
+
+        // Optional: You might want to refresh the DataTable when the date inputs change
+        $('#fromDate, #toDate').on('change', function () {
+            // Destroy the existing DataTable and reinitialize it
+            $('#leadDetailsTable').DataTable().destroy();
+            initializeDataTable();
+        });
+
+        // Handle click event for the Print button
+        // Handle click event for the Print button
+        $('.btn-primary').on('click', function () {
+            openPrintWindow();
+        });
+
+        // Initial DataTable setup
+        initializeDataTable();
+    });
+</script>
+
+
+

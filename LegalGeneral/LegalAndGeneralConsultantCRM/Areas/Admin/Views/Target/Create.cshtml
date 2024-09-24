@@ -1,0 +1,159 @@
+﻿@model LegalAndGeneralConsultantCRM.ViewModels.TargetTaskViewModel
+
+
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle the change event of the dropdown
+            $('#SelectedUserId').change(function () {
+                var selectedUserId = $(this).val();
+                var selectedUserName = $(this).find('option:selected').text();
+
+                // Set the hidden input field with the full name
+                $('#UserFullName').val(selectedUserName);
+            });
+        });
+    </script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Add Task</h3>
+
+                        </div>
+                        <h2>@ViewData["Title"]</h2>
+                        <div class="m-auto">
+                            <form id="taskForm" asp-action="Create" method="post" class="form-horizontal w-sm-500">
+                                <div class="form-group">
+                                    <label for="SelectedUserId" class="control-label">Choose Team Member</label>
+                                    <select id="SelectedUserId" name="SelectedUserId" class="form-control" asp-items="Model.Users">
+                                        <option value="" disabled selected>Please Select</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="TaskType" class="control-label">Task Type</label>
+                                    <select id="TaskType" name="TaskType" class="form-control" asp-items="Model.TaskTypes"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="targetquantity" class="control-label">Task Quantity</label>
+                                    <input id="targetquantity" name="targetquantity" type="number" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Description" class="control-label">Description</label>
+                                    <textarea id="Description" name="Description" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="StartDate" class="control-label">Start Date</label>
+                                    <input id="StartDate" name="StartDate" class="form-control" type="date" value="2024-01-01" min="2024-01-01" />
+                                </div>
+
+                                <input type="hidden" id="UserFullName" name="UserFullName" />
+
+                                <div class="form-group">
+                                    <label for="EndDate" class="control-label">End Date</label>
+                                    <input id="EndDate" name="EndDate" class="form-control" type="date" value="2024-01-01" min="2024-01-01" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
+<script>
+    $("#taskForm").validate({
+        rules: {
+            SelectedUserId: {
+                required: true,
+            },
+            TaskType: {
+                required: true,
+            },
+            targetquantity: {
+                required: true,
+                number: true,
+                min: 1
+            },
+            Description: {
+                required: true,
+                minlength: 2,
+                maxlength: 500
+            },
+            StartDate: {
+                required: true,
+                date: true,
+            },
+            EndDate: {
+                required: true,
+                date: true,
+
+            }
+        },
+        messages: {
+            SelectedUserId: {
+                required: "Please select a user."
+            },
+            TaskType: {
+                required: "Please select a task type."
+            },
+            targetquantity: {
+                required: "Please enter a task quantity.",
+                number: "Please enter a valid number.",
+                min: "Task quantity must be at least 1."
+            },
+            Description: {
+                required: "Please enter a description.",
+                minlength: "Description must be at least 2 characters long.",
+                maxlength: "Description cannot exceed 500 characters."
+            },
+            StartDate: {
+                required: "Please enter a start date.",
+                date: "Please enter a valid date in the format YYYY-MM-DD."
+            },
+            EndDate: {
+                required: "Please enter an end date.",
+                date: "Please enter a valid date in the format YYYY-MM-DD.",
+
+            }
+        }
+    });
+
+
+
+</script>

@@ -1,0 +1,108 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.LeadFollowUp.FollowUp
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+<main id="main" class="main ">
+
+
+    <section class="section" style="width: 100%;">
+        <div class="row col-md-12" style="width: 100%;margin: auto;">
+            <div class="col-md-8" style="margin: auto;">
+
+
+
+                <div class="card" style="width: 100%">
+                    <div class="card-body">
+
+                       
+
+                            <form class="row g-3 g-3 needs-validation" novalidate asp-controller="MyLead" asp-action="Create" method="post" asp-area="Employee">
+                                <div class="col-md-12 border1">
+                                    <legend>Lead Follow-Ups</legend>
+
+
+                                    <div class="col-md-12">
+                                        <label for="inputCity" class="form-label">Lead Name</label>
+                                        <input type="text" class="form-control" value="@ViewBag.FirstName" readonly />
+                                    <input type="hidden" asp-for="LeadId" value="@ViewBag.LeadId" />
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="inputCity" class="form-label">Status*</label>
+                                        <select asp-for="Status" class="form-control">
+                                            <option value="" disabled selected>--- Select Lead Status ---</option>
+                                        <option>Future Lead</option>
+                                        <option>Cold Lead</option>
+                                        <option>Warm Lead</option>
+                                        <option>Hot Lead</option>
+                                        <option>Converted Lead</option>
+                                        <option>Dead Lead</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                    <label for="inputState" class="form-label">Description</label>
+                                        <textarea asp-for="Description" class="form-control" style="height: 100px"  ></textarea>
+                                        <div class="invalid-feedback">Please enter your Source Details.</div>
+                                        <br>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="FollowUpDate" class="form-label">Follow-Up-Date </label>
+                                            <input asp-for="FollowUpDate" type="date" class="form-control" >
+                                            <div class="invalid-feedback">Please enter your Company.</div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="Reminder" class="form-label">Next-Follow-Up-Reminder</label>
+                                            <input asp-for="Reminder" type="date" class="form-control"  >
+                                            <div class="invalid-feedback">Please enter your Company.</div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-md-12">
+                                        <div class="float-end">
+                                            <button type="submit" class="btn btn-primary  float-right">FollowUp</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+ 
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </section>
+</main>
+
+

@@ -1,0 +1,97 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.Course
+
+<div class="content-wrapper">
+    <div class="content-wrapper-before"></div>
+    <div class="container-full">
+
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="d-flex align-items-center">
+                    <div class="w-p100 d-md-flex align-items-center justify-content-between">
+                        <h3 class="page-title">   </h3>
+                        <div class="d-inline-block align-items-center">
+                            <nav>
+                                <ol class="breadcrumb">
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"> Add Course</h3>
+                            <div class="float-right">
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+
+                            <div class="p-5" style="background-color:#ECEEF7;padding:20px!important; border-radius:10px;">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <form class="forms-sample" asp-controller="University" asp-action="AddCourses" method="post" asp-area="Admin">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1"> Course Name</label>
+                                                <input type="text" class="form-control" asp-for="Name" placeholder="Course Name" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail3">Durations  </label>
+                                                <input type="text" class="form-control" asp-for="DurationInYears" placeholder="Duration In Years  " required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">  Description  </label>
+                                                <textarea type="text" class="form-control" asp-for="Decription" placeholder=""></textarea>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                    <a href="/Admin/University/Courses" class="btn btn-light">Cancel</a>
+                                </form>
+                                 </<div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+                    </div>
+
+        </section>
+
+    </div>
+</div>
+
+
+ 
+
+
+ 

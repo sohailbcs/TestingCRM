@@ -1,0 +1,60 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.OfferProgram
+<!-- Include the necessary CSS and JS files for Select2 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+
+<main id="main" class="main">
+
+    <!-- Multi Columns Form -->
+    <form class="row wor g-3 g-3 needs-validation" novalidate asp-controller="University" asp-action="Edit" method="post" asp-area="Admin">
+        <div class="col-md-12 border1">
+            <legend>University Program</legend>
+            <div class="col-md-12">
+                <!-- Name Row -->
+                <input type="hidden" asp-for="OfferProgramId" />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="inputName5" class="form-label">Programs</label>
+                        <input type="text" class="form-control" asp-for="Name" required="Enter Name">
+                        <div class="invalid-feedback">Please enter your University Programs.</div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-md-12">
+                <div class="float-end">
+                    <button type="submit" class="btn btn-primary  float-right">Submit</button>
+                </div>
+            </div>
+    </form><!-- End Multi Columns Form -->
+</main>

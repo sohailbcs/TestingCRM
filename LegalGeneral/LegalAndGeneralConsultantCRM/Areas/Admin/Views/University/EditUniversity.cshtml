@@ -1,0 +1,199 @@
+﻿@model LegalAndGeneralConsultantCRM.Models.Universiies.University
+
+<style>
+    .border1 {
+        border: 2px solid #605e5e4c;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 20px 0px;
+    }
+
+    legend {
+        background-color: lightgray;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-top: -30px;
+        font-size: medium;
+        margin-left: 5%;
+        font-weight: bold;
+        font-family: arial;
+    }
+
+    .wor {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+
+
+
+<main id="main" class="main">
+    <div id="Lead" class="tabcontent">
+        <section class="section">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="width: 100%">
+                        <div class="card-body">
+
+
+                            <!-- Multi Columns Form -->
+                            <form class="row wor g-3 needs-validation" novalidate asp-controller="University" asp-action="EditUni" method="post" asp-area="Admin">
+                                <input type="hidden" asp-for="UniversityId" />
+
+                                <div class="col-md-12 border1">
+                                    <legend>University</legend>
+                                    <div class="col-md-12">
+                                        <!-- Name Row -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputName5" class="form-label">Name*</label>
+                                                <input type="text" class="form-control" asp-for="Name" required />
+                                                <div class="invalid-feedback">Please enter your University Name.</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputEmail5" class="form-label">Email*</label>
+                                                <input type="email" class="form-control" asp-for="ContactEmail" required />
+                                                <div class="invalid-feedback">Please enter your Email.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="inputCity" class="form-label">Type</label>
+                                                <select class="form-control" asp-for="Type">
+                                                    <option value="">---------------  Select Type  ---------------</option>
+                                                    <option>Public</option>
+                                                    <option>Private</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputCity" class="form-label">Phone Number*</label>
+                                                <input type="text" class="form-control" asp-for="ContactPhone" required />
+                                                <div class="invalid-feedback">Please enter your Phone Number.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputPassword5" class="form-label">Chancellor</label>
+                                            <input type="text" class="form-control" asp-for="Chancellor" />
+                                            <div class="invalid-feedback">Please enter your Chancellor.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Founded Date</label>
+                                            <input type="date" class="form-control" asp-for="Founded" />
+                                            <div class="invalid-feedback">Please enter your Founded Date.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Ranking*</label>
+                                            <input type="text" class="form-control" asp-for="Ranking" />
+                                            <div class="invalid-feedback">Please enter your Ranking.</div>
+                                            <label for="inputState" class="form-label">Research Area</label>
+                                            <input type="text" class="form-control" asp-for="ResearchAreas" />
+                                            <div class="invalid-feedback">Please enter your Research Area.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Address*</label>
+                                            <textarea class="form-control" style="height: 108px" required asp-for="StreetAddress"></textarea>
+                                            <div class="invalid-feedback">Please enter your Address.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Website</label>
+                                            <input type="text" class="form-control" asp-for="Website" />
+                                            <div class="invalid-feedback">Please enter Website.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Country</label>
+                                            <input type="text" class="form-control" asp-for="Country" />
+                                            <div class="invalid-feedback">Please enter your Country.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">Description</label>
+                                            <textarea class="form-control" style="height: 100px" asp-for="Description"></textarea>
+                                            <div class="invalid-feedback">Please enter your Description.</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">State</label>
+                                            <input type="text" class="form-control" asp-for="State" />
+                                            <div class="invalid-feedback">Please enter your State.</div>
+                                            <label for="inputState" class="form-label">City</label>
+                                            <input type="text" class="form-control" asp-for="City" />
+                                            <div class="invalid-feedback">Please enter your City.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <br />
+                                            <input type="checkbox" name="Program" value="Programe" />
+                                            <label for="checkbox">International Program Offer</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputState" class="form-label">ZipCode</label>
+                                            <input type="text" class="form-control" asp-for="ZipCode" />
+                                            <div class="invalid-feedback">Please enter your ZipCode.</div>
+                                            <label for="inputState" class="form-label">Location</label>
+                                            <input type="text" class="form-control" asp-for="Location" />
+                                            <div class="invalid-feedback">Please enter your Location.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 border1">
+                                    <legend>Programs</legend>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="OfferPrograms" class="form-label">Select Offer Programs*</label>
+                                                <select required id="OfferPrograms" name="OfferPrograms" class="js-example-basic-multiple form-control" multiple="multiple">
+                                                    <!-- Populate the options dynamically based on your OfferPrograms data -->
+                                                    @foreach (var program in ViewBag.AllOfferPrograms)
+                                                    {
+                                                        <option value="@program.Name">@program.Name</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="float-end">
+                                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main><!-- End #main -->
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <script>
+        $(document).ready(function () {
+            $('#OfferPrograms').select2();
+        });
+    </script>
+}
