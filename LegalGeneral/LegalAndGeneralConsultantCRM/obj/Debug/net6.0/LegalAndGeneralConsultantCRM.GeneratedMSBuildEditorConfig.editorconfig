@@ -1,0 +1,707 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = LegalAndGeneralConsultantCRM
+build_property.RootNamespace = LegalAndGeneralConsultantCRM
+build_property.ProjectDir = C:\Users\AL Shahbaz\Source\Repos\TestingCRM\LegalGeneral\LegalAndGeneralConsultantCRM\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\AL Shahbaz\Source\Repos\TestingCRM\LegalGeneral\LegalAndGeneralConsultantCRM
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/ActivityLog/Activity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWN0aXZpdHlMb2dcQWN0aXZpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Branch/Franchises.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXEZyYW5jaGlzZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Branch/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmNoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/CalendarBooking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FsZW5kYXJCb29raW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/ClubMember/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2x1Yk1lbWJlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Employee/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Employee/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Employee/EmployeeRegister.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcRW1wbG95ZWVSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Employee/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Employee/User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/EnrolledStudent/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW5yb2xsZWRTdHVkZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/FollowUp/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9sbG93VXBcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/FollowUp/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9sbG93VXBcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/FollowUp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRm9sbG93VXBcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/LeadManagement/EditLeadForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZE1hbmFnZW1lbnRcRWRpdExlYWRGb3JtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/LeadManagement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZE1hbmFnZW1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/LeadManagement/LeadEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZE1hbmFnZW1lbnRcTGVhZEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/LeadManagement/ManageLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZE1hbmFnZW1lbnRcTWFuYWdlTGVhZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/LeadManagement/_LeadDataPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZE1hbmFnZW1lbnRcX0xlYWREYXRhUGFydGlhbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/AllLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxBbGxMZWFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/AllocatedLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxBbGxvY2F0ZWRMZWFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/AssignLeadToEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxBc3NpZ25MZWFkVG9FbXBsb3llZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/BulkUpload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxCdWxrVXBsb2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/DeAssign.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxEZUFzc2lnbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/FollowUpDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxGb2xsb3dVcERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/LeadDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxMZWFkRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/LeadForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxMZWFkRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/LeadHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxMZWFkSGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/ShowResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxTaG93UmVzdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Lead/UnAllocatedLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTGVhZFxVbkFsbG9jYXRlZExlYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Profile/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZmlsZVxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Referral/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVmZXJyYWxcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Referral/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVmZXJyYWxcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Referral/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVmZXJyYWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Reports/AssignLeadsStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xBc3NpZ25MZWFkc1N0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Reports/EnrolledStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xFbnJvbGxlZFN0dWRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Reports/LeadsGenration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xMZWFkc0dlbnJhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Reports/UniverisityCourses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVwb3J0c1xVbml2ZXJpc2l0eUNvdXJzZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Service/AddService.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVxBZGRTZXJ2aWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Service/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VydmljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Student/AddEducation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudFxBZGRFZHVjYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Student/AddStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudFxBZGRTdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Student/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Student/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Student/StudentAcademia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudFxTdHVkZW50QWNhZGVtaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Target/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGFyZ2V0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Target/Target.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGFyZ2V0XFRhcmdldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/AddCourses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxBZGRDb3Vyc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/AddIncentive.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxBZGRJbmNlbnRpdmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/AddProgram.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxBZGRQcm9ncmFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/AddScholarship.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxBZGRTY2hvbGFyc2hpcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/AddUniversity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxBZGRVbml2ZXJzaXR5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Courses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxDb3Vyc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/CreatProgram.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxDcmVhdFByb2dyYW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Domain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxEb21haW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/EditUniversity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxFZGl0VW5pdmVyc2l0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Incentives.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxJbmNlbnRpdmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Scholarship.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxTY2hvbGFyc2hpcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Uni.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxVbmkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/Unidetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxVbmlkZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/University/UniversityCourses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pdmVyc2l0eVxVbml2ZXJzaXR5Q291cnNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/ActivityLog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQWN0aXZpdHlMb2dcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/ApplicationStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cQXBwbGljYXRpb25TdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/DepositPay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cRGVwb3NpdFBheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/EditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cRWRpdEZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/Enrolled.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cRW5yb2xsZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/VisaApplication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cVmlzYUFwcGxpY2F0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Application/VisaStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQXBwbGljYXRpb25cVmlzYVN0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/CalendarBooking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcQ2FsZW5kYXJCb29raW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/EmployeeDashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/EnrolledStudent/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcRW5yb2xsZWRTdHVkZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Invoice/MyInvoice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcSW52b2ljZVxNeUludm9pY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Invoice/PrintInvoice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcSW52b2ljZVxQcmludEludm9pY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Leadfollowup/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTGVhZGZvbGxvd3VwXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Leadfollowup/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTGVhZGZvbGxvd3VwXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Meeting/Event.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTWVldGluZ1xFdmVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Meeting/Target.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTWVldGluZ1xUYXJnZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/ConvertedLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXENvbnZlcnRlZExlYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/Country.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXENvdW50cnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/CreateFollowUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXENyZWF0ZUZvbGxvd1VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/DeadLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXERlYWRMZWFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/Follow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXEZvbGxvdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/Followup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXEZvbGxvd3VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/FollowupStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXEZvbGxvd3VwU3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/InProcessLead.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXEluUHJvY2Vzc0xlYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/LeadDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXExlYWREZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/Programs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXFByb2dyYW1zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/Status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXFN0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/MyLead/UniversityProgram.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcTXlMZWFkXFVuaXZlcnNpdHlQcm9ncmFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Profile/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcUHJvZmlsZVxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Report/EnrolledStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcUmVwb3J0XEVucm9sbGVkU3R1ZGVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Report/UniverisityCourses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcUmVwb3J0XFVuaXZlcmlzaXR5Q291cnNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/AddEducation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxBZGRFZHVjYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/AddStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxBZGRTdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/EditEducation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxFZGl0RWR1Y2F0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/NewEducation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxOZXdFZHVjYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/StudentAcademia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxTdHVkZW50QWNhZGVtaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/StudentInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxTdHVkZW50SW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Student/StudentStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU3R1ZGVudFxTdHVkZW50U3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWxDaGFuZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Lockout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGgyZmEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGVsZXRlUGVyc29uYWxEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGlzYWJsZTJmYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRG93bmxvYWRQZXJzb25hbERhdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRXh0ZXJuYWxMb2dpbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcR2VuZXJhdGVSZWNvdmVyeUNvZGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUmVzZXRBdXRoZW50aWNhdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2hvd1JlY292ZXJ5Q29kZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcVHdvRmFjdG9yQXV0aGVudGljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1N0YXR1c01lc3NhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Register/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Admin/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-cv58oweayb
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Areas/Employee/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZWVcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-zfthq58irx
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-assyzkkk0z
+
+[C:/Users/AL Shahbaz/Source/Repos/TestingCRM/LegalGeneral/LegalAndGeneralConsultantCRM/Views/Shared/_LayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-kaqhokiolx
