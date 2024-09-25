@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Users\\AL Shahbaz\\source\\repos\\TestingCRM\\",
+=======
+  "WorkspaceRootPath": "C:\\Users\\Sohail Khan\\source\\repos\\TestingCRM\\",
+>>>>>>> f6f1170877097eeca9441a43bd6a68afd0afc92e
   "Documents": [],
   "DocumentGroupContainers": [
     {
@@ -8,7 +12,11 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
+<<<<<<< HEAD
           "DockedWidth": 200,
+=======
+          "DockedWidth": 278,
+>>>>>>> f6f1170877097eeca9441a43bd6a68afd0afc92e
           "SelectedChildIndex": -1,
           "Children": [
             {
@@ -17,15 +25,19 @@
             },
             {
               "$type": "Bookmark",
+<<<<<<< HEAD
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
+=======
+>>>>>>> f6f1170877097eeca9441a43bd6a68afd0afc92e
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+<<<<<<< HEAD
             }
           ]
         },
@@ -36,6 +48,12 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+=======
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+>>>>>>> f6f1170877097eeca9441a43bd6a68afd0afc92e
             }
           ]
         }

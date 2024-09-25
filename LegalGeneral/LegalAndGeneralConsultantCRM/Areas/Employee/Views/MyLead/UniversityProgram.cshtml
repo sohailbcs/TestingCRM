@@ -33,6 +33,30 @@
 
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Search Filters</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="filterForm">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">University Name</label>
+                                                    <input type="text" class="form-control" id="firstNameFilter" placeholder="University Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Country</label>
+                                                    <input type="text" class="form-control" id="sourceFilter" placeholder="Country" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
                             <div class="table-responsive">
 
                                 <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
@@ -67,7 +91,7 @@
     @section Scripts {
         <script>
             $(document).ready(function () {
-                $('#example').DataTable({
+                var table = $('#example').DataTable({
                     "ajax": {
                         "url": "/Employee/MyLead/GetAllUniversityData",
                         "type": "GET",
@@ -118,6 +142,16 @@
 
                     ]
                 });
+
+                // Filter by First Name
+                $('#firstNameFilter').on('keyup', function () {
+                    table.column(0).search(this.value).draw();
+                });
+                // Filter by Source
+                $('#sourceFilter').on('keyup', function () {
+                    table.column(1).search(this.value).draw();
+                });
+
             });
         </script>
     }

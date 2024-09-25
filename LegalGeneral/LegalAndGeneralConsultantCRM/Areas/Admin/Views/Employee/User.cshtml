@@ -1,57 +1,117 @@
-﻿ <!-- Include Toastr CSS and JS, jQuery, and FontAwesome -->
+﻿<!-- Include Toastr CSS and JS, jQuery, FontAwesome, and SheetJS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script> <!-- Add this for SheetJS -->
 
 <div class="content-wrapper">
     <div class="content-wrapper-before"></div>
     <div class="container-full">
 
+        <!-- Success message from TempData -->
         @if (TempData["SuccessMessage"] != null)
         {
             <script>
                 $(document).ready(function () {
-                    alert('@TempData["SuccessMessage"]');
+                    toastr.success('@TempData["SuccessMessage"]');
                 });
             </script>
         }
+
         <!-- Main content -->
         <section class="content">
-            <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="w-p100 d-md-flex align-items-center justify-content-between">
-                        <h3 class="page-title">   </h3>
+                        <h3 class="page-title">Team Members Summary</h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
-                                <ol class="breadcrumb">
-                                </ol>
+                                <ol class="breadcrumb"></ol>
                             </nav>
                         </div>
                     </div>
-
                 </div>
             </div>
-            <div class="row">
 
+            <div class="row">
                 <div class="col-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title"> Team Members Summary</h3>
+                            <h3 class="box-title">Team Members Summary</h3>
                             <div class="float-right">
-
                                 <div class="mb-3 d-flex justify-content-end">
                                     <a class="btn btn-primary" href="/Admin/Employee/EmployeeRegister">
                                         <i class="bi bi-plus-circle"></i>&nbsp;Add Team Member
                                     </a>
                                 </div>
+                                <!-- Add Export Button -->
+                                <div class="mb-3 d-flex justify-content-end">
+                                    <button id="exportBtn" class="btn btn-success">
+                                        <i class="fa fa-download"></i> Export to Excel
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-
-
-                        <!-- /.box-header -->
+                        <!-- Table section -->
                         <div class="box-body">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Search Filters</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form id="filterForm">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="firstNameFilter">Name</label>
+                                                    <input type="text" class="form-control" id="firstNameFilter" placeholder="Name" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="genderFilter">Gender</label>
+                                                    <select class="form-control" id="genderFilter">
+                                                        <option value="">Select Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="emailFilter">Email</label>
+                                                    <input type="text" class="form-control" id="emailFilter" placeholder="Email" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="phoneFilter">Phone Number</label>
+                                                    <input type="text" class="form-control" id="phoneFilter" placeholder="Phone Number" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Branch</label>
+                                                    <input type="text" class="form-control" id="BranchFilter" placeholder="Branch" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="sourceFilter">Status</label>
+                                                    <input type="text" class="form-control" id="sourceFilter" placeholder="Status" />
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table id="brandTable" class="display expandable-table" style="width:100%">
                                     <thead class="thead-dark">
@@ -61,16 +121,12 @@
                                             <th style="background-color: #4e0973;color:white;">Email</th>
                                             <th style="background-color: #4e0973;color:white;">Phone Number</th>
                                             <th style="background-color: #4e0973;color:white;">Branch</th>
-                                            <th style="background-color: #4e0973;color:white;">Status</th> <!-- New Status Column -->
-                                            <th style="background-color: #4e0973;color:white;"> Action Status</th> <!-- New Status Column -->
+                                            <th style="background-color: #4e0973;color:white;">Status</th>
+                                            <th style="background-color: #4e0973;color:white;">Action Status</th>
                                             <th style="background-color: #4e0973;color:white;">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    </tbody>
-
-                                    <tbody>
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
@@ -78,104 +134,138 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#brandTable').DataTable({
-                "ajax": {
-                    "url": "/Admin/Employee/GetUserData",
-                    "type": "GET",
-                    "datatype": "json"
+
+<script>
+    $(document).ready(function () {
+        var table = $('#brandTable').DataTable({
+            "ajax": {
+                "url": "/Admin/Employee/GetUserData",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "fullname", "autoWidth": true },
+                { "data": "gender", "autoWidth": true },
+                { "data": "email", "autoWidth": true },
+                { "data": "phoneNumber", "autoWidth": true },
+                { "data": "branchName", "autoWidth": true },
+                {
+                    "data": "status",
+                    "render": function (data) {
+                        return data === true ? '<span style="color: green; font-weight: bold;">Active</span>' :
+                            '<span style="color: red; font-weight: bold;">Inactive</span>';
+                    },
+                    "autoWidth": true
                 },
-                "columns": [
-                    { "data": "fullname", "name": "FirstName", "autoWidth": true },
-                    { "data": "gender", "autoWidth": true },
-                    { "data": "email", "autoWidth": true },
-                    { "data": "phoneNumber", "autoWidth": true },
-                    { "data": "branchName", "autoWidth": true },
-                    {
-                        "data": "status",
-                        "autoWidth": true,
-                        "render": function (data, type, row) {
-                            // Check the status value
-                            if (data === true) {
-                                // If status is true (active), show green text in bold
-                                return '<span style="color: green; font-weight: bold;">Active</span>';
-                            } else {
-                                // If status is false (inactive), show red text in bold
-                                return '<span style="color: red; font-weight: bold;">Inactive</span>';
-                            }
-                        }
+                {
+                    "data": "status",
+                    "render": function (data, type, row) {
+                        return data ? `<button class="btn btn-danger changeStatus" data-id="${row.id}" data-status="false">Deactivate</button>` :
+                            `<button class="btn btn-success changeStatus" data-id="${row.id}" data-status="true">Activate</button>`;
                     },
+                    "autoWidth": true
+                },
+                {
+                    "data": "id",
+                    "render": function (data) {
+                        return `
+                            <a href="/Admin/Employee/Edit?id=${data}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+                            <a href="/Admin/Employee/ChangePassword?id=${data}" class="btn btn-warning"><i class="bi bi-key"></i></a>`;
+                    },
+                    "autoWidth": true
+                }
+            ],
+            "fixedHeader": true
+        });
 
-                    {
-                        "data": "status",
-                        "render": function (data, type, row) {
-                            if (data) {
-                                return `<button class="btn btn-danger changeStatus" data-id="${row.id}" data-status="false">Deactivate</button>`;
-                            } else {
-                                return `<button class="btn btn-success changeStatus" data-id="${row.id}" data-status="true">Activate</button>`;
-                            }
-                        },
-                        "autoWidth": true
-                    },
-                    {
-                        "data": "id",
-                        "render": function (data) {
-                            return `
-                            <a style="padding: 12px;margin-right: 5px;" href="/Admin/Employee/Edit?id=${data}" class="btn btn-primary">
-                                <i class="bi bi-pencil" style="margin-right: 5px;"></i>
-                            </a>
-                            <a style="padding: 12px;margin-right: 5px;" href="/Admin/Employee/ChangePassword?id=${data}" class="btn btn-warning">
-                                <i class="bi bi-key" style="margin-right: 5px;"></i>
-                            </a>`;
-                        },
-                        "autoWidth": true
-                    }
-                ],
-                "fixedHeader": true
+        // Filter by First Name
+        $('#firstNameFilter').on('keyup', function () {
+            table.column(0).search(this.value).draw();
+        });
+        // Filter by Gender
+        $('#genderFilter').on('change', function () {
+            table.column(1).search(this.value).draw();
+        });
+
+        // Filter by Email
+        $('#emailFilter').on('keyup', function () {
+            table.column(2).search(this.value).draw();
+        });
+
+        // Filter by Phone Number
+        $('#phoneFilter').on('keyup', function () {
+            table.column(3).search(this.value).draw();
+        });
+
+        // Filter by Source
+        $('#BranchFilter').on('keyup', function () {
+            table.column(4).search(this.value).draw();
+        });
+        // Filter by Source
+        $('#sourceFilter').on('keyup', function () {
+            table.column(5).search(this.value).draw();
+        });
+        // Filter by Source
+        $('#astatusFilter').on('keyup', function () {
+            table.column(6).search(this.value).draw();
+        });
+
+
+
+        // Handle change status
+        $(document).on('click', '.changeStatus', function () {
+            var userId = $(this).data('id');
+            var newStatus = $(this).data('status');
+
+            $.ajax({
+                url: '/Admin/Employee/ChangeStatus',
+                type: 'POST',
+                data: { id: userId, status: newStatus },
+                success: function (response) {
+                    toastr.success(response.message);
+                    table.ajax.reload();
+                },
+                error: function (response) {
+                    toastr.error(response.message);
+                }
             });
-            $(document).on('click', '.changeStatus', function () {
-                var userId = $(this).data('id');
-                var newStatus = $(this).data('status');
+        });
 
-                $.ajax({
-                    url: '/Admin/Employee/ChangeStatus',
-                    type: 'POST',
-                    data: {
-                        id: userId,
-                        status: newStatus
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            toastr.success(response.message);
-                            $('#brandTable').DataTable().ajax.reload(); // Reload table
-                        } else {
-                            toastr.error(response.message);
-                        }
+        // Export table to Excel (first 6 columns)
+        $('#exportBtn').click(function () {
+      
+            // Extract first 6 columns
+            $('#brandTable thead tr th').each(function (index) {
+                if (index < 6) {
+                    headers.push($(this).text());
+                }
+            });
+
+            tableData.push(headers);
+
+            // Extract data from each row
+            $('#brandTable tbody tr').each(function () {
+                var rowData = [];
+                $(this).find('td').each(function (index) {
+                    if (index < 6) {
+                        rowData.push($(this).text().trim());
                     }
                 });
+                tableData.push(rowData);
             });
 
-            $('.dataTables_length').hide(); // Hide the 'Show entries' dropdown
+            // Create worksheet and download
+            var ws = XLSX.utils.aoa_to_sheet(tableData);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Team Members");
 
-            var errorMessage = '@TempData["Error"]';
-            var successMessage = '@TempData["Success"]';
-            if (successMessage) {
-                toastr.success(successMessage);
-            }
-            if (errorMessage) {
-
-
-                toastr.error(errorMessage);
-            }
+            // Export to file
+            XLSX.writeFile(wb, "TeamMembers.xlsx");
         });
-    </script>
-}
+    });
+</script>

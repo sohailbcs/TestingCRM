@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\AL Shahbaz\\Source\\Repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AL Shahbaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\Sohail Khan\\Source\\Repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Sohail Khan\\Source\\Repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Sohail Khan\\Source\\Repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj",
+        "projectName": "LegalAndGeneralConsultantCRM",
+        "projectPath": "C:\\Users\\Sohail Khan\\Source\\Repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\LegalAndGeneralConsultantCRM.csproj",
+        "packagesPath": "C:\\Users\\Sohail Khan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sohail Khan\\Source\\Repos\\TestingCRM\\LegalGeneral\\LegalAndGeneralConsultantCRM\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sohail Khan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> f6f1170877097eeca9441a43bd6a68afd0afc92e
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -112,7 +129,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+>>>>>>> f6f1170877097eeca9441a43bd6a68afd0afc92e
         }
       }
     }
